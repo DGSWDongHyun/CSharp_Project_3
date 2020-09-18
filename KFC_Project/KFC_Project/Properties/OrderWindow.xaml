@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="OrderWindow" Height="450" Width="800">
     <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="40" Margin="10,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="120">
+            <Label Content="햄버거" HorizontalAlignment="Center" Margin="44,95,0,0" VerticalAlignment="Top" Height="40" Width="53" />
+        </Rectangle>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="40" Margin="155,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="120"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="40" Margin="295,95,0,0" Stroke="Black" VerticalAlignment="Top" Width="120"/>
         
+
     </Grid>
 </Window>
