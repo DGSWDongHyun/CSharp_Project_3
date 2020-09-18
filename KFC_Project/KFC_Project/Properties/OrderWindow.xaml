@@ -7,28 +7,18 @@
         mc:Ignorable="d"
         Title="OrderWindow" Height="450" Width="800">
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="40" Margin="10,80,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.367,0.19" Background="CadetBlue">
-            <Label Content="햄버거" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
-        </Grid>
-        <Grid HorizontalAlignment="Left" Height="40" Margin="240,80,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.367,0.19" Background="CadetBlue">
-            <Label Content="햄버거" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
-        </Grid>
-        <ListBox HorizontalAlignment="Left" Height="175" Margin="480,80,0,0" VerticalAlignment="Top" Width="304"/>
-        <Grid HorizontalAlignment="Left" Height="40" Margin="355,80,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.367,0.19" Background="CadetBlue">
-            <Label Content="햄버거" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
-        </Grid>
-        <Grid HorizontalAlignment="Left" Height="40" Margin="125,80,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.367,0.19" Background="CadetBlue">
-            <Label Content="햄버거" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
-        </Grid>
-        <ListBox HorizontalAlignment="Left" Height="225" Margin="10,140,0,0" VerticalAlignment="Top" Width="110"/>
-        <ListBox HorizontalAlignment="Left" Height="225" Margin="125,140,0,0" VerticalAlignment="Top" Width="110"/>
-        <ListBox HorizontalAlignment="Left" Height="225" Margin="240,140,0,0" VerticalAlignment="Top" Width="110"/>
-        <ListBox HorizontalAlignment="Left" Height="225" Margin="355,140,0,0" VerticalAlignment="Top" Width="110"/>
+
+        <ListBox HorizontalAlignment="Left" Height="225" Margin="10,140,0,0" VerticalAlignment="Top" Width="455"/>
         <Button Content="이전" HorizontalAlignment="Left" Margin="10,380,0,0" VerticalAlignment="Top" Width="105" Height="30"/>
         <Button Content="다음" HorizontalAlignment="Left" Margin="360,380,0,0" VerticalAlignment="Top" Width="105" Height="30"/>
         <Button Content="모두 삭제" HorizontalAlignment="Left" Margin="679,260,0,0" VerticalAlignment="Top" Width="105" Height="30"/>
         <Button Content="주문하기" HorizontalAlignment="Left" Margin="679,360,0,0" VerticalAlignment="Top" Width="105" Height="30"/>
         <Button Content="취소하기" HorizontalAlignment="Left" Margin="569,360,0,0" VerticalAlignment="Top" Width="105" Height="30"/>
+        <Button Content="햄버거" Foreground="White" Background="PowderBlue" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="110" Height="40"/>
+        <Button Content="햄버거" Foreground="White" Background="PowderBlue" HorizontalAlignment="Left" Margin="125,95,0,0" VerticalAlignment="Top" Width="110" Height="40"/>
+        <Button Content="햄버거" Foreground="White" Background="PowderBlue" HorizontalAlignment="Left" Margin="240,95,0,0" VerticalAlignment="Top" Width="110" Height="40"/>
+        <Button Content="햄버거" Foreground="White" Background="PowderBlue" HorizontalAlignment="Left" Margin="355,95,0,0" VerticalAlignment="Top" Width="110" Height="40"/>
+        <ListBox HorizontalAlignment="Left" Height="160" Margin="499,95,0,0" VerticalAlignment="Top" Width="285"/>
 
     </Grid>
 </Window>
