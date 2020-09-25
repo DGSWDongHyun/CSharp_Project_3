@@ -32,9 +32,27 @@ namespace MainScene
 
             //stopWatch.Start();
 
+            DispatcherTimer timer = new DispatcherTimer();    //객체생성
+
+            timer.Interval = TimeSpan.FromMilliseconds(0.01);    //시간간격 설정
+            timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
+            timer.Start();                                       //타이머 시작. 종료는 timer.Stop(); 으로 한다
+
         }
 
-        
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            DateTime dt = DateTime.Now;
+            string datePart = dt.ToString("yyyy-MM-dd hh:mm:ss");
+            lb_Time.Content = datePart;
+        }
+
+
     }
     
 }
