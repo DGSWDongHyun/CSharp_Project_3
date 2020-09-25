@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainScene"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
     <Grid>
 
         <Frame Source="/Page1.xaml" Margin="0,46,-0.4,0" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated"/>

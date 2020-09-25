@@ -22,19 +22,19 @@ namespace MainScene
     /// </summary>
     public partial class MainWindow : Window
     {
-        /*DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
         Stopwatch stopWatch = new Stopwatch();
         string currentTime = string.Empty;
-        */
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            //stopWatch.Start();
+            stopWatch.Start();
 
             DispatcherTimer timer = new DispatcherTimer();    //객체생성
 
-            timer.Interval = TimeSpan.FromMilliseconds(0.01);    //시간간격 설정
+            timer.Interval = TimeSpan.FromMilliseconds(500);    //시간간격 설정
             timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
             timer.Start();                                       //타이머 시작. 종료는 timer.Stop(); 으로 한다
 
@@ -52,7 +52,14 @@ namespace MainScene
             lb_Time.Content = datePart;
         }
 
-
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {   
+            if(e.Key == System.Windows.Input.Key.F2)
+            {
+                stopWatch.Stop();
+                MessageBox.Show("dfdfa");
+            }            
+        }
     }
     
 }
