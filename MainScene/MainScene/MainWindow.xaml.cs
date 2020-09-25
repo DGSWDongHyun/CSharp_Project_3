@@ -34,7 +34,7 @@ namespace MainScene
 
             DispatcherTimer timer = new DispatcherTimer();    //객체생성
 
-            timer.Interval = TimeSpan.FromMilliseconds(0.01);    //시간간격 설정
+            timer.Interval = TimeSpan.FromMilliseconds(500);    //시간간격 설정
             timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
             timer.Start();                                       //타이머 시작. 종료는 timer.Stop(); 으로 한다
 
