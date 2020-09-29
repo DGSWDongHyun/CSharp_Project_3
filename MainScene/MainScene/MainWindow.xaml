@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainScene"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
+        Title="MainWindow" Height="510" Width="810" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
 
-        <Frame Source="/Page1.xaml" Margin="0,46,-0.4,0" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated"/>
-        <Rectangle Fill="#FFFF1010" Height="45"  VerticalAlignment="Top" Margin="0,0,-0.4,0"/>
-        <Label x:Name="lb_Time" Content="Label" HorizontalAlignment="Left" Margin="649,10,0,0" VerticalAlignment="Top" Width="135" Foreground="White"/>
+        <Frame Source="/Page1.xaml" Margin="0,50,-0.4,0" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated"/>
+        <Rectangle Fill="#FFFF1010" Height="50"  VerticalAlignment="Top" Margin="0,0,-0.4,0"/>
+        <Label x:Name="lb_Time" Content="&#xD;&#xA;" HorizontalAlignment="Left" Margin="524,10,0,0" VerticalAlignment="Top" Width="210" Foreground="White" FontSize="17" FontFamily="Unispace" Height="35"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="739,5,0,0" VerticalAlignment="Top" Width="45" Height="40"/>
 
 
     </Grid>
