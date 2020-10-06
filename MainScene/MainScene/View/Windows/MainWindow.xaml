@@ -1,0 +1,18 @@
+﻿<Window x:Class="MainScene.View.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainScene"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="510" Width="810" KeyDown="Window_KeyDown" ResizeMode="NoResize">
+    <Grid>
+
+        <Frame Source="../Pages/Page1.xaml" Margin="0,50,-0.8,-0.2" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated" Name="FrameNavigation"/>
+        <Rectangle Fill="#FFFF1010" Height="50"  VerticalAlignment="Top" Margin="0,0,-0.4,0"/>
+        <Label x:Name="lb_Time" Content="&#xD;&#xA;" HorizontalAlignment="Left" Margin="524,10,0,0" VerticalAlignment="Top" Width="210" Foreground="White" FontSize="17" FontFamily="Unispace" Height="35"/>
+        <Button x:Name="HomeButton" Content="홈" HorizontalAlignment="Left" Margin="739,5,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="HomeButton_Click" RenderTransformOrigin="0.838,0.45" />
+
+
+    </Grid>
+</Window>
