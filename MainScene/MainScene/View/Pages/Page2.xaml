@@ -14,7 +14,7 @@
         <Button Content="이전" HorizontalAlignment="Left" Margin="10,351,0,0" VerticalAlignment="Top" Width="105" Height="32"/>
         <Button Content="다음" HorizontalAlignment="Left" Margin="360,351,0,0" VerticalAlignment="Top" Width="105" Height="32"/>
         <Button Content="모두 삭제" HorizontalAlignment="Left" Margin="679,226,0,0" VerticalAlignment="Top" Width="105" Height="32"/>
-        <Button Content="주문하기" HorizontalAlignment="Left" Margin="679,331,0,0" VerticalAlignment="Top" Width="105" Height="30"/>
+        <Button Name="PayOrder" Content="주문하기" HorizontalAlignment="Left" Margin="679,331,0,0" VerticalAlignment="Top" Width="105" Height="30" Click="PayOrder_Click"/>
         <Button Content="취소하기" HorizontalAlignment="Left" Margin="569,331,0,0" VerticalAlignment="Top" Width="105" Height="30"/>
         <Button Content="햄버거" Foreground="White" Background="PowderBlue" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="110" Height="42"/>
         <Button Content="햄버거" Foreground="White" Background="PowderBlue" HorizontalAlignment="Left" Margin="125,53,0,0" VerticalAlignment="Top" Width="110" Height="42"/>

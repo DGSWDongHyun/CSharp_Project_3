@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System;
 
 namespace MainScene.View.Pages
 {
@@ -10,6 +11,15 @@ namespace MainScene.View.Pages
         public Page2()
         {
             InitializeComponent();
+        }
+
+        private void PayOrder_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(
+
+               new Uri("View/Pages/Page3.xaml", UriKind.Relative)
+
+               );
         }
     }
 }
