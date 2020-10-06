@@ -68,7 +68,10 @@ namespace MainScene.View.Windows
                 {
                     break;
                 }
-                FrameNavigation.GoBack();
+                else
+                {
+                    FrameNavigation.GoBack();
+                }
             }
         }
     }
