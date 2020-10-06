@@ -125,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\admv.mp4" />
-    <Content Include="View\Pages\admv.mp4" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
