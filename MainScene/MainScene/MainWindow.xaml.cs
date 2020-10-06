@@ -64,7 +64,7 @@ namespace MainScene
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-          
+            FrameNavigation.Source = new Uri("Page1.xaml", UriKind.Relative);
         }
     }
     
