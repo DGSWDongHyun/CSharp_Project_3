@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Navigation;
 
 namespace MainScene
 {
@@ -59,6 +60,11 @@ namespace MainScene
                 stopWatch.Stop();
                 MessageBox.Show("dfdfa");
             }            
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+          
         }
     }
     
