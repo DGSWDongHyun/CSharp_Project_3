@@ -9,7 +9,7 @@
       Title="Page1">
 
     <Grid>
-        <MediaElement Source="admv.mp4" Margin="118,5,122,129.6" ></MediaElement>
+        <MediaElement Source="../../Resources/admv.mp4" Margin="118,5,122,129.6" ></MediaElement>
         <Button Content="다음페이지로" HorizontalAlignment="Left" Margin="330,320,0,0" VerticalAlignment="Top" Width="129" Click="Button_Click" Height="44"/>
 
     </Grid>
