@@ -62,7 +62,14 @@ namespace MainScene.View.Windows
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            FrameNavigation.Source = new Uri("../pages/Page1.xaml", UriKind.Relative);
+            while (true)
+            {
+                if (!FrameNavigation.CanGoBack)
+                {
+                    break;
+                }
+                FrameNavigation.GoBack();
+            }
         }
     }
 
