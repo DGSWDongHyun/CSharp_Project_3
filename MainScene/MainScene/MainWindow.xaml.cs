@@ -57,9 +57,18 @@ namespace MainScene
         {   
             if(e.Key == System.Windows.Input.Key.F2)
             {
-                stopWatch.Stop();
-                MessageBox.Show("dfdfa");
-            }            
+                if(FrameNavigation.CanGoBack )//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
+                {
+                    e.Handled = true;
+                    //do nothing!!
+                }
+
+
+                //FrameNavigation.Source = new Uri("AdminPage.xaml", UriKind.Relative);
+
+            }
+
+            
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)

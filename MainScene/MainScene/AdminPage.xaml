@@ -9,6 +9,7 @@
       Title="AdminPage">
 
     <Grid>
-        
+        <Label Content="ADMINPAGE" HorizontalAlignment="Left" Margin="339,218,0,0" VerticalAlignment="Top" Height="33" Width="141" FontFamily="Microsoft Sans Serif" FontSize="22"/>
+
     </Grid>
 </Page>
