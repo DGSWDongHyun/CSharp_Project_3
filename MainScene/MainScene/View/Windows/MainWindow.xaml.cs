@@ -46,14 +46,15 @@ namespace MainScene.View.Windows
         {
             if (e.Key == System.Windows.Input.Key.F2)
             {
-                if (FrameNavigation.CanGoBack)//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
+                if (!FrameNavigation.CanGoBack)//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
                 {
-                    e.Handled = true;
+                    Window win2 = new Adminwindow();
+                    win2.ShowDialog();
                     //do nothing!!
                 }
 
-
-                //FrameNavigation.Source = new Uri("AdminPage.xaml", UriKind.Relative);
+                e.Handled = true;
+                
 
             }
 
