@@ -59,9 +59,6 @@
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\TableRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="View\Pages\AdminPage.xaml.cs">
-      <DependentUpon>AdminPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
@@ -81,10 +78,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Pages\AdminPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\Pages\Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

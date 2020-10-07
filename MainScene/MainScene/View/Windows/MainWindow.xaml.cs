@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -34,6 +35,7 @@ namespace MainScene.View.Windows
         {
 
         }
+  
 
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -50,7 +52,7 @@ namespace MainScene.View.Windows
                 {
                     Window win2 = new Adminwindow();
                     win2.ShowDialog();
-                    //do nothing!!
+                    stopWatch.Stop();
                 }
 
                 e.Handled = true;
