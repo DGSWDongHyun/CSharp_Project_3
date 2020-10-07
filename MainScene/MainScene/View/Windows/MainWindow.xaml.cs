@@ -29,9 +29,6 @@ namespace MainScene.View.Windows
             timer.Interval = TimeSpan.FromMilliseconds(500);    //시간간격 설정
             timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
             timer.Start();                                       //타이머 시작. 종료는 timer.Stop(); 으로 한다
-            WindowStyle = WindowStyle.None; //Window의 타이틀, 버튼(Minimized, Maximized 등) 제거
-            WindowState = WindowState.Maximized; // 모니터의 해상도 크기로 변경
-            ResizeMode = ResizeMode.NoResize; // Window의 크기를 변경 불가  
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
@@ -66,7 +63,9 @@ namespace MainScene.View.Windows
 
         }
 
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+     
+
+        private void HomeButton_Click_1(object sender, RoutedEventArgs e)
         {
             while (true)
             {

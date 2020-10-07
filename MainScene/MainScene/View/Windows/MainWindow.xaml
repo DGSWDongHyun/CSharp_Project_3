@@ -5,13 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainScene"
         mc:Ignorable="d"
-        Title="MainWindow" Height="510" Width="810" KeyDown="Window_KeyDown" ResizeMode="NoResize">
-    <Grid>
+        WindowStyle="None"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="1080" Width="1920" KeyDown="Window_KeyDown">
 
-        <Frame Source="../Pages/Page1.xaml" Margin="0,50,-0.8,-0.2" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated" Name="FrameNavigation"/>
-        <Rectangle Fill="#FFFF1010" Height="50"  VerticalAlignment="Top" Margin="0,0,-0.4,0"/>
-        <Label x:Name="lb_Time" Content="&#xD;&#xA;" HorizontalAlignment="Left" Margin="524,10,0,0" VerticalAlignment="Top" Width="210" Foreground="White" FontSize="17" FontFamily="Unispace" Height="35"/>
-        <Button x:Name="HomeButton" Content="홈" HorizontalAlignment="Left" Margin="739,5,0,0" VerticalAlignment="Top" Width="40" Height="40" Click="HomeButton_Click" RenderTransformOrigin="0.838,0.45" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="red">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="3">
+                <Label Name="lb_Time" Content="null" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="white"/>
+                <Button Name="HomeButton" Content="Home" Width="75" Height="75" Margin="10" Click="HomeButton_Click_1"/>
+            </StackPanel>
+        </Grid>
+
+        <Frame Grid.Row="1" Source="../Pages/Page1.xaml" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated" Name="FrameNavigation"/>
 
 
     </Grid>
