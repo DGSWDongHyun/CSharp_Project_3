@@ -30,7 +30,7 @@ namespace MainScene.View.Pages
             
                 NavigationService.Navigate(
 
-                    new Uri("View/Pages/tableselect.xaml", UriKind.Relative)
+                    new Uri("View/Pages/TablePage.xaml", UriKind.Relative)
 
                     );
             

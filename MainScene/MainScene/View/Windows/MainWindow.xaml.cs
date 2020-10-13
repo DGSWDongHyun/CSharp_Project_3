@@ -17,8 +17,7 @@ namespace MainScene.View.Windows
         Stopwatch stopWatch = new Stopwatch();
         string currentTime = string.Empty;
 
-
-        public MainWindow()
+          public MainWindow()
         {
             InitializeComponent();
 
