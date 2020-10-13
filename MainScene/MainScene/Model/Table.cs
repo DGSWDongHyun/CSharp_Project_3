@@ -7,7 +7,7 @@ namespace KFC_Project.Model
         public int Idx { get; set; }
         public DateTime UsedTime { get; set; }
 
-        public bool IsUsed()
+        public bool IsUsingNow()
         {
             TimeSpan span = DateTime.Now - UsedTime;
             if(span.Minutes < 5)
