@@ -50,7 +50,7 @@ namespace MainScene.View.Windows
             {
                 if (!FrameNavigation.CanGoBack)//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
                 {
-                    Window win2 = new Adminwindow();
+                    Window win2 = new Adminwindow(stopWatch);
                     win2.ShowDialog();
                     stopWatch.Stop();
                 }

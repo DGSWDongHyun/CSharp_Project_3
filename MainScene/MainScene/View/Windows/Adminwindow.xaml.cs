@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -19,9 +20,13 @@ namespace MainScene.View.Windows
     /// </summary>
     public partial class Adminwindow : Window
     {
-        public Adminwindow()
+
+        Stopwatch stopWatch;
+        public Adminwindow(Stopwatch stopWatch)
         {
             InitializeComponent();
+
+            this.stopWatch = stopWatch;
 
             WindowStyle = WindowStyle.None; //Window의 타이틀, 버튼(Minimized, Maximized 등) 제거
             WindowState = WindowState.Maximized; // 모니터의 해상도 크기로 변경
