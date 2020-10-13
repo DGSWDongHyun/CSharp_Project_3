@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace MainScene.View.Pages
 {
     /// <summary>
-    /// Page3.xaml에 대한 상호 작용 논리
+    /// Page4.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Page3 : Page
+    public partial class Page4 : Page
     {
-        public Page3()
+        public Page4()
         {
             InitializeComponent();
-        }
-
-        private void SelectStore(object sender, RoutedEventArgs e)
-        {
-            
-                NavigationService.Navigate(
-
-                    new Uri("View/Pages/tableselect.xaml", UriKind.Relative)
-
-                    );
-            
         }
     }
 }

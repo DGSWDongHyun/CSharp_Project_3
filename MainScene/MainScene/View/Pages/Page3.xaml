@@ -9,8 +9,8 @@
       Title="Page3">
 
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="150,214,0,0" VerticalAlignment="Top" Width="133" Height="119"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="516,214,0,0" VerticalAlignment="Top" Width="133" Height="119"/>
+        <Button Content="매장 식사" HorizontalAlignment="Left" Margin="130,168,0,0" VerticalAlignment="Top" Width="176" Height="165" Click="SelectStore"/>
+        <Button Content="포장 주문" HorizontalAlignment="Left" Margin="497,168,0,0" VerticalAlignment="Top" Width="176" Height="165"/>
 
     </Grid>
 </Page>

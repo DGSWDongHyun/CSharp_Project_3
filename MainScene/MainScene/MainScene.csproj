@@ -68,6 +68,9 @@
     <Compile Include="View\Pages\Page3.xaml.cs">
       <DependentUpon>Page3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\.xaml.cs">
+      <DependentUpon>tableselect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\Adminwindow.xaml.cs">
       <DependentUpon>Adminwindow.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\Page3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\tableselect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
