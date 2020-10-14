@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using MainScene.Repository;
 
 namespace MainScene.View.Pages
 {
@@ -13,15 +14,8 @@ namespace MainScene.View.Pages
     /// </summary>
     public partial class Page2 : Page
     {
-        private List<Product> foodProduct = new List<Product>()
-        {
-            new Product(){ Category = CategoryEnum.Bugger, name = "치킨버거", Image = @"/Assets/ch.png" },
-            new Product(){ Category = CategoryEnum.Bugger, name = "치킨버거", Image = @"/Assets/ch.png" },
-            new Product(){ Category = CategoryEnum.Drink, name = "콜라", Image = @"/Assets/cola.png" },
-            new Product(){ Category = CategoryEnum.Drink, name = "사이다", Image = @"/Assets/cyida.png" },
-            new Product(){ Category = CategoryEnum.Side, name = "닭껍질 튀김", Image = @"/Assets/crustch.png" },
-            new Product(){ Category = CategoryEnum.Side, name = "치킨 텐더", Image = @"/Assets/tender.png" },
-        };
+        private List<Product> foodProduct = new ProductRepository().GetProduct();
+
         public Page2()
         {
             InitializeComponent();
