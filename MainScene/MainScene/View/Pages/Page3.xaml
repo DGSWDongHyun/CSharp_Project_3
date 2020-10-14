@@ -9,8 +9,15 @@
       Title="Page3">
 
     <Grid>
-        <Button Content="매장 식사" HorizontalAlignment="Left" Margin="414,373,0,0" VerticalAlignment="Top" Width="371" Height="347" Click="SelectStore" Background="LemonChiffon"/>
-        <Button Content="포장 주문" HorizontalAlignment="Left" Margin="1157,373,0,0" VerticalAlignment="Top" Width="370" Height="347" Background="LemonChiffon"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Width="350" Height="350" Content="매장 식사" VerticalAlignment="Center" HorizontalAlignment="Center" Click="SelectStore" Background="LemonChiffon"/>
+
+
+        <Button Content="포장 주문"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" Height="350" Background="LemonChiffon" Grid.Column="1"/>
 
     </Grid>
 </Page>
