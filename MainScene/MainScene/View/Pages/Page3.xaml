@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MainScene.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Page3">
 
     <Grid>
-        <Button Content="매장 식사" HorizontalAlignment="Left" Margin="130,168,0,0" VerticalAlignment="Top" Width="176" Height="165" Click="SelectStore"/>
-        <Button Content="포장 주문" HorizontalAlignment="Left" Margin="497,168,0,0" VerticalAlignment="Top" Width="176" Height="165"/>
+        <Button Content="매장 식사" HorizontalAlignment="Left" Margin="414,373,0,0" VerticalAlignment="Top" Width="371" Height="347" Click="SelectStore" Background="LemonChiffon"/>
+        <Button Content="포장 주문" HorizontalAlignment="Left" Margin="1157,373,0,0" VerticalAlignment="Top" Width="370" Height="347" Background="LemonChiffon"/>
 
     </Grid>
 </Page>

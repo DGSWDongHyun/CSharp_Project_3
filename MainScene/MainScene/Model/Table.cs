@@ -5,7 +5,7 @@ namespace MainScene.Model
     public class Table
     {
         public int Idx { get; set; }
-        public DateTime UsedTime { get; set; }
+        /*public DateTime UsedTime { get; set; }
 
         public bool IsUsingNow()
         {
@@ -17,5 +17,6 @@ namespace MainScene.Model
 
             return false;
         }
+        */
     }
 }
