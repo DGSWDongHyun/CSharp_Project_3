@@ -12,28 +12,47 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using MainScene.Util;
+using MainScene.Repository;
 
 namespace MainScene.View.Windows
 {
     /// <summary>
     /// Adminwindow.xaml에 대한 상호 작용 논리
     /// </summary>
+
     public partial class Adminwindow : Window
     {
+        private Stopwatch DriveTime;
 
-        Stopwatch stopWatch;
         public Adminwindow(Stopwatch stopWatch)
         {
             InitializeComponent();
-
-            this.stopWatch = stopWatch;
+            DataContext = this;
+            DriveTime = stopWatch;
 
             WindowStyle = WindowStyle.None; //Window의 타이틀, 버튼(Minimized, Maximized 등) 제거
             WindowState = WindowState.Maximized; // 모니터의 해상도 크기로 변경
             ResizeMode = ResizeMode.NoResize; // Window의 크기를 변경 불가s
 
+            SetDriveTime();
+        }
 
+        public void SetDriveTime()
+        {
+            DispatcherTimer timer = new DispatcherTimer();    //객체생성
 
+            timer.Interval = TimeSpan.FromMilliseconds(500);    //시간간격 설정
+            timer.Tick += new EventHandler(TimerTick);          //이벤트 추가
+            timer.Start();
+        }
+
+        
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            DriveTimeLabel.Content = DriveTime.Elapsed;
         }
     }
 }

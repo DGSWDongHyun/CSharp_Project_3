@@ -1,6 +1,6 @@
-﻿namespace KFC_Project.Repository
+﻿namespace MainScene.Repository
 {
-    class OrderRepository
+    public class OrderRepository
     {
     }
 }

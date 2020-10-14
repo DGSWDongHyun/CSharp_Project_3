@@ -51,7 +51,6 @@ namespace MainScene.View.Windows
                 {
                     Window win2 = new Adminwindow(stopWatch);
                     win2.ShowDialog();
-                    stopWatch.Stop();
                 }
 
                 e.Handled = true;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using MainScene.Repository;
+using MainScene.Util;
 
 namespace MainScene.View.Pages
 {
@@ -14,17 +15,15 @@ namespace MainScene.View.Pages
     /// </summary>
     public partial class Page2 : Page
     {
-        private List<Product> foodProduct = new ProductRepository().GetProduct();
+        ProductRepository productRepository = App.repositoryController.GetProductRepository();
+        private List<Product> foodProduct;
 
         public Page2()
         {
             InitializeComponent();
+            foodProduct = productRepository.GetProduct();
             lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
         }
-
- 
-
-
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MainScene.Repository
 {
-    class ProductRepository
+    public class ProductRepository
     {
         public List<Product> GetProduct()
         {

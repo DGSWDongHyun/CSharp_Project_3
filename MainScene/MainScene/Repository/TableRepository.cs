@@ -1,6 +1,6 @@
-﻿namespace KFC_Project.Repository
+﻿namespace MainScene.Repository
 {
-    class TableRepository
+    public class TableRepository
     {
     }
 }

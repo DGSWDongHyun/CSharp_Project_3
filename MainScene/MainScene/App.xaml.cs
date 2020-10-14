@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using MainScene.Util;
+using System.Windows;
 
 namespace MainScene
 {
@@ -7,5 +8,6 @@ namespace MainScene
     /// </summary>
     public partial class App : Application
     {
+        public static RepositoryController repositoryController = new RepositoryController();
     }
 }

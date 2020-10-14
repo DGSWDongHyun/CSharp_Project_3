@@ -60,6 +60,7 @@
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\TableRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Util\RepositoryController.cs" />
     <Compile Include="View\Pages\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
