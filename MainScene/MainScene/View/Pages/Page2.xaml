@@ -65,54 +65,99 @@
                   
                     </Grid>
                     <Grid>
-                        <ListBox x:Name="lbCategory" Margin="10,20,10,20" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Width="250" Height="250">
-                                <Image Source="{Binding imagePath}"/>
-                                <TextBlock Text="{Binding name}" Margin="0,24,0,0" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.ItemContainerStyle>
-                                <Style TargetType="{x:Type ListBoxItem}">
-                                    <Setter Property="Foreground" Value="Gray" />
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-                                    <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-                                    <Setter Property="Padding" Value="18,10,18,10" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                <Grid>
-                                                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-                                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"></ContentPresenter>
-                                                    </Border>
-                                                    <Border x:Name="UnderBd" Margin="18,0,18,0" VerticalAlignment="Bottom" BorderBrush="Transparent" BorderThickness="2"></Border>
-                                                </Grid>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsSelected" Value="true">
-                                                        <Setter Property="Foreground" Value="#E22219" />
-                                                        <Setter TargetName="UnderBd" Property="BorderBrush" Value="#E22219" />
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="true">
-                                                        <Setter Property="Foreground" Value="Black" />
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </ListBox.ItemContainerStyle>
-                            <ListBoxItem>버거</ListBoxItem>
-                            <ListBoxItem>음료</ListBoxItem>
-                            <ListBoxItem>사이드 메뉴</ListBoxItem>
-                        </ListBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="lbCategory" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbCategory_SelectionChanged_1">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Foreground" Value="Gray" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                                <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                                <Setter Property="Padding" Value="18,10,18,10" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <Grid>
+                                                <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"></ContentPresenter>
+                                                </Border>
+                                                <Border x:Name="UnderBd" Margin="18,0,18,0" VerticalAlignment="Bottom" BorderBrush="Transparent" BorderThickness="2"></Border>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="true">
+                                                    <Setter Property="Foreground" Value="#E22219" />
+                                                    <Setter TargetName="UnderBd" Property="BorderBrush" Value="#E22219" />
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Foreground" Value="Black" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBoxItem>버거</ListBoxItem>
+                        <ListBoxItem>음료</ListBoxItem>
+                        <ListBoxItem>사이드 메뉴</ListBoxItem>
+                    </ListBox>
+
+                    <ListBox x:Name="lbMenus" Grid.Row="1" Margin="10,20,10,20" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Foreground" Value="Gray" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                                <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                                <Setter Property="Padding" Value="18,10,18,10" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <Grid>
+                                                <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"></ContentPresenter>
+                                                </Border>
+                                                <Border x:Name="UnderBd" Margin="18,0,18,0" VerticalAlignment="Bottom" BorderBrush="Transparent" BorderThickness="2"></Border>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="true">
+                                                    <Setter Property="Foreground" Value="#E22219" />
+                                                    <Setter TargetName="UnderBd" Property="BorderBrush" Value="#E22219" />
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Foreground" Value="Black" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="250" Height="250">
+                                    <Image Source="{Binding Image}"/>
+                                    <TextBlock Text="{Binding name}" Margin="0,24,0,0" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+              
                     </Grid>
                 </Grid>
           
