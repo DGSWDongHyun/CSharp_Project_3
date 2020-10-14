@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MainScene.View.Pages
 {
     /// <summary>
-    /// Page4.xaml에 대한 상호 작용 논리
+    /// Tablepage.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class TablePage : Page
+    public partial class Tablepage : Page
     {
-        public TablePage()
+        public Tablepage()
         {
             InitializeComponent();
         }
