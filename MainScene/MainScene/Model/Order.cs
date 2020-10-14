@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KFC_Project.Model
+namespace MainScene.Model
 {
     public class Order
     {
