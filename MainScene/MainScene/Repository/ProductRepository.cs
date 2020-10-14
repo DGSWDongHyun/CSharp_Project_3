@@ -1,4 +1,4 @@
-﻿using KFC_Project.Model;
+﻿using MainScene.Model;
 using System.Collections.Generic;
 
 namespace KFC_Project.Repository

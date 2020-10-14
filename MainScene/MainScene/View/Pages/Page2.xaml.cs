@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using System;
-using KFC_Project.Model;
+using MainScene.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
