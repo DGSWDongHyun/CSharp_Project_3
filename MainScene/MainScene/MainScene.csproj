@@ -58,6 +58,7 @@
     <Compile Include="Converter\MoneyConverter.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\SettlementRepository.cs" />
     <Compile Include="Repository\TableRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Util\RepositoryController.cs" />

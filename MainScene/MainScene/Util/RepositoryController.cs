@@ -14,6 +14,7 @@ namespace MainScene.Util
         private ProductRepository productRepositoryInstance = null;
         private TableRepository tableRepositoryInstance = null;
         private UserRepository userRepositoryInstance = null;
+        private SettlementRepository settlementRepositoryInstance = null;
 
         public OrderRepository GetOrderRepository()
         {
@@ -46,6 +47,16 @@ namespace MainScene.Util
                 userRepositoryInstance = new UserRepository();
             }
             return userRepositoryInstance;
+        }
+
+        public SettlementRepository GetSettlementRepository()
+        {
+            if (settlementRepositoryInstance == null)
+            {
+                settlementRepositoryInstance = new SettlementRepository();
+            }
+
+            return settlementRepositoryInstance;
         }
 
     }

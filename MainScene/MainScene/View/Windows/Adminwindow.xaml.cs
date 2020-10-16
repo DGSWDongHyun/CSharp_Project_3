@@ -26,6 +26,9 @@ namespace MainScene.View.Windows
     {
         private Stopwatch DriveTime;
 
+        private SettlementRepository settlementRepository = App.repositoryController.GetSettlementRepository();
+
+
         public Adminwindow(Stopwatch stopWatch)
         {
             InitializeComponent();
@@ -36,7 +39,23 @@ namespace MainScene.View.Windows
             WindowState = WindowState.Maximized; // 모니터의 해상도 크기로 변경
             ResizeMode = ResizeMode.NoResize; // Window의 크기를 변경 불가s
 
+            
+            InitData();
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            DriveTimeLabel.Content = DriveTime.Elapsed;
+        }
+
+        private void InitData()
+        {
             SetDriveTime();
+            SetTotalSales();
+            SetDiscount();
+            SetSales();
+            SetCardSales();
+            SetCacheSales();
         }
 
         public void SetDriveTime()
@@ -47,12 +66,25 @@ namespace MainScene.View.Windows
             timer.Tick += new EventHandler(TimerTick);          //이벤트 추가
             timer.Start();
         }
-
-        
-
-        private void TimerTick(object sender, EventArgs e)
+        public void SetTotalSales()
         {
-            DriveTimeLabel.Content = DriveTime.Elapsed;
+            TotalSales.Content = settlementRepository.GetTotalSales();
+        }
+        public void SetDiscount()
+        {
+            DiscountLabel.Content = settlementRepository.GetDiscount();
+        }
+        public void SetSales()
+        {
+            Sales.Content = settlementRepository.GetSales();
+        }
+        public void SetCardSales()
+        {
+            CardSales.Content = settlementRepository.GetCardSales();
+        }
+        public void SetCacheSales()
+        {
+            CacheSales.Content = settlementRepository.GetCacheSales();
         }
     }
 }
