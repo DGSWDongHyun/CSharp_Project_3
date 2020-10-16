@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0"  VerticalAlignment="Top" FontSize="25" Foreground="Black">가격 : 있겠냐?</Label>
+                    <Label Grid.Column="0"  VerticalAlignment="Bottom" FontSize="25" Foreground="Black" Margin="0,0,0,377">가격 : 있다</Label>
                     <Button Grid.Column="1" VerticalAlignment="Top" Width="170" FontSize="30">삭제</Button>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -42,7 +42,7 @@
                     <Button Grid.Column="0" Margin="40,20,40,20" FontSize="30">이전</Button>
                     <Button Grid.Column="1" Margin="40,20,40,20" FontSize="30" Click="Button_Click">주문하기</Button>
                 </Grid>
-             
+
             </Grid>
         </Grid>
         <Grid Grid.Column="0">
@@ -61,10 +61,10 @@
                 <Button Grid.Column="1" Width="250" Height="70" HorizontalAlignment="Right" Margin="0,0,10,0"  FontSize="25">다음</Button>
             </Grid>
             <Grid>
-              
-                  
-                    </Grid>
-                    <Grid>
+
+
+            </Grid>
+            <Grid>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
@@ -157,11 +157,11 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-              
-                    </Grid>
-                </Grid>
-          
-     
+
+            </Grid>
+        </Grid>
+
+
     </Grid>
 
 </Page>

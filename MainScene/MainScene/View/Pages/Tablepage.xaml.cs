@@ -14,7 +14,9 @@ namespace MainScene.View.Pages
         private List<Table> lstFood = new List<Table>()
         {
             new Table(){Idx = 1},
-
+            new Table(){Idx = 1},
+            new Table(){Idx = 1},
+            new Table(){Idx = 1},
         };
 
 

@@ -10,14 +10,20 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" Width="350" Height="350" Content="매장 식사" VerticalAlignment="Center" HorizontalAlignment="Center" Click="SelectStore" Background="LemonChiffon"/>
-
-
-        <Button Content="포장 주문"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="350" Height="350" Background="LemonChiffon" Grid.Column="1"/>
-
+        <Grid Grid.Column="0">
+            <Button Width="292" Height="292" Content="매장 식사" VerticalAlignment="Center" HorizontalAlignment="Center" Click="SelectStore" Background="LemonChiffon" FontSize="30" FontWeight="Bold"/>
+        </Grid>
+        <Grid Grid.Column="1">
+        </Grid>
+        <Grid Grid.Column="2">
+            <Button Content="포장 주문"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="292" Height="292" Background="LemonChiffon" Grid.Column="2" FontSize="30" FontWeight="Bold" Click="Takeout_Click"/>
+        </Grid>
+        <Grid Grid.Column="0">
+            <Button Content="이전" HorizontalAlignment="Left" Margin="59,692,0,0" VerticalAlignment="Top" Width="197" Height="62" Click="Back_Click" FontSize="22"/>
+        </Grid>
     </Grid>
 </Page>
