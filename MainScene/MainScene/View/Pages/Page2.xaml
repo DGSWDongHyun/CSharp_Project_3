@@ -20,7 +20,68 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
 
-            <ListBox Grid.Row="0" Margin="10,20,10,20"></ListBox>
+            <ListBox x:Name="lbSelected"  Grid.Row="0" Margin="10,20,10,20">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True" Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Foreground" Value="Gray" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+                        <Setter Property="Padding" Value="18,10,18,10" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid>
+                                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"></ContentPresenter>
+                                        </Border>
+                                        <Border x:Name="UnderBd" Margin="18,0,18,0" VerticalAlignment="Bottom" BorderBrush="Transparent" BorderThickness="1"></Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="true">
+                                            <Setter Property="Foreground" Value="#E22219" />
+                                            <Setter TargetName="UnderBd" Property="BorderBrush" Value="#E22219" />
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="350" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="{Binding name}"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <Grid>
+                                    <Button Width="25" Height="25">+</Button>
+                                </Grid>
+                                <TextBlock Text="{Binding Count}"/>
+                                <Grid>
+                                    <Button Width="25" Height="25">-</Button>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="7*"/>
@@ -111,7 +172,7 @@
                         <ListBoxItem>사이드 메뉴</ListBoxItem>
                     </ListBox>
 
-                    <ListBox x:Name="lbMenus" Grid.Row="1" Margin="10,20,10,20" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent">
+                    <ListBox x:Name="lbMenus" Grid.Row="1" Margin="10,20,10,20" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbMenus_SelectionChanged">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
