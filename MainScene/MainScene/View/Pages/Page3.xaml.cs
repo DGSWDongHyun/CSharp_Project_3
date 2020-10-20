@@ -45,7 +45,7 @@ namespace MainScene.View.Pages
         {
             NavigationService.Navigate(
 
-                new Uri("View/Pages/Takeout.xaml", UriKind.Relative)
+                new Uri("View/Pages/Payment.xaml", UriKind.Relative)
 
                 );
         }
