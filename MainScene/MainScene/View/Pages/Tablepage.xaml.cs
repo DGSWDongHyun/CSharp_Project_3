@@ -11,18 +11,19 @@ namespace MainScene.View.Pages
     /// </summary>
     public partial class Tablepage : Page
     {
-        private List<Table> lstFood = new List<Table>()
+        private List<Table> tables = new List<Table>()
         {
             new Table(){Idx = 1},
-            new Table(){Idx = 1},
-            new Table(){Idx = 1},
-            new Table(){Idx = 1},
-        };
+            new Table(){Idx = 2},
+            new Table(){Idx = 3}
 
 
-        public Tablepage()
+        }
+        ;
+       public Tablepage()
         {
             InitializeComponent();
         }
+
     }
 }
