@@ -1,4 +1,5 @@
 ﻿using MainScene.Model;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -11,18 +12,23 @@ namespace MainScene.View.Pages
     /// </summary>
     public partial class Tablepage : Page
     {
-        private List<Table> lstFood = new List<Table>()
-        {
-            new Table(){Idx = 1},
-            new Table(){Idx = 1},
-            new Table(){Idx = 1},
-            new Table(){Idx = 1},
-        };
-
-
-        public Tablepage()
+       public Tablepage()
         {
             InitializeComponent();
+        }
+
+        private void BackClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void OrderClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(
+
+                new Uri("View/Pages/Payment.xaml", UriKind.Relative)
+
+                );
         }
     }
 }
