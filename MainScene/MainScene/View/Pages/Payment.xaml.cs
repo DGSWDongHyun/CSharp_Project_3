@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,30 +16,18 @@ using System.Windows.Shapes;
 namespace MainScene.View.Pages
 {
     /// <summary>
-    /// Page1.xaml에 대한 상호 작용 논리
+    /// Takeout.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Page1 : Page
+    public partial class Takeout : Page
     {
-        public Page1()
+        public Takeout()
         {
             InitializeComponent();
-
-            admv.Play();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(
-
-                new Uri("View/Pages/Page2.xaml", UriKind.Relative)
-
-                );
-        }
-
-        private void admv_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            admv.Position = new TimeSpan(0, 0, 1);
-            admv.Play();
+            NavigationService.GoBack();
         }
     }
 }

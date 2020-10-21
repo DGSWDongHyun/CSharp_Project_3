@@ -27,13 +27,28 @@ namespace MainScene.View.Pages
 
         private void SelectStore(object sender, RoutedEventArgs e)
         {
-            
-                NavigationService.Navigate(
 
-                    new Uri("View/Pages/TablePage.xaml", UriKind.Relative)
+            NavigationService.Navigate(
 
-                    );
-            
+                new Uri("View/Pages/TablePage.xaml", UriKind.Relative)
+
+                );
+
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void Takeout_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(
+
+                new Uri("View/Pages/Payment.xaml", UriKind.Relative)
+
+                );
         }
     }
 }
+

@@ -16,7 +16,7 @@ namespace MainScene.Repository
             products.Add(new Product() { Category = CategoryEnum.Side, name = "닭껍질 튀김", Image = @"/Assets/crustch.png" });
             products.Add(new Product() { Category = CategoryEnum.Side, name = "치킨 텐더", Image = @"/Assets/tender.png" });
       
-            return products;
+            return products;                                                        
         }
     }
 }

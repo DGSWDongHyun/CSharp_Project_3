@@ -89,6 +89,9 @@
     <Compile Include="View\Pages\Tablepage.xaml.cs">
       <DependentUpon>Tablepage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Payment.xaml.cs">
+      <DependentUpon>Payment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\Adminwindow.xaml.cs">
       <DependentUpon>Adminwindow.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Tablepage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Payment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

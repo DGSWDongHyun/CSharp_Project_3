@@ -17,12 +17,16 @@ namespace MainScene.View.Pages
     {
         ProductRepository productRepository = App.repositoryController.GetProductRepository();
         private List<Product> foodProduct;
+        private List<Product> foodSelected;
 
         public Page2()
         {
             InitializeComponent();
             foodProduct = productRepository.GetProduct();
+            foodSelected = new List<Product>();
             lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
+            //lbSelected.ItemsSource = foodSelected;
+
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -33,6 +37,9 @@ namespace MainScene.View.Pages
 
            );
         }
+
+
+
 
         private void lbCategory_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {   
@@ -47,6 +54,26 @@ namespace MainScene.View.Pages
             {
                 lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Side).ToList();
             }
+        }
+
+        private void lbMenus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(lbMenus.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            Product product = lbMenus.SelectedItem as Product;
+
+            if (product == null) return;
+#if false //  바인딩이 되어 있을 경우
+            foodSelected.Add(product);
+
+#else //바인딩이 안되어 있을 경우
+            lbSelected.Items.Add(product);       
+#endif
+            //int Selected_index = lbMenus.SelectedIndex;
+            //foodSelected.Add(foodProduct[Selected_index]);
         }
     }
 }
