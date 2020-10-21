@@ -24,5 +24,10 @@ namespace MainScene.View.Pages
         {
             InitializeComponent();
         }
+
+        private void BackClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }
