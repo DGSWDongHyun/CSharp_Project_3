@@ -20,7 +20,7 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
 
-            <ListBox x:Name="lbSelected"  Grid.Row="0" Margin="10,20,10,20">
+            <ListBox x:Name="lbSelected"  Grid.Row="0" Margin="10,20,10,20" SelectionChanged="lbSelected_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel IsItemsHost="True" Orientation="Vertical" />
@@ -58,26 +58,16 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="350" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="7*"></ColumnDefinition>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="{Binding name}"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Margin="20,20,20,20" Text="{Binding name}" />
+                            <Grid>
+                                <Button Width="25" Height="25" Click="Count_Button_Add" >+</Button>
                             </Grid>
-
-                            <Grid Grid.Column="1">
-                                <Grid>
-                                    <Button Width="25" Height="25">+</Button>
-                                </Grid>
-                                <TextBlock Text="{Binding Count}"/>
-                                <Grid>
-                                    <Button Width="25" Height="25">-</Button>
-                                </Grid>
+                            <TextBlock Margin="10,20,10,20" Text="{Binding Count}"/>
+                            <Grid>
+                                <Button Width="25"  Height="25" Click="Count_Button_Substract">-</Button>
                             </Grid>
-                        </Grid>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -92,15 +82,15 @@
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0"  VerticalAlignment="Bottom" FontSize="25" Foreground="Black" Margin="0,0,0,377">가격 : 있다</Label>
-                    <Button Grid.Column="1" VerticalAlignment="Top" Width="170" FontSize="30">삭제</Button>
+                    <Label Grid.Column="0"  VerticalAlignment="Top" FontSize="25" Foreground="Black" >가격 : 있다</Label>
+                    <Button Grid.Column="1" VerticalAlignment="Top" Width="170" FontSize="30" Click="Button_Click_1">모두 삭제</Button>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Margin="40,20,40,20" FontSize="30">이전</Button>
+                    <Button Grid.Column="0" Margin="40,20,40,20" FontSize="30" Name="Button_Click2">이전</Button>
                     <Button Grid.Column="1" Margin="40,20,40,20" FontSize="30" Click="Button_Click">주문하기</Button>
                 </Grid>
 

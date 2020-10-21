@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MainScene.Model;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,10 +21,13 @@ namespace MainScene.View.Pages
     /// </summary>
     public partial class Page3 : Page
     {
-        public Page3()
+        Order order = new Order();
+        public Page3(Order order)
         {
             InitializeComponent();
+            this.order = order;
         }
+
 
         private void SelectStore(object sender, RoutedEventArgs e)
         {
@@ -48,6 +52,11 @@ namespace MainScene.View.Pages
                 new Uri("View/Pages/Payment.xaml", UriKind.Relative)
 
                 );
+        }
+
+        private void Page_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

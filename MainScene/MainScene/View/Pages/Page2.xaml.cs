@@ -18,12 +18,15 @@ namespace MainScene.View.Pages
         ProductRepository productRepository = App.repositoryController.GetProductRepository();
         private List<Product> foodProduct;
         private List<Product> foodSelected;
+        private int position;
+        Order order2;
 
         public Page2()
         {
             InitializeComponent();
             foodProduct = productRepository.GetProduct();
             foodSelected = new List<Product>();
+            order2 = new Order();
             lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
             //lbSelected.ItemsSource = foodSelected;
 
@@ -31,11 +34,9 @@ namespace MainScene.View.Pages
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(
 
-           new Uri("View/Pages/Page3.xaml", UriKind.Relative)
 
-           );
+            NavigationService.Navigate(new Page3(new Order()));
         }
 
 
@@ -74,6 +75,40 @@ namespace MainScene.View.Pages
 #endif
             //int Selected_index = lbMenus.SelectedIndex;
             //foodSelected.Add(foodProduct[Selected_index]);
+        }
+
+        private void Count_Button_Add(object sender, RoutedEventArgs e)
+        {
+            Product item =  ((Button)sender).DataContext as Product;
+
+            if (item == null) return;
+
+            item.Count++;
+            lbSelected.Items.Refresh();
+
+
+        }
+        private void  Count_Button_Substract(object sender, RoutedEventArgs e)
+        {
+            Product item = ((Button)sender).DataContext as Product;
+
+            if (item == null) return;
+
+            if(item.Count > 0)
+            {
+                item.Count--;
+                lbSelected.Items.Refresh();
+            }
+
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            lbSelected.Items.Clear();
+        }
+
+        private void lbSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            position = lbSelected.SelectedIndex;
         }
     }
 }

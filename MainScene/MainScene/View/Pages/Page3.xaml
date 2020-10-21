@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MainScene.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="Page3">
+      Title="Page3" Loaded="Page_Loaded_1">
 
     <Grid>
         <Grid.ColumnDefinitions>
