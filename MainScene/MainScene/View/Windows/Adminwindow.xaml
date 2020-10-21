@@ -22,32 +22,33 @@
         <Label Name="CardSales" HorizontalAlignment="Left" Margin="463,810,0,0" VerticalAlignment="Top" Height="81" Width="420" FontSize="40"/>
         <Label Name="CacheSales" HorizontalAlignment="Left" Margin="462,894,0,0" VerticalAlignment="Top" Height="72" Width="421" FontSize="40"/>
 
-        <Label Content="Label" HorizontalAlignment="Left" Margin="1033,321,0,0" VerticalAlignment="Top"/>
-
         <GroupBox Header="GroupBox" Height="222" Margin="987,10,28,0" VerticalAlignment="Top">
+            <StackPanel Margin="10">
+                <RadioButton Margin="5" GroupName="category" Content="메뉴별 판매수" Checked="RadioButton_Checked"/>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <RadioButton GroupName="category" Content="좌석별 메뉴 판매수" Checked="RadioButton_Checked_1"/>
+                    <ComboBox Margin="30 0 0 0" Width="100" Height="15"/>
+                </StackPanel>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <RadioButton GroupName="category" Content="카테고리별 판매수" Checked="RadioButton_Checked_2"/>
+                    <ComboBox Margin="35 0 0 0" Width="100" Height="15"/>
+                </StackPanel>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <RadioButton GroupName="category" Content="하루중 시간대별 매출액" Checked="RadioButton_Checked_3"/>
+                    <ComboBox Margin="8 0 0 0" Width="100" Height="15"/>
+                </StackPanel>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <RadioButton GroupName="category" Content="회원별 총 주문메뉴" Checked="RadioButton_Checked_4"/>
+                    <ComboBox Margin="33 0 0 0" Width="100" Height="15"/>
+                </StackPanel>
+            </StackPanel>
         </GroupBox>
         <Label Content="순수 매출액 :" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="93,739,0,0" VerticalAlignment="Top" Height="77" Width="361" FontSize="48"/>
 
         <Label Content="카드 :" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="93,810,0,0" VerticalAlignment="Top" Height="78" Width="361" FontSize="40"/>
         <Label Content="현금 :" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="93,888,0,0" VerticalAlignment="Top" Height="78" Width="361" FontSize="40"/>
 
-        <ProgressBar HorizontalAlignment="Left" Height="26" Margin="1108,321,0,0" VerticalAlignment="Top" Width="758"/>
-
-        <ListBox x:Name="lbMenus" Margin="987,370,46,0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="630">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Width="250" Height="250">
-                        <Image Source="{Binding imagePath}"/>
-                        <TextBlock Text="{Binding name}" Margin="0,24,0,0" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="frame" RenderTransformOrigin="0.506,0.497" Margin="987,304,28,49"/>
 
 
     </Grid>

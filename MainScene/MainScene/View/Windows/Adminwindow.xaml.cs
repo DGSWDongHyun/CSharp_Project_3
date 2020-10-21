@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using MainScene.Util;
 using MainScene.Repository;
+using System.Windows.Navigation;
 
 namespace MainScene.View.Windows
 {
@@ -85,6 +86,31 @@ namespace MainScene.View.Windows
         public void SetCacheSales()
         {
             CacheSales.Content = settlementRepository.GetCacheSales();
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+           frame.Navigate( new Uri("View/Pages/Admin/ByMenu.xaml", UriKind.Relative));
+        }
+
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new Uri("View/Pages/Admin/ByTable.xaml", UriKind.Relative));
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new Uri("View/Pages/Admin/ByCategory.xaml", UriKind.Relative));
+        }
+
+        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new Uri("View/Pages/Admin/ByDate.xaml", UriKind.Relative));
+        }
+
+        private void RadioButton_Checked_4(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new Uri("View/Pages/Admin/ByMember.xaml", UriKind.Relative));
         }
     }
 }
