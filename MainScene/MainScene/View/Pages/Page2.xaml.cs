@@ -19,24 +19,24 @@ namespace MainScene.View.Pages
         private List<Product> foodProduct;
         private List<Product> foodSelected;
         private int position;
-        Order order2;
+        Order order;
 
         public Page2()
         {
             InitializeComponent();
             foodProduct = productRepository.GetProduct();
             foodSelected = new List<Product>();
-            order2 = new Order();
+            order = new Order();
             lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
-            //lbSelected.ItemsSource = foodSelected;
+            lbSelected.ItemsSource = foodSelected;
 
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
-
-            NavigationService.Navigate(new Page3(new Order()));
+            order.Products = foodSelected;
+           
+            NavigationService.Navigate(new Page3(order));
         }
 
 
@@ -71,7 +71,9 @@ namespace MainScene.View.Pages
             foodSelected.Add(product);
 
 #else //바인딩이 안되어 있을 경우
-            lbSelected.Items.Add(product);       
+            //lbSelected.Items.Add(product);  
+            foodSelected.Add(product);
+            lbSelected.Items.Refresh();
 #endif
             //int Selected_index = lbMenus.SelectedIndex;
             //foodSelected.Add(foodProduct[Selected_index]);
