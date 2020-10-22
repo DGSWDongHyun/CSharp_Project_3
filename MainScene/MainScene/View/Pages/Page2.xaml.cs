@@ -59,24 +59,15 @@ namespace MainScene.View.Pages
 
         private void lbMenus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lbMenus.SelectedIndex == -1)
-            {
-                return;
-            }
-
+            if(lbMenus.SelectedIndex == -1) return;
+          
             Product product = lbMenus.SelectedItem as Product;
 
             if (product == null) return;
-#if false //  바인딩이 되어 있을 경우
-            foodSelected.Add(product);
 
-#else //바인딩이 안되어 있을 경우
-            //lbSelected.Items.Add(product);  
             foodSelected.Add(product);
             lbSelected.Items.Refresh();
-#endif
-            //int Selected_index = lbMenus.SelectedIndex;
-            //foodSelected.Add(foodProduct[Selected_index]);
+
         }
 
         private void Count_Button_Add(object sender, RoutedEventArgs e)
@@ -105,7 +96,8 @@ namespace MainScene.View.Pages
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            lbSelected.Items.Clear();
+            foodSelected.Clear();
+            lbSelected.Items.Refresh();
         }
 
         private void lbSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
