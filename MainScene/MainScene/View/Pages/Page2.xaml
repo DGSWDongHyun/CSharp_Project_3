@@ -67,6 +67,9 @@
                             <Grid>
                                 <Button Width="25"  Height="25" Click="Count_Button_Substract">-</Button>
                             </Grid>
+                            <Grid>
+                                
+                            </Grid>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -82,7 +85,7 @@
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0"  VerticalAlignment="Top" FontSize="25" Foreground="Black" >가격 : 있다</Label>
+                    <Label Grid.Column="0"  VerticalAlignment="Top" FontSize="25" Foreground="Black" Name="valueOrder" >가격 : 있다</Label>
                     <Button Grid.Column="1" VerticalAlignment="Top" Width="170" FontSize="30" Click="Button_Click_1">모두 삭제</Button>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -90,7 +93,7 @@
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Margin="40,20,40,20" FontSize="30" Name="Button_Click2">이전</Button>
+                    <Button Grid.Column="0" Margin="40,20,40,20" FontSize="30" Name="Button_Click2" Click="Button_Click_2">이전</Button>
                     <Button Grid.Column="1" Margin="40,20,40,20" FontSize="30" Click="Button_Click">주문하기</Button>
                 </Grid>
 
@@ -165,7 +168,7 @@
                     <ListBox x:Name="lbMenus" Grid.Row="1" Margin="10,20,10,20" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbMenus_SelectionChanged">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
+                                <UniformGrid Columns="3" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemContainerStyle>
