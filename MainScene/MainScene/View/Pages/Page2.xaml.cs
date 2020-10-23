@@ -84,11 +84,14 @@ namespace MainScene.View.Pages
                 {
                     if (!product.name.Equals(foodSelected[i].name))
                     {
-                        price += product.Price;
-                        valueOrder.Content = "가격 : " + price;
+                        if (i == foodSelected.Count - 1)
+                        {
+                            price += product.Price;
+                            valueOrder.Content = "가격 : " + price;
 
-                        foodSelected.Add(product);
-                        lbSelected.Items.Refresh();
+                            foodSelected.Add(product);
+                            lbSelected.Items.Refresh();
+                        }
                     }
                     else
                     {
