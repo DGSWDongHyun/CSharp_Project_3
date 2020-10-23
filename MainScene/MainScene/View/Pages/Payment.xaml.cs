@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainScene.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace MainScene.View.Pages
     
     public partial class Payment : Page
     {
-        public Payment()
+        public Payment(Model.Table table,Order order)
         {
             InitializeComponent();
         }
