@@ -85,7 +85,7 @@ namespace MainScene.View.Pages
             if (item == null) return;
 
             price += item.Price;
-            valueOrder.Content = price;
+            valueOrder.Content = "가격 : " + price;
 
             item.Count++;
             lbSelected.Items.Refresh();
@@ -101,6 +101,8 @@ namespace MainScene.View.Pages
             if(item.Count > 1) {
                 item.Count--;
             } else {
+                price -= item.Price;
+                valueOrder.Content = "가격 : " + price;
                 foodSelected.Remove(item);
             }
             lbSelected.Items.Refresh();

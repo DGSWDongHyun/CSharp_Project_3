@@ -25,7 +25,7 @@
             <Button Content="이전" HorizontalAlignment="Left" Margin="59,705,0,0" VerticalAlignment="Top" Width="197" Height="62" FontSize="22" Click="BackClick"/>
         </Grid>
         <Grid Grid.Column="2">
-            <ListBox x:Name="lbSelected"  Grid.Row="0" Margin="10,20,10,20" SelectionChanged="lbSelected_SelectionChanged">
+            <ListBox x:Name="lbSelected"  Grid.Row="0" Margin="10,20,10,20">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel IsItemsHost="True" Orientation="Vertical" />

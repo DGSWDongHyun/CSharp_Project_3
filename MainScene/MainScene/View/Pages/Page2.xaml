@@ -168,7 +168,7 @@
                     <ListBox x:Name="lbMenus" Grid.Row="1" Margin="10,20,10,20" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbMenus_SelectionChanged">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="3" />
+                                <UniformGrid Columns="3" Rows="2" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemContainerStyle>
