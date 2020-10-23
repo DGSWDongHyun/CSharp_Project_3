@@ -48,11 +48,8 @@ namespace MainScene.View.Pages
 
         private void Takeout_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(
-
-                new Uri("View/Pages/Payment.xaml", UriKind.Relative)
-
-                );
+            Model.Table table = new Model.Table();
+            NavigationService.Navigate(new Page3(order));    
         }
 
         private void Page_Loaded_1(object sender, RoutedEventArgs e)
