@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace MainScene.View.Pages
 {
@@ -25,7 +26,7 @@ namespace MainScene.View.Pages
         public Page3(Order order)
         {
             InitializeComponent();
-            this.order = order;
+            this.order = order;      
         }
 
 
