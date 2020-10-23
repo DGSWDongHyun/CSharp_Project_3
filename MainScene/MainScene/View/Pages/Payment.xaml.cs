@@ -15,19 +15,18 @@ using System.Windows.Shapes;
 
 namespace MainScene.View.Pages
 {
-    /// <summary>
-    /// Takeout.xaml에 대한 상호 작용 논리
-    /// </summary>
-    public partial class Takeout : Page
+    
+    public partial class Payment : Page
     {
-        public Takeout()
+        public Payment()
         {
             InitializeComponent();
         }
-
         private void BackClick(object sender, System.Windows.RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
+
     }
+
 }
