@@ -125,17 +125,19 @@ namespace MainScene.View.Pages
 
             if(item.Count > 1) {
                 item.Count--;
-            } else {
-                price -= item.Price;
-                valueOrder.Content = "가격 : " + price;
+            } else { 
                 foodSelected.Remove(item);
             }
+            price += -(item.Price);
+            valueOrder.Content = "가격 : " + price;
             lbSelected.Items.Refresh();
 
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             foodSelected.Clear();
+            price = 0;
+            valueOrder.Content = "가격 : " + price;
             lbSelected.Items.Refresh();
         }
 
