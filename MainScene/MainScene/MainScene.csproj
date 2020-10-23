@@ -183,6 +183,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\bl_c.png" />
+    <Resource Include="Assets\zinger.png" />
+    <Resource Include="Assets\italian.png" />
     <Content Include="Assets\ch.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -195,6 +198,9 @@
     <Content Include="Assets\cyida.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\bbq_c.png" />
+    <Resource Include="Assets\tower.png" />
+    <Resource Include="Assets\to_c.png" />
     <Content Include="Assets\tender.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

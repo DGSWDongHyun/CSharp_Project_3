@@ -20,6 +20,7 @@ namespace MainScene.View.Pages
         private List<Product> foodSelected;
         private int position;
         Order order;
+        private int price;
 
         public Page2()
         {
@@ -39,6 +40,10 @@ namespace MainScene.View.Pages
             NavigationService.Navigate(new Page3(order));
         }
 
+        private void Button_Click_2(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
 
 
 
@@ -65,6 +70,9 @@ namespace MainScene.View.Pages
 
             if (product == null) return;
 
+            price += product.Price;
+            valueOrder.Content = price;
+
             foodSelected.Add(product);
             lbSelected.Items.Refresh();
 
@@ -75,6 +83,9 @@ namespace MainScene.View.Pages
             Product item =  ((Button)sender).DataContext as Product;
 
             if (item == null) return;
+
+            price += item.Price;
+            valueOrder.Content = price;
 
             item.Count++;
             lbSelected.Items.Refresh();
@@ -87,11 +98,12 @@ namespace MainScene.View.Pages
 
             if (item == null) return;
 
-            if(item.Count > 0)
-            {
+            if(item.Count > 1) {
                 item.Count--;
-                lbSelected.Items.Refresh();
+            } else {
+                foodSelected.Remove(item);
             }
+            lbSelected.Items.Refresh();
 
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
