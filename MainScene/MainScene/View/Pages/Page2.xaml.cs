@@ -70,12 +70,33 @@ namespace MainScene.View.Pages
 
             if (product == null) return;
 
-            price += product.Price;
-            valueOrder.Content = "가격 : " + price;
+            if(foodSelected.Count == 0)
+            {
+                price += product.Price;
+                valueOrder.Content = "가격 : " + price;
 
-            foodSelected.Add(product);
-            lbSelected.Items.Refresh();
+                foodSelected.Add(product);
+                lbSelected.Items.Refresh();
+            }
+            else
+            {
+                for (int i = 0; i < foodSelected.Count; i++)
+                {
+                    if (!product.name.Equals(foodSelected[i].name))
+                    {
+                        price += product.Price;
+                        valueOrder.Content = "가격 : " + price;
 
+                        foodSelected.Add(product);
+                        lbSelected.Items.Refresh();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            
         }
 
         private void Count_Button_Add(object sender, RoutedEventArgs e)
@@ -84,6 +105,7 @@ namespace MainScene.View.Pages
 
             if (item == null) return;
 
+         
             price += item.Price;
             valueOrder.Content = "가격 : " + price;
 
