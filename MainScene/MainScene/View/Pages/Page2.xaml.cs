@@ -71,7 +71,7 @@ namespace MainScene.View.Pages
             if (product == null) return;
 
             price += product.Price;
-            valueOrder.Content = price;
+            valueOrder.Content = "가격 : " + price;
 
             foodSelected.Add(product);
             lbSelected.Items.Refresh();
