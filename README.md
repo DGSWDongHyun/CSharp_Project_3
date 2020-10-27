@@ -1,5 +1,5 @@
-# CSharp_Project_3
-C# 프로젝트 입니다. ( 3팀 )
+# KFC_Kiosk
+C# 프로젝트 입니다. ( 3팀 ) , KFC 
 
 ## Commit Rule[커밋 규칙]
 >[변경규칙] 상세내용
