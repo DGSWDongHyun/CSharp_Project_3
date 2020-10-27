@@ -24,10 +24,10 @@ namespace MainScene.Repository
             products.Add(new Product() { Category = CategoryEnum.Bugger, name = "리치치즈징거버거", Image = @"/Assets/bbq_c.png", Price = 7000, Count = 1 });
             products.Add(new Product() { Category = CategoryEnum.Bugger, name = "블랙라벨폴인치즈버거", Image = @"/Assets/bbq_c.png", Price = 7500, Count = 1 });
 
-            products.Add(new Product() { Category = CategoryEnum.Drink, name = "콜라", Image = @"/Assets/cola.png" });
-            products.Add(new Product() { Category = CategoryEnum.Drink, name = "사이다", Image = @"/Assets/cyida.png" });
-            products.Add(new Product() { Category = CategoryEnum.Side, name = "닭껍질 튀김", Image = @"/Assets/crustch.png" });
-            products.Add(new Product() { Category = CategoryEnum.Side, name = "치킨 텐더", Image = @"/Assets/tender.png" });
+            products.Add(new Product() { Category = CategoryEnum.Drink, name = "콜라", Image = @"/Assets/cola.png", Price = 2000, Count = 1 });
+            products.Add(new Product() { Category = CategoryEnum.Drink, name = "사이다", Image = @"/Assets/cyida.png",Price = 2000, Count = 1 });
+            products.Add(new Product() { Category = CategoryEnum.Side, name = "닭껍질 튀김", Image = @"/Assets/crustch.png", Price = 3200, Count = 1 });
+            products.Add(new Product() { Category = CategoryEnum.Side, name = "치킨 텐더", Image = @"/Assets/tender.png" , Price = 4000, Count = 1 });
       
             return products;                                                        
         }

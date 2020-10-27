@@ -22,41 +22,39 @@ namespace MainScene.View.Pages
         Order order;
         private int price;
 
-        public Page2()
+        public Page2() // initialize page
         {
             InitializeComponent();
+
             foodProduct = productRepository.GetProduct();
             foodSelected = new List<Product>();
             order = new Order();
+
             lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
             lbSelected.ItemsSource = foodSelected;
 
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        // Selected Changed when get each products
+        private void lbSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            order.Products = foodSelected;
-           
-            NavigationService.Navigate(new Page3(order));
+            position = lbSelected.SelectedIndex;
         }
+        // Selected Changed when get each products
 
-        private void Button_Click_2(object sender, System.Windows.RoutedEventArgs e)
+        //Category, Menus SelectionChanged methods.
+        private void lbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            NavigationService.GoBack();
-        }
-
-
-
-        private void lbCategory_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {   
-           ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
-           if(lbi.Content.ToString() == "버거")
+            ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
+            if (lbi.Content.ToString() == "버거")
             {
-              lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
-            }else if(lbi.Content.ToString() == "음료")
+                lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
+            }
+            else if (lbi.Content.ToString() == "음료")
             {
                 lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Drink).ToList();
-            }else if(lbi.Content.ToString() == "사이드 메뉴")
+            }
+            else if (lbi.Content.ToString() == "사이드 메뉴")
             {
                 lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Side).ToList();
             }
@@ -64,19 +62,18 @@ namespace MainScene.View.Pages
 
         private void lbMenus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lbMenus.SelectedIndex == -1) return;
-          
+            if (lbMenus.SelectedIndex == -1) return;
+
             Product product = lbMenus.SelectedItem as Product;
 
             if (product == null) return;
 
-            if(foodSelected.Count == 0)
+            if (foodSelected.Count == 0)
             {
                 price += product.Price;
-                valueOrder.Content = "가격 : " + price;
 
                 foodSelected.Add(product);
-                lbSelected.Items.Refresh();
+                RefreshItemWithPrice();
             }
             else
             {
@@ -87,10 +84,9 @@ namespace MainScene.View.Pages
                         if (i == foodSelected.Count - 1)
                         {
                             price += product.Price;
-                            valueOrder.Content = "가격 : " + price;
-
+                         
                             foodSelected.Add(product);
-                            lbSelected.Items.Refresh();
+                            RefreshItemWithPrice();
                         }
                     }
                     else
@@ -99,25 +95,46 @@ namespace MainScene.View.Pages
                     }
                 }
             }
-            
+
+        }
+        //Category, Menus SelectionChanged methods.
+
+        //Button functions on page
+
+        private void ButtonOrder(object sender, System.Windows.RoutedEventArgs e) // order button
+        {
+            order.Products = foodSelected;
+            if(order.Products == null)
+            {
+                MessageBox.Show("제품을 선택해주세요.");
+            }
+            else{
+                NavigationService.Navigate(new Page3(order));
+            }
         }
 
-        private void Count_Button_Add(object sender, RoutedEventArgs e)
+        private void ButtonGoBack(object sender, System.Windows.RoutedEventArgs e) // go back button
+        {
+            NavigationService.GoBack();
+        }
+
+        //Button functions on page
+
+        //Button functions on each item
+
+        private void ButtonAdd(object sender, RoutedEventArgs e) // add button ( count each products )
         {
             Product item =  ((Button)sender).DataContext as Product;
 
             if (item == null) return;
 
-         
-            price += item.Price;
-            valueOrder.Content = "가격 : " + price;
 
             item.Count++;
-            lbSelected.Items.Refresh();
-
-
+            price += item.Price;
+            RefreshItemWithPrice();
         }
-        private void  Count_Button_Substract(object sender, RoutedEventArgs e)
+
+        private void  ButtonSubstract(object sender, RoutedEventArgs e) // substract button ( count each products also. )
         {
             Product item = ((Button)sender).DataContext as Product;
 
@@ -129,21 +146,38 @@ namespace MainScene.View.Pages
                 foodSelected.Remove(item);
             }
             price += -(item.Price);
-            valueOrder.Content = "가격 : " + price;
-            lbSelected.Items.Refresh();
+            RefreshItemWithPrice();
 
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+
+        private void ButtonDelete(object sender, RoutedEventArgs e) // delete each item
+        {
+            Product item = ((Button)sender).DataContext as Product;
+
+            if (item == null) return;
+
+         
+            foodSelected.Remove(item);
+           
+            price += -(item.Price * item.Count);
+            RefreshItemWithPrice();
+
+        }
+
+        private void ButtonDeleteAll(object sender, RoutedEventArgs e) // delete all items 
         {
             foodSelected.Clear();
             price = 0;
-            valueOrder.Content = "가격 : " + price;
+            RefreshItemWithPrice();
+        }
+        //Button function on items
+
+        //Refresh item Prices when after done count process
+       private void RefreshItemWithPrice()
+        {
+            valueOrder.Content = "가격 : " + price + "원";
             lbSelected.Items.Refresh();
         }
-
-        private void lbSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            position = lbSelected.SelectedIndex;
-        }
+        //Refresh item Prices when after done count process
     }
 }
