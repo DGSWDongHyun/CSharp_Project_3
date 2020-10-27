@@ -103,14 +103,15 @@ namespace MainScene.View.Pages
 
         private void ButtonOrder(object sender, System.Windows.RoutedEventArgs e) // order button
         {
-            order.Products = foodSelected;
-            if(order.Products == null)
+            if(foodSelected.Count == 0)
             {
                 MessageBox.Show("제품을 선택해주세요.");
             }
             else{
+                order.Products = foodSelected;
                 NavigationService.Navigate(new Page3(order));
             }
+            lbMenus.SelectedItem = null;
         }
 
         private void ButtonGoBack(object sender, System.Windows.RoutedEventArgs e) // go back button
