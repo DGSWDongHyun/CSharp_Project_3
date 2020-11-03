@@ -19,9 +19,13 @@ namespace MainScene.View.Pages
     
     public partial class Payment : Page
     {
+        
         public Payment(Model.Table table,Order order)
         {
             InitializeComponent();
+
+            String name = order.Products[0].name;
+            int count = order.Products[0].Count;
         }
         private void BackClick(object sender, System.Windows.RoutedEventArgs e)
         {

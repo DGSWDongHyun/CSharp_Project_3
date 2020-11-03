@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using Table = MainScene.Model.Table;
+using MainScene.Repository;
+using System.Diagnostics;
 
 namespace MainScene.View.Pages
 {
@@ -12,9 +14,14 @@ namespace MainScene.View.Pages
     /// </summary>
     public partial class Tablepage : Page
     {
-       public Tablepage()
-        {
+        TableRepository TableRepository = App.repositoryController.GetTableRepository();
+        public Tablepage()
+        {   
             InitializeComponent();
+
+            List<Table> table = TableRepository.GetTable();
+
+            this.tableListbox.ItemsSource = table;
         }
 
         private void BackClick(object sender, System.Windows.RoutedEventArgs e)

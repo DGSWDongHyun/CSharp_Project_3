@@ -4,19 +4,18 @@ namespace MainScene.Model
 {
     public class Table
     {
-        public int Idx { get; set; }
-        public DateTime UsedTime { get; set; }
-
-        public bool IsUsingNow()
-        {
-            TimeSpan span = DateTime.Now - UsedTime;
-            if(span.Minutes < 5)
-            {
-                return true;
-            }
-
-            return false;
-        }
+        public DateTime UsedTime { get; set; } //사용된 시간을 받음
         public int tablenum { get; set; }
+
+        //public bool IsUsingNow()
+        //{
+        //    TimeSpan span = DateTime.Now - UsedTime;
+        //    if(span.Minutes < 1)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
+
     }
 }

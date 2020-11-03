@@ -49,7 +49,8 @@ namespace MainScene.View.Pages
         private void Takeout_Click(object sender, RoutedEventArgs e)
         {
             Model.Table table = new Model.Table();
-            NavigationService.Navigate(new Page3(order));    
+            table.tablenum = 0;
+            NavigationService.Navigate(new Payment(table, order));    
         }
 
         private void Page_Loaded_1(object sender, RoutedEventArgs e)
