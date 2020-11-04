@@ -16,6 +16,7 @@ namespace MainScene.View.Pages
     public partial class Tablepage : Page
     {
         TableRepository TableRepository = App.repositoryController.GetTableRepository();
+        public System.Collections.IList SelectedItems { get; }
         public Tablepage()
         {   
             InitializeComponent();
@@ -34,14 +35,18 @@ namespace MainScene.View.Pages
         {
             NavigationService.Navigate(
 
-                new Uri("View/Pages/Payment.xaml", UriKind.Relative)
-
-                );
+                new Uri("View/Pages/Payment.xaml", UriKind.Relative));
         }
 
-        private void Clicktable(object sender, System.Windows.Input.MouseEventArgs e)
+        private void ListBoxItem_Selected(object sender, SelectionChangedEventArgs e)
         {
-           MessageBox.Show((string)this.DataContext + "클릭");
+            ListBoxItem lbi = tableListbox.SelectedItems as ListBoxItem;
+
+            Table table = tableListbox.SelectedItem as Table;
+
+            MessageBox.Show(table.tablenum.ToString() + " is selected.");
+
+            
         }
     }
 }
