@@ -143,7 +143,8 @@ namespace MainScene.View.Pages
 
             if(item.Count > 1) {
                 item.Count--;
-            } else { 
+            } else {
+                item.Count = 1;
                 foodSelected.Remove(item);
             }
             price += -(item.Price);
@@ -157,16 +158,19 @@ namespace MainScene.View.Pages
 
             if (item == null) return;
 
-         
+
+            price -= (item.Price * item.Count);
+            item.Count = 1;
             foodSelected.Remove(item);
-           
-            price += -(item.Price * item.Count);
+          
             RefreshItemWithPrice();
 
         }
 
         private void ButtonDeleteAll(object sender, RoutedEventArgs e) // delete all items 
         {
+            for(int i = 0; i < foodSelected.Count; i ++ )
+                foodSelected[i].Count = 1;
             foodSelected.Clear();
             price = 0;
             RefreshItemWithPrice();
