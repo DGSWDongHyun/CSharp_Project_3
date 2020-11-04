@@ -6,6 +6,7 @@ using System.Windows.Documents;
 using Table = MainScene.Model.Table;
 using MainScene.Repository;
 using System.Diagnostics;
+using System.Windows;
 
 namespace MainScene.View.Pages
 {
@@ -36,6 +37,11 @@ namespace MainScene.View.Pages
                 new Uri("View/Pages/Payment.xaml", UriKind.Relative)
 
                 );
+        }
+
+        private void Clicktable(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+           MessageBox.Show((string)this.DataContext + "클릭");
         }
     }
 }

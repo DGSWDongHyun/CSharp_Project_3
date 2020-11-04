@@ -9,12 +9,12 @@
       Title="Tablepage">
     <Page.Resources>
         <DataTemplate x:Key="Tabletemplate">
-            <Grid d:DesignWidth="372.317" d:DesignHeight="372.317" Height="211" Width="214" Background="Beige">
+            <Grid d:DesignWidth="372.317" d:DesignHeight="372.317" Height="211" Width="214" Background="Beige" MouseDown="Clicktable">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="138*"/>
                     <RowDefinition Height="73*"/>
                 </Grid.RowDefinitions>
-                <TextBox Height="92" TextWrapping="Wrap" TextAlignment="Center"  Width="103" Text="{Binding tablenum}" FontSize="25" Margin="56,60,55,59" Grid.RowSpan="2" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center" BorderThickness="0" Padding="1,0,0,0"/>
+                <Label Height="92" Width="103" Content="{Binding tablenum}" FontSize="25" Margin="56,60,55,59" Grid.RowSpan="2" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center" BorderThickness="0"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -24,8 +24,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1">
-            <ListBox x:Name="tableListbox" ItemsSource="{Binding}" ItemTemplate="{DynamicResource Tabletemplate}" Margin="-240,0" HorizontalAlignment="Center">
+        <Grid Grid.ColumnSpan="3" Margin="570,0">
+            <ListBox x:Name="tableListbox" ItemsSource="{Binding}" ItemTemplate="{DynamicResource Tabletemplate}" Margin="-240,0" HorizontalAlignment="Center" BorderThickness="0">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="3" Rows="3" />
