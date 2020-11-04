@@ -46,17 +46,12 @@
         <GroupBox Header="통계 기준" Height="170" Margin="981,69,34,0" VerticalAlignment="Top">
             <StackPanel Margin="10">
                 <RadioButton Margin="5" GroupName="category" Content="메뉴별 판매수" Checked="RadioButton_Checked"/>
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <RadioButton GroupName="category" Content="좌석별 메뉴 판매수" Checked="RadioButton_Checked_1"/>
-                    <ComboBox Margin="30 0 0 0" Width="100" Height="15"/>
-                </StackPanel>
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <RadioButton GroupName="category" Content="카테고리별 판매수" Checked="RadioButton_Checked_2"/>
-                    <ComboBox Margin="35 0 0 0" Width="100" Height="15"/>
-                </StackPanel>
+                <RadioButton Margin="5" GroupName="category" Content="카테고리별 판매수" Checked="RadioButton_Checked_2"/>
+                <RadioButton Margin="5" GroupName="category" Content="좌석별 메뉴 판매수" Checked="RadioButton_Checked_1"/>
+                
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <RadioButton GroupName="category" Content="하루중 시간대별 매출액" Checked="RadioButton_Checked_3"/>
-                    <ComboBox Margin="8 0 0 0" Width="100" Height="15"/>
+                    <DatePicker IsEnabled="False" Height="20" HorizontalAlignment="Left" Margin="33 0 0 0" Name="datePicker1" VerticalAlignment="Top" Width="115" />
                 </StackPanel>
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <RadioButton GroupName="category" Content="회원별 총 주문메뉴" Checked="RadioButton_Checked_4"/>

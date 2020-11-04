@@ -9,12 +9,14 @@
         public int Price { get; set; }
         public int DiscountPrice { get; set; }
         public int IsDiscount { get; set; }
+        public int TotalCellCount { get; set; }
+        public int TotalCellPriceCount { get; set; }
     }
 
     public enum CategoryEnum
     {
-        Bugger,
-        Drink,
-        Side
+        Bugger = 0,
+        Drink = 1,
+        Side = 2
     }
 }

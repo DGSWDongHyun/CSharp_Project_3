@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MainScene.Model;
+using MainScene.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,34 @@ namespace MainScene.View.Pages.Admin
     /// </summary>
     public partial class ByDate : Page
     {
+
+        private OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
+
+        List<Product> divideProductList;
+        DateTime dateTime = DateTime.Now;
+
         public ByDate()
         {
             InitializeComponent();
+            divideProductList = DivideProductListByDate(orderRepository.GetOrderHistoryList(), dateTime);
+        }
+
+        private List<Product> DivideProductListByDate(List<Order> orderHistoryList, DateTime date)
+        {
+            List<Product> tempDivideProductList = new List<Product>();
+
+
+            var orderlist = orderHistoryList.Where(x => x.Payment.PaymentTime.Year == date.Year &&
+                                                        x.Payment.PaymentTime.Month == date.Month &&
+                                                        x.Payment.PaymentTime.Day == date.Day).ToList();
+
+
+            foreach (Order order in orderlist)
+            {
+                tempDivideProductList.AddRange(order.Products);
+            }
+            
+            return tempDivideProductList;
         }
     }
 }
