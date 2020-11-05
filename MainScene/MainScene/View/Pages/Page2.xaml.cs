@@ -30,7 +30,7 @@ namespace MainScene.View.Pages
             foodSelected = new List<Product>();
             order = new Order();
 
-            lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
+            lbMenus.ItemsSource = foodProduct;
             lbSelected.ItemsSource = foodSelected;
 
         }
