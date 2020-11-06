@@ -44,8 +44,6 @@ namespace MainScene.View.Pages.Admin
             lbCategory.SelectedIndex = 0;
         }
 
-
-
         private Dictionary<CategoryEnum, List<Product>> DivideProductListByCategory(List<Order> orderHistoryList)
         {
             Dictionary<CategoryEnum, List<Product>> tempDividedOrderHistoryList = new Dictionary<CategoryEnum, List<Product>>();

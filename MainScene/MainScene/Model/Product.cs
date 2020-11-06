@@ -15,8 +15,8 @@
 
     public enum CategoryEnum
     {
-        Bugger = 0,
-        Drink = 1,
-        Side = 2
+        Bugger,
+        Drink,
+        Side
     }
 }

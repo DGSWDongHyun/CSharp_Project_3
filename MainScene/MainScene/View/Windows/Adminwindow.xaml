@@ -45,7 +45,6 @@
 
         <GroupBox Header="통계 기준" Height="170" Margin="981,69,34,0" VerticalAlignment="Top">
             <StackPanel Margin="10">
-                <RadioButton Margin="5" GroupName="category" Content="메뉴별 판매수" Checked="RadioButton_Checked"/>
                 <RadioButton Margin="5" GroupName="category" Content="카테고리별 판매수" Checked="RadioButton_Checked_2"/>
                 <RadioButton Margin="5" GroupName="category" Content="좌석별 메뉴 판매수" Checked="RadioButton_Checked_1"/>
                 

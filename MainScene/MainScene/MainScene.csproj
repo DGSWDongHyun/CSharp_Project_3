@@ -164,6 +164,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\MoneyConverter.cs" />
+    <Compile Include="Model\Category.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\SettlementRepository.cs" />
@@ -178,9 +179,6 @@
     </Compile>
     <Compile Include="View\Pages\Admin\ByMember.xaml.cs">
       <DependentUpon>ByMember.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\Admin\ByMenu.xaml.cs">
-      <DependentUpon>ByMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Admin\ByTable.xaml.cs">
       <DependentUpon>ByTable.xaml</DependentUpon>
@@ -222,10 +220,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Admin\ByMember.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\Admin\ByMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

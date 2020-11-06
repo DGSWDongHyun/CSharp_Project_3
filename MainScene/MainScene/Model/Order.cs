@@ -10,10 +10,10 @@ namespace MainScene.Model
         public Payment Payment { get; set; }
         public List<Product> Products { get; set; }
 
-        public Order(int OrderIdx, bool IsTakeOut, Table table, Payment payment,List<Product> products)
+        public Order(int OrderIdx, Table table, Payment payment,List<Product> products)
         {
             this.OrderIdx = OrderIdx;
-            this.IsTakeout = IsTakeOut;
+            this.IsTakeout = table == null;
             this.Table = table;
             this.Payment = payment;
             this.Products = products;

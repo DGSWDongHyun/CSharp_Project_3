@@ -53,15 +53,11 @@
             </ListBox>
 
             <TextBlock x:Name="statisticsInfo" FontSize="15px">총 판매 수 : 20개, 총 액 20,000원</TextBlock>
-
-            <!--<ListBox x:Name="listBox" Margin="0,0,0,0" Height="383">
-
-            </ListBox>-->
-
+            
             <ListBox x:Name="lbMenus" Grid.Row="1" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" Height="383">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="2" Rows="3" />
+                        <UniformGrid Columns="3"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemContainerStyle>
