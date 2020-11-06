@@ -24,8 +24,7 @@ namespace MainScene.View.Pages
         {
             InitializeComponent();
 
-            String name = order.Products[0].name;
-            int count = order.Products[0].Count;
+            lbSelected.ItemsSource = order.Products;
         }
         private void BackClick(object sender, System.Windows.RoutedEventArgs e)
         {
