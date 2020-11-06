@@ -25,7 +25,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.ColumnSpan="3" Margin="570,0">
-            <ListBox x:Name="tableListbox" ItemsSource="{Binding}" ItemTemplate="{DynamicResource Tabletemplate}" Margin="-240,0" HorizontalAlignment="Center" BorderThickness="2" SelectionChanged="ListBoxItem_Selected" Background="Beige">
+            <ListBox x:Name="tableListbox" ItemsSource="{Binding}" ItemTemplate="{DynamicResource Tabletemplate}" Margin="-240,0" HorizontalAlignment="Center" BorderThickness="0" SelectionChanged="ListBoxItem_Selected" Background="Beige">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="3" Rows="3" />

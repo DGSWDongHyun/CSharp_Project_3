@@ -16,6 +16,7 @@ namespace MainScene.View.Pages
     public partial class Tablepage : Page
     {
         TableRepository TableRepository = App.repositoryController.GetTableRepository();
+        int selecttablenum = 0;
         public System.Collections.IList SelectedItems { get; }
         public Tablepage()
         {   
@@ -40,13 +41,12 @@ namespace MainScene.View.Pages
 
         private void ListBoxItem_Selected(object sender, SelectionChangedEventArgs e)
         {
-            ListBoxItem lbi = tableListbox.SelectedItems as ListBoxItem;
 
             Table table = tableListbox.SelectedItem as Table;
 
-            MessageBox.Show(table.tablenum.ToString() + " is selected.");
+            selecttablenum = table.tablenum;
 
-            
+            MessageBox.Show(selecttablenum.ToString());
         }
     }
 }
