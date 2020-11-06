@@ -24,5 +24,9 @@ namespace MainScene.View.Pages
         {
             InitializeComponent();
         }
+        private void webcam_QrDecoded(object sender, string e)
+        {
+            tbRecog.Text = e;
+        }
     }
 }

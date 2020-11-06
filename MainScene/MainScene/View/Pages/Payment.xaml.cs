@@ -26,6 +26,10 @@ namespace MainScene.View.Pages
 
             lbSelected.ItemsSource = order.Products;
         }
+        private void PaymentCard(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CardPayment());
+        }
         private void BackClick(object sender, System.Windows.RoutedEventArgs e)
         {
             NavigationService.GoBack();

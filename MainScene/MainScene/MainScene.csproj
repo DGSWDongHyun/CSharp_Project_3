@@ -185,6 +185,9 @@
     <Compile Include="View\Pages\Admin\ByTable.xaml.cs">
       <DependentUpon>ByTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\CardPayment.xaml.cs">
+      <DependentUpon>CardPayment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
@@ -202,9 +205,6 @@
     </Compile>
     <Compile Include="View\Windows\Adminwindow.xaml.cs">
       <DependentUpon>Adminwindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Windows\CardPayment.xaml.cs">
-      <DependentUpon>CardPayment.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -233,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\CardPayment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,10 +258,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\Adminwindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Windows\CardPayment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
