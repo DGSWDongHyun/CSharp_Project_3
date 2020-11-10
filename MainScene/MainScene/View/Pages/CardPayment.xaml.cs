@@ -1,4 +1,5 @@
 ﻿using System;
+using MainScene.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,32 @@ namespace MainScene.View.Pages
     /// </summary>
     public partial class CardPayment : Page
     {
-        public CardPayment()
+        Order order;
+        public CardPayment(Order order)
         {
             InitializeComponent();
+            webcam.CameraIndex = 0;
+            this.order = order;
+            price.Text = "총 금액 : " + allPrices() + "원";
         }
         private void webcam_QrDecoded(object sender, string e)
         {
-            tbRecog.Text = e;
+            tbRecog.Text = "인식된 카드번호 : "+e;
+        }
+
+        private void tbRecog_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private int allPrices()
+        {
+            int prices = 0;
+            for(int i = 0; i < order.Products.Count; i++)
+            {
+                Product products = order.Products[i];
+                prices += (products.Price * products.Count);
+            }
+            return prices;
         }
     }
 }

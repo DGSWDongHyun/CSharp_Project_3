@@ -10,7 +10,31 @@
       Title="CardPayment">
 
     <Grid>
-        <qrcode:KQRWebCam x:Name="webcam" Margin="12" QrDecoded="webcam_QrDecoded" />
-        <TextBox x:Name="tbRecog" Margin="12,12,12,12" Text="인식된 값이 여기에 나온단다" Height="30" VerticalAlignment="Bottom" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"></TextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid Width="180" Height="40" Grid.Row="0" Margin="310,25,310,159.8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center">카드 결제를 선택하셨습니다.</TextBlock>
+            <TextBlock Grid.Row="1" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center">바코드를 인식시키세요.</TextBlock>
+        </Grid>
+        <Grid Width="250" Height="150" Margin="275,70,275,10.4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="price">총 금액 : </TextBlock>
+            <TextBlock Grid.Row="1" FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center">회원명 : </TextBlock>
+            <TextBlock Grid.Row="2" FontSize="18" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="tbRecog">카드 번호 : </TextBlock>
+            <Button Grid.Row="3" Margin="10"> 결제 완료</Button>
+        </Grid>
+
+        <qrcode:KQRWebCam x:Name="webcam" QrDecoded="webcam_QrDecoded" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="10"/>
     </Grid>
 </Page>
