@@ -61,17 +61,19 @@
                         <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
+            <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="50" Height="20">
+                        <StackPanel Width="250" Height="300">
                             <TextBlock Text="{Binding name}" HorizontalAlignment="Center"/>
                             <TextBlock  HorizontalAlignment="Center">
                                          <Run Text="{Binding TotalCellCount}"/>
                                          <Run Text="개 판매"/>
+                            </TextBlock>
                             <TextBlock  HorizontalAlignment="Center">
                                          <Run Text="("/>
                                          <Run Text="{Binding TotalCellPriceCount}"/>
                                          <Run Text="원 )"/>
+                            </TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
