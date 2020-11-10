@@ -33,10 +33,10 @@ namespace MainScene.Repository
             products.Add(new Product() { Category = CategoryEnum.Side, name = "닭껍질 튀김", Image = @"/Assets/crustch.png", Price = 3200, Count = 1 });
             products.Add(new Product() { Category = CategoryEnum.Side, name = "치킨 텐더", Image = @"/Assets/tender.png", Price = 4000, Count = 1 });
 
-            tempOrderList.Add(new Order(1, new Table() { tablenum = 1, UsedTime = DateTime.Now }, new Payment(true, "11", DateTime.Now), products));
-            tempOrderList.Add(new Order(2, new Table() { tablenum = 2, UsedTime = DateTime.Now }, new Payment(true, "11", DateTime.Now), new List<Product>()));
-            tempOrderList.Add(new Order(3, new Table() { tablenum = 3, UsedTime = DateTime.Now }, new Payment(true, "11", DateTime.Now), new List<Product>()));
-            tempOrderList.Add(new Order(4, new Table() { tablenum = 4, UsedTime = DateTime.Now }, new Payment(true, "11", DateTime.Now), new List<Product>()));
+            tempOrderList.Add(new Order(1, new Table() { tablenum = 1, UsedTime = DateTime.Now }, new Payment(true, "12", DateTime.Now), products));
+            tempOrderList.Add(new Order(2, new Table() { tablenum = 2, UsedTime = DateTime.Now }, new Payment(true, "11", DateTime.Now), products));
+            tempOrderList.Add(new Order(3, new Table() { tablenum = 3, UsedTime = DateTime.Now }, new Payment(true, "12", DateTime.Now), new List<Product>()));
+            tempOrderList.Add(new Order(4, new Table() { tablenum = 4, UsedTime = DateTime.Now }, new Payment(true, "14", DateTime.Now), new List<Product>()));
 
             return tempOrderList;
         }

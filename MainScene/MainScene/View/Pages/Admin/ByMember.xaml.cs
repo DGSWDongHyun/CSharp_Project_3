@@ -23,23 +23,75 @@ namespace MainScene.View.Pages.Admin
     public partial class ByMember : Page
     {
         private OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
+        private ProductRepository productRepository = App.repositoryController.GetProductRepository();
 
-        Dictionary<String, List<Product>> dividedProductList;
-        List<String> orderedUserCodeList;
+        List<string> orderedUserCodeList;
+        List<Order> orderHistoryList;
+        List<Product> productList;
 
         public ByMember()
         {
             InitializeComponent();
-
-            List<Order> orderHistoryList = orderRepository.GetOrderHistoryList();
+            
+            orderHistoryList = orderRepository.GetOrderHistoryList();
 
             orderedUserCodeList = GetOrderedUserCodeList(orderHistoryList);
+
+            setupView();
         }
 
-        private List<String> GetOrderedUserCodeList(List<Order> orderHistoryList)
+
+        private void setupView()
         {
-            List<String> orderedUserCodeList = new List<String>();
-            List<String> tempOrderedUserCodeList = new List<String>();
+            lbMember.ItemsSource = orderedUserCodeList;
+            lbMember.SelectedIndex = 0;
+        }
+
+
+        private void lbMember_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            string userCode = lbMember.SelectedItem as string;
+
+            var productLisyByMember = GetDividedProductList(userCode, orderHistoryList);
+
+            productList = productRepository.GetProduct();
+
+
+
+            foreach (Product product in productList)
+            {
+                product.TotalCellCount = productLisyByMember.Where(x => x.name == product.name).Count();
+                product.TotalCellPriceCount = product.TotalCellCount * product.Price;
+            }
+
+
+            int totalMargin = 0;
+            foreach (Product product in productLisyByMember)
+            {
+                totalMargin += product.Price;
+            }
+
+            statisticsInfo.Text = "총" + productLisyByMember.Count + "개 판매, 총" + totalMargin + "원";
+
+            lbMenus.ItemsSource = productList;
+        }
+
+        private List<Product> GetDividedProductList(string userCode, List<Order> orderHistoryList)
+        {
+            List<Product> orderedProductList = new List<Product>();
+
+            var devidedOrderList = orderHistoryList.Where(x => x.Payment.UserCode.Equals(userCode)).ToList();
+
+            orderedProductList.AddRange(devidedOrderList[0].Products);
+
+            return orderedProductList;
+        }
+
+        private List<string> GetOrderedUserCodeList(List<Order> orderHistoryList)
+        {
+            List<string> orderedUserCodeList = new List<string>();
+            List<string> tempOrderedUserCodeList = new List<string>();
 
             foreach (Order order in orderHistoryList)
             {
