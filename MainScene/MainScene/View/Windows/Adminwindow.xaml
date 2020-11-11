@@ -7,58 +7,90 @@
         mc:Ignorable="d"
         Title="Adminwindow" Height="1080" Width="1920">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="85,290,0,659" Width="816">
-            <StackPanel Margin="5" Orientation="Horizontal">
-                <Label Content="구동시간 :" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="50"/>
-                <Label Content=" " Name="DriveTimeLabel" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="50"/>
-            </StackPanel>
-        </Border>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
 
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="816" Margin="85,420,0,181">
-            <StackPanel Margin="5" Orientation="Vertical">
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <TextBlock Text="총 매출액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="72" Width="405"/>
-                    <Label Content=" " Name="TotalSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="72"/>
-                </StackPanel>
+            <GroupBox Header="통계 기준" Grid.Row="0"  Grid.Column="1" VerticalAlignment="Center" Margin="50">
+                <StackPanel Margin="10">
+                    <RadioButton Margin="5" GroupName="category" Content="카테고리별 판매수" Checked="RadioButton_Checked_2"/>
+                    <RadioButton Margin="5" GroupName="category" Content="좌석별 메뉴 판매수" Checked="RadioButton_Checked_1"/>
 
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <TextBlock Text="ㄴ순수 매출액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="50" Width="400"/>
-                    <Label Content=" " Name="Sales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="50"/>
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <RadioButton GroupName="category" Content="하루중 시간대별 매출액" Checked="RadioButton_Checked_3"/>
+                    </StackPanel>
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <RadioButton GroupName="category" Content="회원별 총 주문메뉴" Checked="RadioButton_Checked_4"/>
+                    </StackPanel>
                 </StackPanel>
+            </GroupBox>
 
+            <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Center" Height="150" Grid.Column="0" Margin="50">
                 <StackPanel Margin="5" Orientation="Horizontal">
-                    <TextBlock Text="ㄴ카드 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="40" Width="400"/>
-                    <Label Content=" " Name="CardSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40"/>
+                    <Label Content="구동시간 :" HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Center" FontSize="40"/>
+                    <Label Content=" " Name="DriveTimeLabel" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40"/>
                 </StackPanel>
+            </Border>
 
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <TextBlock Text="ㄴ현금 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="40" Width="400"/>
-                    <Label Content=" " Name="CacheSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40"/>
-                </StackPanel>
 
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <TextBlock Text="ㄴ할인액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="50" Width="400"/>
-                    <Label Content=" " Name="DiscountLabel" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="50"/>
-                </StackPanel>
-            </StackPanel>
-        </Border>
+        </Grid>
 
-        <GroupBox Header="통계 기준" Height="170" Margin="981,69,34,0" VerticalAlignment="Top">
-            <StackPanel Margin="10">
-                <RadioButton Margin="5" GroupName="category" Content="카테고리별 판매수" Checked="RadioButton_Checked_2"/>
-                <RadioButton Margin="5" GroupName="category" Content="좌석별 메뉴 판매수" Checked="RadioButton_Checked_1"/>
-                
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <RadioButton GroupName="category" Content="하루중 시간대별 매출액" Checked="RadioButton_Checked_3"/>
-                </StackPanel>
-                <StackPanel Margin="5" Orientation="Horizontal">
-                    <RadioButton GroupName="category" Content="회원별 총 주문메뉴" Checked="RadioButton_Checked_4"/>
-                </StackPanel>
-            </StackPanel>
-        </GroupBox>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
 
-        <Border BorderBrush="Black" BorderThickness="1" RenderTransformOrigin="0.506,0.497" Margin="981,290,34,181">
-            <Frame Margin="5" Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="frame" />
-        </Border>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Margin="30" Grid.Row="0" Height ="400">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Margin="5" Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text="총 매출액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="50" Width="405"/>
+                        <Label Content=" " Name="TotalSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="50"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5"  Grid.Row="1"  Orientation="Horizontal">
+                        <TextBlock Text="ㄴ순수 매출액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="30" Width="400"/>
+                        <Label Content=" " Name="Sales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" Grid.Row="2"  Orientation="Horizontal">
+                        <TextBlock Text="ㄴ카드 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="20" Width="400"/>
+                        <Label Content=" " Name="CardSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" Grid.Row="3" Orientation="Horizontal">
+                        <TextBlock Text="ㄴ현금 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="20" Width="400"/>
+                        <Label Content=" " Name="CacheSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" Grid.Row="4"  Orientation="Horizontal">
+                        <TextBlock Text="ㄴ할인액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="20" Width="400"/>
+                        <Label Content=" " Name="DiscountLabel" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+
+
+
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" Width="Auto" Margin="30" Grid.Column="1">
+                <Frame Margin="5" Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="frame" />
+            </Border>
+
+        </Grid>
     </Grid>
 </Window>

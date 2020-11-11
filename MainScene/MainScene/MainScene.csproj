@@ -192,6 +192,9 @@
     <Compile Include="View\Pages\CardPayment.xaml.cs">
       <DependentUpon>CardPayment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\FinishPayment.xaml.cs">
+      <DependentUpon>FinishPayment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\CardPayment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\FinishPayment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
