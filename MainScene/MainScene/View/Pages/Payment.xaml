@@ -19,7 +19,7 @@
             <Button Width="292" Height="292" Content="카드 결제" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LemonChiffon" FontSize="30" FontWeight="Bold" Click="PaymentCard"/>
         </Grid>
         <Grid Grid.Column="1">
-            <Button Content="현금 결제"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="292" Height="292" Background="LemonChiffon" Grid.Column="2" FontSize="30" FontWeight="Bold"/>
+            <Button Content="현금 결제"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="292" Height="292" Background="LemonChiffon" Grid.Column="2" FontSize="30" FontWeight="Bold" Click="PaymentCash"/>
         </Grid>
         <Grid Grid.Column="0">
             <Button Content="이전" HorizontalAlignment="Left" Margin="59,705,0,0" VerticalAlignment="Top" Width="197" Height="62" FontSize="22" Click="BackClick"/>

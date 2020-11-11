@@ -171,6 +171,9 @@
     <Compile Include="Repository\TableRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Util\RepositoryController.cs" />
+    <Compile Include="View\Pages\CashPayment.xaml.cs">
+      <DependentUpon>CashPayment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Admin\ByCategory.xaml.cs">
       <DependentUpon>ByCategory.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Pages\CashPayment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Admin\ByCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

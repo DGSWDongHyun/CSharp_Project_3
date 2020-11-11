@@ -35,6 +35,10 @@ namespace MainScene.View.Pages
             NavigationService.GoBack();
         }
 
+        private void PaymentCash(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CashPayment(order));
+        }
     }
 
 }
