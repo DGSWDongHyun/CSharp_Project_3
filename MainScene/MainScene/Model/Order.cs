@@ -1,25 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 
 namespace MainScene.Model
 {
     public class Order
     {
+        [Key]
+        public int index { get; set; }
         public int OrderIdx { get; set; }
         public bool IsTakeout { get; set; }
         public Table Table { get; set; }
         public Payment Payment { get; set; }
         public List<Product> Products { get; set; }
-
-        public Order(int OrderIdx, Table table, Payment payment,List<Product> products)
-        {
-            this.OrderIdx = OrderIdx;
-            this.IsTakeout = table == null;
-            this.Table = table;
-            this.Payment = payment;
-            this.Products = products;
-
-        }
 
         public int GetTotalPrice()
         {
@@ -32,7 +25,5 @@ namespace MainScene.Model
 
             return totalPrice;
         }
-
-        public Order() { }
     }
 }

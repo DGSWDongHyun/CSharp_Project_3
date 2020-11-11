@@ -1,7 +1,12 @@
-﻿namespace MainScene.Model
+﻿using Microsoft.SqlServer.Server;
+using System.ComponentModel.DataAnnotations;
+
+namespace MainScene.Model
 {
     public class Product
     {
+        [Key]
+        public int index { get; set; }
         public CategoryEnum Category { get; set; }
         public int Count { get; set; }
         public string Image { get; set; }
