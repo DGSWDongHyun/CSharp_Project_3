@@ -18,13 +18,15 @@ namespace MainScene.View.Pages
         TableRepository TableRepository = App.repositoryController.GetTableRepository();
         int selecttablenum = 0;
         public System.Collections.IList SelectedItems { get; }
-        public Tablepage()
+        Order order = new Order();
+        public Tablepage(Order order)
         {   
             InitializeComponent();
 
             List<Table> table = TableRepository.GetTable();
 
             this.tableListbox.ItemsSource = table;
+            this.order = order;
         }
 
         private void BackClick(object sender, System.Windows.RoutedEventArgs e)
@@ -34,9 +36,9 @@ namespace MainScene.View.Pages
 
         private void OrderClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(
 
-                new Uri("View/Pages/Payment.xaml", UriKind.Relative));
+
+            NavigationService.Navigate(new Payment(selecttablenum, order));
         }
 
         private void ListBoxItem_Selected(object sender, SelectionChangedEventArgs e)

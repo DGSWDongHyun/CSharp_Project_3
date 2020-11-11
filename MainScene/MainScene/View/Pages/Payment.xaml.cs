@@ -20,12 +20,13 @@ namespace MainScene.View.Pages
     public partial class Payment : Page
     {
         Order order;
-        public Payment(Model.Table table,Order order)
+        public Payment(int tablenum, Order order)
         {
             InitializeComponent();
             this.order = order;
             lbSelected.ItemsSource = order.Products;
         }
+
         private void PaymentCard(object sender, System.Windows.RoutedEventArgs e)
         {
             NavigationService.Navigate(new CardPayment(order));

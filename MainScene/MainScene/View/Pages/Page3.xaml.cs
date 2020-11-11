@@ -50,7 +50,7 @@ namespace MainScene.View.Pages
         {
             Model.Table table = new Model.Table();
             table.tablenum = 0;
-            NavigationService.Navigate(new Payment(table, order));    
+            NavigationService.Navigate(new Payment(table.tablenum, order));    
         }
 
         private void Page_Loaded_1(object sender, RoutedEventArgs e)
