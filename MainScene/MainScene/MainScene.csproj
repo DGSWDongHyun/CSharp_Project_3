@@ -165,11 +165,14 @@
     </ApplicationDefinition>
     <Compile Include="Converter\MoneyConverter.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="RepositoryImpl\OrderRepositoryImpl.cs" />
+    <Compile Include="RepositoryImpl\ProductRepositoryImpl.cs" />
+    <Compile Include="RepositoryImpl\SettlementRepositoryImpl.cs" />
+    <Compile Include="RepositoryImpl\TableRepositoryImpl.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\SettlementRepository.cs" />
     <Compile Include="Repository\TableRepository.cs" />
-    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Util\RepositoryController.cs" />
     <Compile Include="View\Pages\CashPayment.xaml.cs">
       <DependentUpon>CashPayment.xaml</DependentUpon>

@@ -6,27 +6,16 @@ using System.Threading.Tasks;
 
 namespace MainScene.Repository
 {
-    public class SettlementRepository
+    public interface SettlementRepository
     {
-        public int GetTotalSales()
-        {
-            return 10000;
-        }
-        public int GetDiscount()
-        {
-            return 10000;
-        }
-        public int GetSales()
-        {
-            return 10000;
-        }
-        public int GetCardSales()
-        {
-            return 10000;
-        }
-        public int GetCacheSales()
-        {
-            return 10000;
-        }
+        int GetTotalSales();
+
+        int GetDiscount();
+
+        int GetSales();
+
+        int GetCardSales();
+
+        int GetCacheSales();
     }
 }

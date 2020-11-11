@@ -1,4 +1,5 @@
 ﻿using MainScene.Repository;
+using MainScene.RepositoryImpl;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -13,14 +14,13 @@ namespace MainScene.Util
         private OrderRepository orderRepositoryInstance = null;
         private ProductRepository productRepositoryInstance = null;
         private TableRepository tableRepositoryInstance = null;
-        private UserRepository userRepositoryInstance = null;
         private SettlementRepository settlementRepositoryInstance = null;
 
         public OrderRepository GetOrderRepository()
         {
             if (orderRepositoryInstance == null)
             {
-                orderRepositoryInstance = new OrderRepository();
+                orderRepositoryInstance = new OrderRepositoryImpl();
             }
             return orderRepositoryInstance;
         }
@@ -28,7 +28,7 @@ namespace MainScene.Util
         {
             if (productRepositoryInstance == null)
             {
-                productRepositoryInstance = new ProductRepository();
+                productRepositoryInstance = new ProductRepositoryImpl();
             }
             return productRepositoryInstance;
         }
@@ -36,24 +36,16 @@ namespace MainScene.Util
         {
             if (tableRepositoryInstance == null)
             {
-                tableRepositoryInstance = new TableRepository();
+                tableRepositoryInstance = new TableRepositoryImpl();
             }
             return tableRepositoryInstance;
-        }
-        public UserRepository GetUserRepository()
-        {
-            if (userRepositoryInstance == null)
-            {
-                userRepositoryInstance = new UserRepository();
-            }
-            return userRepositoryInstance;
         }
 
         public SettlementRepository GetSettlementRepository()
         {
             if (settlementRepositoryInstance == null)
             {
-                settlementRepositoryInstance = new SettlementRepository();
+                settlementRepositoryInstance = new SettlementRepositoryImpl();
             }
 
             return settlementRepositoryInstance;
