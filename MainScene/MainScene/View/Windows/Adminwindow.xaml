@@ -50,11 +50,9 @@
                 
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <RadioButton GroupName="category" Content="하루중 시간대별 매출액" Checked="RadioButton_Checked_3"/>
-                    <DatePicker IsEnabled="False" Height="20" HorizontalAlignment="Left" Margin="33 0 0 0" Name="datePicker1" VerticalAlignment="Top" Width="115" />
                 </StackPanel>
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <RadioButton GroupName="category" Content="회원별 총 주문메뉴" Checked="RadioButton_Checked_4"/>
-                    <ComboBox Margin="33 0 0 0" Width="100" Height="15"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>

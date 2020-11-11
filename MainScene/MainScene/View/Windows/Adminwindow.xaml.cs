@@ -59,7 +59,7 @@ namespace MainScene.View.Windows
             SetCardSales();
             SetCacheSales();
 
-            datePicker1.SelectedDate = DateTime.Now;
+            //datePicker1.SelectedDate = DateTime.Now;
         }
 
 
@@ -100,31 +100,31 @@ namespace MainScene.View.Windows
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            datePicker1.IsEnabled = false;
+            //datePicker1.IsEnabled = false;
             frame.Navigate( new Uri("View/Pages/Admin/ByMenu.xaml", UriKind.Relative));
         }
 
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-            datePicker1.IsEnabled = false;
+            //datePicker1.IsEnabled = false;
             frame.Navigate(new Uri("View/Pages/Admin/ByTable.xaml", UriKind.Relative));
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
         {
-            datePicker1.IsEnabled = false;
+            //datePicker1.IsEnabled = false;
             frame.Navigate(new Uri("View/Pages/Admin/ByCategory.xaml", UriKind.Relative));
         }
 
         private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
         {
-            datePicker1.IsEnabled = true;
+            //datePicker1.IsEnabled = true;
             frame.Navigate(new Uri("View/Pages/Admin/ByDate.xaml", UriKind.Relative));
         }
 
         private void RadioButton_Checked_4(object sender, RoutedEventArgs e)
         {
-            datePicker1.IsEnabled = false;
+            //datePicker1.IsEnabled = false;
             frame.Navigate(new Uri("View/Pages/Admin/ByMember.xaml", UriKind.Relative));
         }
     }

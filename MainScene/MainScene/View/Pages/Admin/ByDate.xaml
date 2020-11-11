@@ -9,8 +9,26 @@
       Title="ByDate">
 
     <Grid>
-        <Label Content="일별" HorizontalAlignment="Left" VerticalAlignment="Top" Height="450" Width="800"/>
-        
+        <StackPanel Margin="10">
+            <DatePicker Height="20" HorizontalAlignment="Left" Margin="5 0 0 0" Name="datePicker1" VerticalAlignment="Top" Width="115" SelectedDateChanged="dpick_SelectedDateChanged" />
 
+            <StackPanel Orientation="Horizontal">
+                <Label Content="오전"></Label>
+                <Label x:Name="amLabel"  Content="200000"></Label>
+                <Label Content="원"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="오후"></Label>
+                <Label x:Name="pmLabel" Content="200000"></Label>
+                <Label Content="원"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="합계"></Label>
+                <Label x:Name="totalLabel" Content="200000"></Label>
+                <Label Content="원"></Label>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

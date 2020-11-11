@@ -2,6 +2,7 @@
 using MainScene.Repository;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,31 +26,77 @@ namespace MainScene.View.Pages.Admin
 
         private OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
 
-        List<Product> divideProductList;
-        DateTime dateTime = DateTime.Now;
+        List<Order> orderListByDate;
 
         public ByDate()
         {
             InitializeComponent();
-            divideProductList = DivideProductListByDate(orderRepository.GetOrderHistoryList(), dateTime);
+
+            datePicker1.SelectedDate = DateTime.Now;
+            setupView();
         }
 
-        private List<Product> DivideProductListByDate(List<Order> orderHistoryList, DateTime date)
+        private void dpick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<Product> tempDivideProductList = new List<Product>();
+            setupView();
+        }
 
+        private void setupView()
+        {
+            orderListByDate = GetOrderListByDate(orderRepository.GetOrderHistoryList(), datePicker1.SelectedDate.Value);
 
+            totalLabel.Content = GetTotalMargin();
+            amLabel.Content = GetAmMargin();
+            pmLabel.Content = GetPmMargin();
+        }
+
+        private List<Order> GetOrderListByDate(List<Order> orderHistoryList, DateTime date)
+        {
             var orderlist = orderHistoryList.Where(x => x.Payment.PaymentTime.Year == date.Year &&
                                                         x.Payment.PaymentTime.Month == date.Month &&
                                                         x.Payment.PaymentTime.Day == date.Day).ToList();
 
 
-            foreach (Order order in orderlist)
+            return orderlist;
+        }
+
+        private int GetTotalMargin()
+        {
+            int tempTotalMargin = 0;
+            foreach (Order order in orderListByDate)
             {
-                tempDivideProductList.AddRange(order.Products);
+                tempTotalMargin += order.GetTotalPrice();
             }
-            
-            return tempDivideProductList;
+
+            return tempTotalMargin;
+        }
+
+        private int GetAmMargin()
+        {
+            int tempAmMargin = 0;
+            foreach (Order order in orderListByDate)
+            {
+                if (order.Payment.PaymentTime.ToString("tt", CultureInfo.CreateSpecificCulture("en-US")).Equals("AM"))//오전인가?
+                {
+                    tempAmMargin += order.GetTotalPrice();
+                }
+            }
+
+            return tempAmMargin;
+        }
+
+        private int GetPmMargin()
+        {
+            int tempPmMargin = 0;
+            foreach (Order order in orderListByDate)
+            {
+                if(order.Payment.PaymentTime.ToString("tt", CultureInfo.CreateSpecificCulture("en-US")).Equals("PM"))//오후인가?
+                {
+                    tempPmMargin += order.GetTotalPrice();
+                }
+            }
+
+            return tempPmMargin;
         }
     }
 }

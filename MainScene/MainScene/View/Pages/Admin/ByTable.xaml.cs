@@ -21,7 +21,6 @@ namespace MainScene.View.Pages.Admin
         List<Order> orderList;
         List<Product> productList;
         List<Product> productListByTable;
-        List<Category> categoryList;
 
         public ByTable()
         {

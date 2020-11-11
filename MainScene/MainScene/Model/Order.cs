@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Dynamic;
 
 namespace MainScene.Model
 {
@@ -18,6 +19,18 @@ namespace MainScene.Model
             this.Payment = payment;
             this.Products = products;
 
+        }
+
+        public int GetTotalPrice()
+        {
+            var totalPrice = 0;
+            foreach (Product product in Products)
+            {
+                totalPrice += product.Price;
+            }
+
+
+            return totalPrice;
         }
 
         public Order() { }
