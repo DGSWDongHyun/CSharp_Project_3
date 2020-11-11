@@ -32,11 +32,8 @@ namespace MainScene.View.Pages
         private void webcam_QrDecoded(object sender, string e)
         {
             tbRecog.Text = "인식된 카드번호 : "+e;
-        }
-
-        private void tbRecog_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            NavigationService.Navigate(new FinishPayment(order));
+  
         }
         private int allPrices()
         {
@@ -47,6 +44,11 @@ namespace MainScene.View.Pages
                 prices += (products.Price * products.Count);
             }
             return prices;
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

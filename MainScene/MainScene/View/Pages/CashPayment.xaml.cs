@@ -1,4 +1,5 @@
 ﻿using MainScene.Model;
+using MainScene.View.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +32,11 @@ namespace MainScene.View
             tbCash.Focusable = true;
             tbCash.Focus();
         }
-
-    private int allPrices()
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+        private int allPrices()
     {
         int prices = 0;
         for (int i = 0; i < order.Products.Count; i++)
@@ -42,5 +46,10 @@ namespace MainScene.View
         }
         return prices;
     }
-   }
+
+        private void finishPayment_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new FinishPayment(order));
+        }
+    }
 }
