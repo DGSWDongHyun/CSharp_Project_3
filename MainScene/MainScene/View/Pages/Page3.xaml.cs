@@ -33,11 +33,7 @@ namespace MainScene.View.Pages
         private void SelectStore(object sender, RoutedEventArgs e)
         {
 
-            NavigationService.Navigate(
-
-                new Uri("View/Pages/TablePage.xaml", UriKind.Relative)
-
-                );
+            NavigationService.Navigate(new Tablepage(order));
 
         }
 
