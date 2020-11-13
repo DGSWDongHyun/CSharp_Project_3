@@ -1,33 +1,76 @@
-﻿using MainScene.Repository;
-using System;
+﻿using MainScene.Model;
+using MainScene.Repository;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MainScene.RepositoryImpl
 {
     class SettlementRepositoryImpl: SettlementRepository
     {
+        //총매출액
         public int GetTotalSales()
         {
-            return 10000;
+            var orderHistoryList = GetOrderHistoryList();
+            var totalSales = 0;
+            foreach (Order order in orderHistoryList)
+            {
+                totalSales += order.GetTotalPrice();
+            }
+            return totalSales;
         }
+        //할인액
         public int GetDiscount()
         {
-            return 10000;
+            var orderHistoryList = GetOrderHistoryList();
+            var totalDiscount = 0;
+            foreach (Order order in orderHistoryList)
+            {
+                totalDiscount += order.GetTotalDiscountPrice();
+            }
+            return totalDiscount;
         }
+        //순수 매출액
         public int GetSales()
         {
-            return 10000;
+            return GetTotalSales() - GetDiscount();
         }
+        //카드매출액
         public int GetCardSales()
         {
-            return 10000;
+            var orderHistoryList = GetOrderHistoryList().Where(x => x.Payment.paymentType == PayMentType.Card);
+            var totalSales = 0;
+            foreach (Order order in orderHistoryList)
+            {
+                totalSales += order.GetTotalDiscountPrice();
+            }
+            return totalSales;
         }
+        //현금매출액
         public int GetCacheSales()
         {
-            return 10000;
+            var orderHistoryList = GetOrderHistoryList().Where(x => x.Payment.paymentType == PayMentType.Cache);
+            var totalSales = 0;
+            foreach (Order order in orderHistoryList)
+            {
+                totalSales += order.GetTotalDiscountPrice();
+            }
+            return totalSales;
+        }
+        private List<Order> GetOrderHistoryList()
+        {
+            var orderList = new List<Order>();
+            string dbName = "Order.db";
+            using (var dbContext = new OrderContext())
+            {
+                if (File.Exists(dbName))
+                {
+                    orderList.AddRange(dbContext.Order);
+                }
+            }
+            return orderList;
         }
     }
 }
+

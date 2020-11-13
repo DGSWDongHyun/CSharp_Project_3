@@ -25,5 +25,17 @@ namespace MainScene.Model
 
             return totalPrice;
         }
+
+        public int GetTotalDiscountPrice()
+        {
+            var totalPrice = 0;
+            foreach (Product product in Products)
+            {
+                totalPrice += product.DiscountPrice;
+            }
+
+
+            return totalPrice;
+        }
     }
 }

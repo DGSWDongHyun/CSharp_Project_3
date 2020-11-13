@@ -51,7 +51,7 @@ namespace MainScene.RepositoryImpl
     }
 }
 
-public class OrderContext : DbContext
+public class   OrderContext : DbContext
 {
     public DbSet<Order> Order { get; set; }
 
