@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,34 +24,24 @@ namespace MainScene.View.Pages
     public partial class FinishPayment : Page
     {
         Order order;
-        DispatcherTimer counterOne;
-        int counterOneTime;
+
+
         public FinishPayment(Order order)
         {
             InitializeComponent();
             this.order = order;
             price.Text = "금액 : " + allPrices() + "원";
-
-            counterOne = new DispatcherTimer();
-            counterOne.Tick += new EventHandler(counterOne_Tick);
-            counterOne.Interval = new TimeSpan(0, 0, 1);
-
-            counterOneTime = 5;
-            counterOne.Start();
+            Exit();
         }
-        private void counterOne_Tick(object sender, EventArgs e)
+
+        private async void Exit()
         {
-
-            if (counterOneTime > 0)
-                counterOneTime--;
-            else
-            {
-                counterOne.Stop();
-                getHome();
-            }
-              
+            await Task.Run(() => Thread.Sleep(TimeSpan.FromSeconds(5)));
+            if (NavigationService == null) { return; }
+            goHome();
         }
-        private void getHome()
+
+        private void goHome()
         {
             while (true)
             {

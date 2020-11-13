@@ -25,13 +25,13 @@ namespace MainScene.View.Pages
             InitializeComponent();
             this.order = order;
             lbSelected.ItemsSource = order.Products;
-            if (order.Table.tablenum != 0)
+            if (order.Table != null)
             {
                 tabletest.Content = "테이블 번호 : " + order.Table.tablenum;
             }
             else
             {
-                tabletest.Content = "매장 식사";
+                tabletest.Content = "포장 식사";
             }
         }
 

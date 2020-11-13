@@ -19,7 +19,7 @@ namespace MainScene.View.Pages
         int selecttablenum = 0;
         public System.Collections.IList SelectedItems { get; }
         Order order = new Order();
-
+        
         public Tablepage(Order order)
         {   
             InitializeComponent();
