@@ -20,14 +20,14 @@ namespace MainScene.View.Pages
     public partial class Payment : Page
     {
         Order order;
-        public Payment(int tablenum, Order order)
+        public Payment(Order order)
         {
             InitializeComponent();
             this.order = order;
             lbSelected.ItemsSource = order.Products;
-            if (tablenum != 0)
+            if (order.Table.tablenum != 0)
             {
-                tabletest.Content = "테이블 번호 : " + tablenum;
+                tabletest.Content = "테이블 번호 : " + order.Table.tablenum;
             }
             else
             {

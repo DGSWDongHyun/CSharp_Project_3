@@ -23,10 +23,9 @@ namespace MainScene.View.Pages
         public Tablepage(Order order)
         {   
             InitializeComponent();
-
             List<Table> table = TableRepository.GetTable();
-
             this.tableListbox.ItemsSource = table;
+
             this.order = order;
         }
 
@@ -37,7 +36,7 @@ namespace MainScene.View.Pages
 
         private void OrderClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Payment(selecttablenum, order));
+            NavigationService.Navigate(new Payment(order));
         }
 
         private void ListBoxItem_Selected(object sender, SelectionChangedEventArgs e)
@@ -45,7 +44,7 @@ namespace MainScene.View.Pages
 
             Table table = tableListbox.SelectedItem as Table;
 
-            selecttablenum = table.tablenum;
+            order.Table = table;
 
             //MessageBox.Show(selecttablenum.ToString());
         }
