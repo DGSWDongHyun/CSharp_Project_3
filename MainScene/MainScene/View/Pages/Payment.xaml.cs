@@ -25,6 +25,14 @@ namespace MainScene.View.Pages
             InitializeComponent();
             this.order = order;
             lbSelected.ItemsSource = order.Products;
+            if (tablenum != 0)
+            {
+                tabletest.Content = "테이블 번호 : " + tablenum;
+            }
+            else
+            {
+                tabletest.Content = "매장 식사";
+            }
         }
 
         private void PaymentCard(object sender, System.Windows.RoutedEventArgs e)

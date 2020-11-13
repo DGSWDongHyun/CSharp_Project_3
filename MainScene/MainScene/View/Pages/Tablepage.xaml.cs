@@ -47,7 +47,7 @@ namespace MainScene.View.Pages
 
             selecttablenum = table.tablenum;
 
-            MessageBox.Show(selecttablenum.ToString());
+            //MessageBox.Show(selecttablenum.ToString());
         }
     }
 }
