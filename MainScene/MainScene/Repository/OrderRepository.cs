@@ -9,5 +9,7 @@ namespace MainScene.Repository
     public interface OrderRepository
     {
         List<Order> GetOrderHistoryList();
+
+        bool SaveOrder(Order order);
     }
 }
