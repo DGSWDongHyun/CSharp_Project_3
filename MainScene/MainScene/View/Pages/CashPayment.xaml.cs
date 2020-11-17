@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MainScene.Repository;
 
 namespace MainScene.View 
 { 
@@ -24,9 +25,12 @@ namespace MainScene.View
     public partial class CashPayment : Page
     {
         Order order;
+        OrderRepository orderRepository;
         public CashPayment(Order order)
         {
             InitializeComponent();
+            orderRepository = App.repositoryController.GetOrderRepository();
+
             this.order = order;
             price.Text = "총 금액 : " + allPrices() + "원";
             tbCash.Focusable = true;
@@ -48,8 +52,27 @@ namespace MainScene.View
     }
 
         private void finishPayment_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             //order 저장 구현 (예외처리)
+            order.OrderIdx = orderRepository.GetLastOrderNumber() + 1;
+            order.Payment = new Model.Payment()
+            {
+                PaymentTime = DateTime.Now,
+                UserCode = tbCash.Text,
+                paymentType = PayMentType.Cache
+            };
+
+
+            var isSuccessSave = orderRepository.SaveOrder(order);
+
+            if (isSuccessSave)
+            {
+                NavigationService.Navigate(new FinishPayment(order));
+            }
+            else
+            {
+                MessageBox.Show("주문 실패");
+            }
 
             NavigationService.Navigate(new FinishPayment(order));
         }
