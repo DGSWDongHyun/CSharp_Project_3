@@ -17,6 +17,7 @@ namespace MainScene.Model
         public int GetTotalPrice()
         {
             var totalPrice = 0;
+
             foreach (Product product in Products)
             {
                 totalPrice += product.Price;

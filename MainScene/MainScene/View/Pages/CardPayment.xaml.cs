@@ -39,6 +39,13 @@ namespace MainScene.View.Pages
             tbRecog.Text = "인식된 카드번호 : " + e;
 
             order.OrderIdx = orderRepository.GetLastOrderNumber()+1;
+            order.Payment = new Model.Payment()
+            {
+                PaymentTime = DateTime.Now,
+                UserCode = e,
+                paymentType = PayMentType.Card
+            };
+            
 
             var isSuccessSave = orderRepository.SaveOrder(order);
 
