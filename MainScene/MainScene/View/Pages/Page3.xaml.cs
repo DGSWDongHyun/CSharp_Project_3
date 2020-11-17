@@ -46,6 +46,7 @@ namespace MainScene.View.Pages
         {
             Model.Table table = new Model.Table();
             table.tablenum = 0;
+            order.IsTakeout = true;
             NavigationService.Navigate(new Payment(order));    
         }
 

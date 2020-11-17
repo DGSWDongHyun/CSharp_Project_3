@@ -55,8 +55,10 @@ namespace MainScene.View
         {
             //order 저장 구현 (예외처리)
             order.OrderIdx = orderRepository.GetLastOrderNumber() + 1;
-            order.Table.UsedTime = DateTime.Now;
-
+            if (!order.IsTakeout)
+            {
+                order.Table.UsedTime = DateTime.Now;
+            }
             order.Payment = new Model.Payment()
             {
                 PaymentTime = DateTime.Now,

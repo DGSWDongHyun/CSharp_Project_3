@@ -39,7 +39,10 @@ namespace MainScene.View.Pages
             tbRecog.Text = "인식된 카드번호 : " + e;
 
             order.OrderIdx = orderRepository.GetLastOrderNumber()+1;
-            order.Table.UsedTime = DateTime.Now;
+            if (!order.IsTakeout)
+            {
+                order.Table.UsedTime = DateTime.Now;
+            }
 
             order.Payment = new Model.Payment()
             {
