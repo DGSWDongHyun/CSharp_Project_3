@@ -48,7 +48,9 @@ namespace MainScene.View
     }
 
         private void finishPayment_Click(object sender, RoutedEventArgs e)
-        {
+        {   
+            //order 저장 구현 (예외처리)
+
             NavigationService.Navigate(new FinishPayment(order));
         }
     }

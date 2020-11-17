@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MainScene.Repository;
 
 namespace MainScene.View.Pages
 {
@@ -22,18 +23,33 @@ namespace MainScene.View.Pages
     public partial class CardPayment : Page
     {
         Order order;
+        OrderRepository orderRepository;
+
         public CardPayment(Order order)
         {
             InitializeComponent();
+            orderRepository = App.repositoryController.GetOrderRepository();
+
             webcam.CameraIndex = 0;
             this.order = order;
             price.Text = "총 금액 : " + allPrices() + "원";
         }
         private void webcam_QrDecoded(object sender, string e)
         {
-            tbRecog.Text = "인식된 카드번호 : "+e;
-            NavigationService.Navigate(new FinishPayment(order));
-  
+            tbRecog.Text = "인식된 카드번호 : " + e;
+
+            order.OrderIdx = orderRepository.GetLastOrderNumber()+1;
+
+            var isSuccessSave = orderRepository.SaveOrder(order);
+
+            if (isSuccessSave)
+            {
+                NavigationService.Navigate(new FinishPayment(order));
+            }
+            else
+            {
+                MessageBox.Show("주문 실패");
+            }
         }
         private int allPrices()
         {

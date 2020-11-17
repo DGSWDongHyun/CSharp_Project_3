@@ -35,7 +35,7 @@ namespace MainScene.RepositoryImpl
             {
                 if (File.Exists(dbName))
                 {
-                    lastOrderNumber = dbContext.Order.Last().index;
+                    lastOrderNumber = dbContext.Order.Last().OrderIdx;
                 }
             }
             return lastOrderNumber;
