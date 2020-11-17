@@ -323,3 +323,7 @@ paket-files/
 __pycache__/
 *.pyc
 
+
+## Another
+
+MainScene/MainScene/bin/*
