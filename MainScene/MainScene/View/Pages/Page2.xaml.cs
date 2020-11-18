@@ -32,6 +32,7 @@ namespace MainScene.View.Pages
 
             lbMenus.ItemsSource = foodProduct;
             lbSelected.ItemsSource = foodSelected;
+            lbCategory.SelectedIndex = 0;
 
         }
 

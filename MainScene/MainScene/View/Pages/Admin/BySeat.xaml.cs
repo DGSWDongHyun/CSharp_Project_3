@@ -62,7 +62,9 @@ namespace MainScene.View.Pages.Admin
         private List<Product> mappingCellCount(List<Order> orderList, Model.Seat table)
         {
             productList = productRepository.GetProduct();
-            List<Order> orderListByTable = orderList.Where(x => x.Seat.seatNum == table.seatNum).ToList();
+            List<Order> orderListByTable = orderList
+                .Where(x => !x.IsTakeout)
+                .Where(x => x.Seat.seatNum == table.seatNum).ToList();
 
             productListByTable = new List<Product>();
 

@@ -107,7 +107,7 @@ namespace MainScene.View.Windows
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
             //datePicker1.IsEnabled = false;
-            frame.Navigate(new Uri("View/Pages/Admin/ByTable.xaml", UriKind.Relative));
+            frame.Navigate(new Uri("View/Pages/Admin/BySeat.xaml", UriKind.Relative));
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)

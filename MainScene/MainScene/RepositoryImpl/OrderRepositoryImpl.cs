@@ -30,6 +30,10 @@ namespace MainScene.RepositoryImpl
             {
                 order.Payment = GetPaymeent(order.Index);
                 order.Products = GetOrderedProductList(order.Index);
+                if (!order.IsTakeout)
+                {
+                    order.Seat = GetUsedSeat(order.Index);
+                }
             }
 
             return orderList;
@@ -60,6 +64,10 @@ namespace MainScene.RepositoryImpl
             }
             SaveOrderedProduct(order.Products, order.Index);
             SavePayment(order.Payment, order.Index);
+            if (!order.IsTakeout)
+            {
+                SaveUsedSeat(order.Seat, order.Index);
+            }
             return order.Index ;
         }
 
@@ -93,6 +101,23 @@ namespace MainScene.RepositoryImpl
             return productList.Where(x => x.OrderIndex == orderIdx).ToList();
         }
 
+        private Seat GetUsedSeat(int orderIdx)
+        {
+            var usedSeatList = new List<Seat>();
+            string dbName = "UsedSeat.db";
+
+            using (var dbContext = new UsedSeatContext())
+            {
+                if (File.Exists(dbName))
+                {
+                    usedSeatList.AddRange(dbContext.UsedSeat);
+                }
+            }
+            return usedSeatList.Where(x => x.OrderIndex == orderIdx).First();
+        }
+
+
+
         private bool SaveOrderedProduct(List<Product> products, int orderIndex)
         {
             string dbName = "OrderedProduct.db";
@@ -110,6 +135,24 @@ namespace MainScene.RepositoryImpl
                     dbContext.Product.Add(product);
                     dbContext.SaveChanges();
                 }
+            }
+            return true;
+        }
+
+        private bool SaveUsedSeat(Seat seat, int orderIndex)
+        {
+            string dbName = "UsedSeat.db";
+
+            seat.Index = 0;
+            seat.OrderIndex = orderIndex;
+            using (var dbContext = new UsedSeatContext())
+            {
+                if (!File.Exists(dbName))
+                {
+                    dbContext.Database.EnsureCreated();
+                }
+                dbContext.UsedSeat.Add(seat);
+                dbContext.SaveChanges();
             }
             return true;
         }

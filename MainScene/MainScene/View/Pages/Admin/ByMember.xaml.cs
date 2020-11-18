@@ -83,8 +83,10 @@ namespace MainScene.View.Pages.Admin
 
             var devidedOrderList = orderHistoryList.Where(x => x.Payment.UserCode.Equals(userCode)).ToList();
 
-            orderedProductList.AddRange(devidedOrderList[0].Products);
-
+            foreach(var devidedOrder in devidedOrderList)
+            {
+                orderedProductList.AddRange(devidedOrder.Products);
+            }
             return orderedProductList;
         }
 
