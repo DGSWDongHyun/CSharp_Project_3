@@ -15,6 +15,7 @@ namespace MainScene.Util
         private ProductRepository productRepositoryInstance = null;
         private SeatRepository tableRepositoryInstance = null;
         private SettlementRepository settlementRepositoryInstance = null;
+        private SystemRepository systemRepository = null;
 
         public OrderRepository GetOrderRepository()
         {
@@ -49,6 +50,16 @@ namespace MainScene.Util
             }
 
             return settlementRepositoryInstance;
+        }
+
+        public SystemRepository GetSystemRepository()
+        {
+            if (systemRepository == null)
+            {
+                systemRepository = new SystemRepository(App.dbManagerController.getSystemDBManager());
+            }
+
+            return systemRepository;
         }
 
     }

@@ -8,6 +8,7 @@
         WindowStyle="None"
         WindowState="Maximized"
         ResizeMode="NoResize"
+        Closing="Exit"
         Title="MainWindow" Height="1080" Width="1920" KeyDown="Window_KeyDown">
 
     <Grid>
