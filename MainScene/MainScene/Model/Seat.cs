@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MainScene.Model
 {
-    public class Seat
+    public class Seat : INotifyPropertyChanged
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -12,9 +13,36 @@ namespace MainScene.Model
         
         public int OrderIndex { get; set; }
 
-        public DateTime UsedTime { get; set; } //사용된 시간을 받음
+        public DateTime UsedTime
+        {
+            get;set;
+        }
+        
+        [NotMapped]
+        public int ust
+        {
+            get
+            {
+                return (int)(UsedTime - DateTime.Now).TotalSeconds;
+            }
+            set
+            {
+                OnPropertyChanged("ust");
+            }
+        }
         
         public int seatNum { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
 
         //public bool IsUsingNow()
         //{

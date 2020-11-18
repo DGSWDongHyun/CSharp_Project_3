@@ -25,6 +25,7 @@ namespace MainScene.View.Pages
         Order order;
         OrderRepository orderRepository;
 
+        
         public CardPayment(Order order)
         {
             InitializeComponent();

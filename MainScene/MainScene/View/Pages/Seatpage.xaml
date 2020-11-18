@@ -13,7 +13,8 @@
                     <RowDefinition Height="138*"/>
                     <RowDefinition Height="73*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label" Height="92" Width="103" Content="{Binding seatNum}" FontSize="25" Margin="56,60,55,59" Grid.RowSpan="2" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center" BorderThickness="0"/>
+                <Label x:Name="label" Height="92" Width="103" Content="{Binding seatNum}" FontSize="25" Margin="56,60,55,59" Grid.RowSpan="2" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" BorderThickness="0"/>
+                <Label x:Name="Time" Height="92" Width="103" Content= "{Binding ust}" FontSize="25" Margin="56,60,55,59" Grid.RowSpan="2" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" BorderThickness="0"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>

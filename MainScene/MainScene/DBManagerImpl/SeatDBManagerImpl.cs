@@ -31,15 +31,15 @@ namespace MainScene.DBManager
                     {
                         dbContext.Table.AddRange(new Seat[]
                         {
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 1 },
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 2 },
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 3 },
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 4 },
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 5 },
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 6 },
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 7 },
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 8 },
-                            new Seat() { UsedTime = DateTime.Now, seatNum = 9 }
+                            new Seat() { seatNum = 1 },
+                            new Seat() { seatNum = 2 },
+                            new Seat() { seatNum = 3 },
+                            new Seat() { seatNum = 4 },
+                            new Seat() { seatNum = 5 },
+                            new Seat() { seatNum = 6 },
+                            new Seat() { seatNum = 7 },
+                            new Seat() { seatNum = 8 },
+                            new Seat() { seatNum = 9 }
 
                         });
 
