@@ -33,7 +33,7 @@ namespace MainScene.View.Pages
         private void SelectStore(object sender, RoutedEventArgs e)
         {
 
-            NavigationService.Navigate(new Tablepage(order));
+            NavigationService.Navigate(new SeatPage(order));
 
         }
 
@@ -45,7 +45,7 @@ namespace MainScene.View.Pages
         private void Takeout_Click(object sender, RoutedEventArgs e)
         {
             Model.Seat table = new Model.Seat();
-            table.tablenum = 0;
+            table.seatNum = 0;
             order.IsTakeout = true;
             NavigationService.Navigate(new Payment(order));    
         }

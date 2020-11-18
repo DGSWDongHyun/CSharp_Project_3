@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel Margin="0,0,0,0">
-            <ListBox x:Name="lbTable" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbTable_SelectionChanged">
+            <ListBox x:Name="lbSeat" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbTable_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />

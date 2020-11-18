@@ -14,10 +14,10 @@ namespace MainScene.View.Pages.Admin
     public partial class ByTable : Page
     {
         private OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
-        private TableRepository tableRepository = App.repositoryController.GetTableRepository();
+        private SeatRepository tableRepository = App.repositoryController.GetTableRepository();
         private ProductRepository productRepository = App.repositoryController.GetProductRepository();
 
-        List<Model.Seat> tableList;
+        List<Seat> seatList;
         List<Order> orderList;
         List<Product> productList;
         List<Product> productListByTable;
@@ -32,20 +32,20 @@ namespace MainScene.View.Pages.Admin
 
         private void setupData()
         {
-            tableList = tableRepository.GetTable();
+            seatList = tableRepository.GetSeatList();
             orderList = orderRepository.GetOrderHistoryList();
             productList = productRepository.GetProduct();
         }
 
         private void setupView()
         {
-            lbTable.ItemsSource = tableList;
-            lbTable.SelectedIndex = 0;
+            lbSeat.ItemsSource = seatList;
+            lbSeat.SelectedIndex = 0;
         }
 
         private void lbTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Model.Seat table = lbTable.SelectedItem as Model.Seat;
+            Model.Seat table = lbSeat.SelectedItem as Model.Seat;
 
             lbMenus.ItemsSource = mappingCellCount(orderList, table);
 
@@ -62,7 +62,7 @@ namespace MainScene.View.Pages.Admin
         private List<Product> mappingCellCount(List<Order> orderList, Model.Seat table)
         {
             productList = productRepository.GetProduct();
-            List<Order> orderListByTable = orderList.Where(x => x.Seat.tablenum == table.tablenum).ToList();
+            List<Order> orderListByTable = orderList.Where(x => x.Seat.seatNum == table.seatNum).ToList();
 
             productListByTable = new List<Product>();
 

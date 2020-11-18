@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace MainScene.RepositoryImpl
 {
-    class TableRepositoryImpl: TableRepository
+    class SeatRepositoryImpl: SeatRepository
     {
-        public List<Seat> GetTable()
+        public List<Seat> GetSeatList()
         {
             var tableList = new List<Seat>();
-            string dbName = "Table.db";
+            string dbName = "Seat.db";
 
-            using (var dbContext = new TableContext())
+            using (var dbContext = new SeatContext())
             {
                 if (File.Exists(dbName))
                 {
@@ -31,15 +31,15 @@ namespace MainScene.RepositoryImpl
                     {
                         dbContext.Table.AddRange(new Seat[]
                         {
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 1 },
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 2 },
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 3 },
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 4 },
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 5 },
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 6 },
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 7 },
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 8 },
-                            new Seat() { UsedTime = DateTime.Now, tablenum = 9 }
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 1 },
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 2 },
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 3 },
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 4 },
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 5 },
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 6 },
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 7 },
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 8 },
+                            new Seat() { UsedTime = DateTime.Now, seatNum = 9 }
 
                         });
 
@@ -53,11 +53,11 @@ namespace MainScene.RepositoryImpl
     }
 }
 
-public class TableContext : DbContext
+public class SeatContext : DbContext
 {
     public DbSet<Seat> Table { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite("Data Source=Table.db");
+        => options.UseSqlite("Data Source=Seat.db");
 }
 

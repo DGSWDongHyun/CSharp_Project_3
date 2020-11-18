@@ -13,18 +13,18 @@ namespace MainScene.View.Pages
     /// <summary>
     /// Tablepage.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Tablepage : Page
+    public partial class SeatPage : Page
     {
-        TableRepository TableRepository = App.repositoryController.GetTableRepository();
+        SeatRepository TableRepository = App.repositoryController.GetTableRepository();
         int selecttablenum = 0;
         public System.Collections.IList SelectedItems { get; }
         Order order = new Order();
         
-        public Tablepage(Order order)
+        public SeatPage(Order order)
         {   
             InitializeComponent();
-            List<Seat> table = TableRepository.GetTable();
-            this.tableListbox.ItemsSource = table;
+            List<Seat> seat = TableRepository.GetSeatList();
+            this.seatListbox.ItemsSource = seat;
 
             this.order = order;
         }
@@ -42,9 +42,9 @@ namespace MainScene.View.Pages
         private void ListBoxItem_Selected(object sender, SelectionChangedEventArgs e)
         {
 
-            Seat table = tableListbox.SelectedItem as Seat;
+            Seat seat = seatListbox.SelectedItem as Seat;
 
-            order.Seat = table;
+            order.Seat = seat;
 
             //MessageBox.Show(selecttablenum.ToString());
         }

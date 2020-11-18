@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace MainScene.Repository
 {
-    public interface TableRepository
+    public interface SeatRepository
     {
-        List<Seat> GetTable();
+        List<Seat> GetSeatList();
     }
 }

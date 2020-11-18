@@ -168,11 +168,11 @@
     <Compile Include="RepositoryImpl\OrderRepositoryImpl.cs" />
     <Compile Include="RepositoryImpl\ProductRepositoryImpl.cs" />
     <Compile Include="RepositoryImpl\SettlementRepositoryImpl.cs" />
-    <Compile Include="RepositoryImpl\TableRepositoryImpl.cs" />
+    <Compile Include="RepositoryImpl\SeatRepositoryImpl.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\SettlementRepository.cs" />
-    <Compile Include="Repository\TableRepository.cs" />
+    <Compile Include="Repository\SeatRepository.cs" />
     <Compile Include="Util\RepositoryController.cs" />
     <Compile Include="View\Pages\CashPayment.xaml.cs">
       <DependentUpon>CashPayment.xaml</DependentUpon>
@@ -186,8 +186,8 @@
     <Compile Include="View\Pages\Admin\ByMember.xaml.cs">
       <DependentUpon>ByMember.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Admin\ByTable.xaml.cs">
-      <DependentUpon>ByTable.xaml</DependentUpon>
+    <Compile Include="View\Pages\Admin\BySeat.xaml.cs">
+      <DependentUpon>BySeat.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\CardPayment.xaml.cs">
       <DependentUpon>CardPayment.xaml</DependentUpon>
@@ -204,8 +204,8 @@
     <Compile Include="View\Pages\Page3.xaml.cs">
       <DependentUpon>Page3.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Tablepage.xaml.cs">
-      <DependentUpon>Tablepage.xaml</DependentUpon>
+    <Compile Include="View\Pages\Seatpage.xaml.cs">
+      <DependentUpon>Seatpage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Payment.xaml.cs">
       <DependentUpon>Payment.xaml</DependentUpon>
@@ -236,7 +236,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Admin\ByTable.xaml">
+    <Page Include="View\Pages\Admin\BySeat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,7 +260,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Tablepage.xaml">
+    <Page Include="View\Pages\Seatpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

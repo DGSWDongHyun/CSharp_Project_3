@@ -13,7 +13,7 @@ namespace MainScene.Util
     {
         private OrderRepository orderRepositoryInstance = null;
         private ProductRepository productRepositoryInstance = null;
-        private TableRepository tableRepositoryInstance = null;
+        private SeatRepository tableRepositoryInstance = null;
         private SettlementRepository settlementRepositoryInstance = null;
 
         public OrderRepository GetOrderRepository()
@@ -32,11 +32,11 @@ namespace MainScene.Util
             }
             return productRepositoryInstance;
         }
-        public TableRepository GetTableRepository()
+        public SeatRepository GetTableRepository()
         {
             if (tableRepositoryInstance == null)
             {
-                tableRepositoryInstance = new TableRepositoryImpl();
+                tableRepositoryInstance = new SeatRepositoryImpl();
             }
             return tableRepositoryInstance;
         }

@@ -150,6 +150,23 @@ public class PaymentContext : DbContext
     }
 }
 
+public class UsedSeatContext : DbContext
+{
+    public DbSet<Seat> UsedSeat { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+        => options.UseSqlite("Data Source=UsedSeat.db");
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Product>()
+            .Property(f => f.Index)
+            .HasDefaultValue(1)
+            .ValueGeneratedOnAdd();
+    }
+}
+
 public class OrderedProductContext : DbContext
 {
     public DbSet<Product> Product { get; set; }

@@ -27,7 +27,7 @@ namespace MainScene.View.Pages
             lbSelected.ItemsSource = order.Products;
             if (order.Seat != null)
             {
-                tabletest.Content = "테이블 번호 : " + order.Seat.tablenum;
+                tabletest.Content = "테이블 번호 : " + order.Seat.seatNum;
             }
             else
             {

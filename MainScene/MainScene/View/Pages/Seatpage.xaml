@@ -1,19 +1,19 @@
-﻿<Page x:Class="MainScene.View.Pages.Tablepage"
+﻿<Page x:Class="MainScene.View.Pages.SeatPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="Tablepage">
+      Title="SeatPage">
     <Page.Resources>
-        <DataTemplate x:Key="Tabletemplate">
+        <DataTemplate x:Key="Seattemplate">
             <Grid d:DesignWidth="372.317" d:DesignHeight="372.317" Height="211" Width="214">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="138*"/>
                     <RowDefinition Height="73*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label" Height="92" Width="103" Content="{Binding tablenum}" FontSize="25" Margin="56,60,55,59" Grid.RowSpan="2" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center" BorderThickness="0"/>
+                <Label x:Name="label" Height="92" Width="103" Content="{Binding seatNum}" FontSize="25" Margin="56,60,55,59" Grid.RowSpan="2" FontWeight="Bold" Background="{x:Null}" HorizontalContentAlignment="Center" BorderThickness="0"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -24,7 +24,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.ColumnSpan="3" Margin="570,0">
-            <ListBox x:Name="tableListbox" ItemsSource="{Binding}" ItemTemplate="{DynamicResource Tabletemplate}" Margin="-240,0" HorizontalAlignment="Center" BorderThickness="0" SelectionChanged="ListBoxItem_Selected" Background="Beige">
+            <ListBox x:Name="seatListbox" ItemsSource="{Binding}" ItemTemplate="{DynamicResource Seattemplate}" Margin="-240,0" HorizontalAlignment="Center" BorderThickness="0" SelectionChanged="ListBoxItem_Selected" Background="Beige">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="3" Rows="3" />

@@ -58,7 +58,7 @@ namespace MainScene.RepositoryImpl
             }
             return totalSales;
         }
-        private List<Order> GetOrderHistoryList()
+        public List<Order> GetOrderHistoryList()
         {
             var orderList = new List<Order>();
             string dbName = "Order.db";
@@ -67,10 +67,48 @@ namespace MainScene.RepositoryImpl
             {
                 if (File.Exists(dbName))
                 {
-                    orderList.AddRange(dbContext.Order.ToArray());
+                    orderList.AddRange(dbContext.Order);
                 }
             }
+
+            foreach (var order in orderList)
+            {
+                order.Payment = GetPaymeent(order.Index);
+                order.Products = GetOrderedProductList(order.Index);
+            }
+
             return orderList;
+        }
+
+
+        private Payment GetPaymeent(int orderIdx)
+        {
+            var paymentList = new List<Payment>();
+            string dbName = "Payment.db";
+
+            using (var dbContext = new PaymentContext())
+            {
+                if (File.Exists(dbName))
+                {
+                    paymentList.AddRange(dbContext.Payment);
+                }
+            }
+            return paymentList.Where(x => x.OrderIndex == orderIdx).First();
+        }
+
+        private List<Product> GetOrderedProductList(int orderIdx)
+        {
+            var productList = new List<Product>();
+            string dbName = "Order.db";
+
+            using (var dbContext = new OrderedProductContext())
+            {
+                if (File.Exists(dbName))
+                {
+                    productList.AddRange(dbContext.Product);
+                }
+            }
+            return productList.Where(x => x.OrderIndex == orderIdx).ToList();
         }
     }
 }
