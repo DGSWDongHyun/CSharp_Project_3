@@ -43,7 +43,7 @@ namespace MainScene.RepositoryImpl
             var totalSales = 0;
             foreach (Order order in orderHistoryList)
             {
-                totalSales += order.GetTotalDiscountPrice();
+                totalSales += order.GetTotalPrice();
             }
             return totalSales;
         }
@@ -54,7 +54,7 @@ namespace MainScene.RepositoryImpl
             var totalSales = 0;
             foreach (Order order in orderHistoryList)
             {
-                totalSales += order.GetTotalDiscountPrice();
+                totalSales += order.GetTotalPrice();
             }
             return totalSales;
         }
