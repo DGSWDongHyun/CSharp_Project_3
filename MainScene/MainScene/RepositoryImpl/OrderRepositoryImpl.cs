@@ -35,20 +35,6 @@ namespace MainScene.RepositoryImpl
             return orderList;
         }
 
-        public int GetLastOrderNumber()
-        {
-            var lastOrderNumber = 0;
-            string dbName = "Order.db";
-            using (var dbContext = new OrderContext())
-            {
-                if (File.Exists(dbName))
-                {
-                    lastOrderNumber = dbContext.Order.ToArray().Last().Index;
-                }
-            }
-            return lastOrderNumber;
-        }
-
         public int SaveOrder(Order order)
         {
             string dbName = "Order.db";
