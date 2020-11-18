@@ -39,7 +39,7 @@ namespace MainScene.RepositoryImpl
         //카드매출액
         public int GetCardSales()
         {
-            var orderHistoryList = GetOrderHistoryList().Where(x => x.Payment.paymentType == PayMentType.Card);
+            var orderHistoryList = GetOrderHistoryList().Where(x => x.Payment.paymentType == PayMentType.Card).ToList();
             var totalSales = 0;
             foreach (Order order in orderHistoryList)
             {
@@ -50,7 +50,7 @@ namespace MainScene.RepositoryImpl
         //현금매출액
         public int GetCacheSales()
         {
-            var orderHistoryList = GetOrderHistoryList().Where(x => x.Payment.paymentType == PayMentType.Cache);
+            var orderHistoryList = GetOrderHistoryList().Where(x => x.Payment.paymentType == PayMentType.Cache).ToList();
             var totalSales = 0;
             foreach (Order order in orderHistoryList)
             {
