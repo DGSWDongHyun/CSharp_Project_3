@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MainScene.Repository;
+using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
@@ -14,12 +16,17 @@ namespace MainScene.View.Windows
     public partial class MainWindow : Window
     {
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        Stopwatch stopWatch = new Stopwatch();
+        Stopwatch stopWatch;
         string currentTime = string.Empty;
+        SystemRepository systemRepository = App.repositoryController.GetSystemRepository();
 
           public MainWindow()
         {
             InitializeComponent();
+
+            var tempSystemRunningTime = systemRepository.GetRunningTime();
+
+            stopWatch = tempSystemRunningTime == null ? new Stopwatch() : tempSystemRunningTime;
 
             stopWatch.Start();
 
@@ -29,6 +36,13 @@ namespace MainScene.View.Windows
             timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
             timer.Start();                                       //타이머 시작. 종료는 timer.Stop(); 으로 한다
         }
+
+
+        private void Exit(object sender, CancelEventArgs e)
+        {
+            systemRepository.SaveRunningTime(stopWatch);
+        }
+
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {

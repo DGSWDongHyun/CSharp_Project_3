@@ -74,6 +74,7 @@ public class SeatContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite("Data Source=Seat.db");
 }
+
 public class UsedSeatContext : DbContext
 {
     public DbSet<Seat> UsedSeat { get; set; }

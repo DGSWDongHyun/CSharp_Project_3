@@ -13,6 +13,7 @@ namespace MainScene.Util
         private OrderDBManager orderDBManagerInstance = null;
         private ProductDBManager productDBManagerInstance = null;
         private SeatDBManager seatDBManagerInstance = null;
+        private SystemDBManager systemDBManager = null;
 
         public OrderDBManager GetOrderDBManager()
         {
@@ -38,5 +39,17 @@ namespace MainScene.Util
             }
             return seatDBManagerInstance;
         }
+
+        public SystemDBManager getSystemDBManager()
+        {
+            if (systemDBManager == null)
+            {
+                systemDBManager = new SystemDBManagerImpl();
+            }
+            return systemDBManager;
+        }
+
+
+        
     }
 }
