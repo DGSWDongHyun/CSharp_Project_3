@@ -1,5 +1,5 @@
-﻿using MainScene.Repository;
-using MainScene.RepositoryImpl;
+﻿using MainScene.DBManager;
+using MainScene.Repository;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -20,7 +20,7 @@ namespace MainScene.Util
         {
             if (orderRepositoryInstance == null)
             {
-                orderRepositoryInstance = new OrderRepositoryImpl();
+                orderRepositoryInstance = new OrderRepository(App.dbManagerController.GetOrderDBManager());
             }
             return orderRepositoryInstance;
         }
@@ -28,7 +28,7 @@ namespace MainScene.Util
         {
             if (productRepositoryInstance == null)
             {
-                productRepositoryInstance = new ProductRepositoryImpl();
+                productRepositoryInstance = new ProductRepository(App.dbManagerController.GetProductDBManager());
             }
             return productRepositoryInstance;
         }
@@ -36,7 +36,7 @@ namespace MainScene.Util
         {
             if (tableRepositoryInstance == null)
             {
-                tableRepositoryInstance = new SeatRepositoryImpl();
+                tableRepositoryInstance = new SeatRepository(App.dbManagerController.GetSeatDBManager());
             }
             return tableRepositoryInstance;
         }
@@ -45,7 +45,7 @@ namespace MainScene.Util
         {
             if (settlementRepositoryInstance == null)
             {
-                settlementRepositoryInstance = new SettlementRepositoryImpl();
+                settlementRepositoryInstance = new SettlementRepository();
             }
 
             return settlementRepositoryInstance;

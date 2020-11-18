@@ -1,5 +1,5 @@
-﻿using MainScene.Model;
-using MainScene.Repository;
+﻿using MainScene.DBManagerImpl;
+using MainScene.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainScene.RepositoryImpl
+namespace MainScene.DBManager
 {
-    class SeatRepositoryImpl: SeatRepository
+    public class SeatDBManagerImpl: SeatDBManager
     {
         public List<Seat> GetSeatList()
         {
@@ -50,14 +50,44 @@ namespace MainScene.RepositoryImpl
             }
             return tableList;
         }
+
+        public List<Seat> GetUsedSeatList()
+        {
+            var usedSeatList = new List<Seat>();
+            string dbName = "UsedSeat.db";
+
+            using (var dbContext = new UsedSeatContext())
+            {
+                if (File.Exists(dbName))
+                {
+                    usedSeatList.AddRange(dbContext.UsedSeat);
+                }
+            }
+            return usedSeatList.ToList();
+        }
     }
 }
-
 public class SeatContext : DbContext
 {
     public DbSet<Seat> Table { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite("Data Source=Seat.db");
+}
+public class UsedSeatContext : DbContext
+{
+    public DbSet<Seat> UsedSeat { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+        => options.UseSqlite("Data Source=UsedSeat.db");
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Product>()
+            .Property(f => f.Index)
+            .HasDefaultValue(1)
+            .ValueGeneratedOnAdd();
+    }
 }
 

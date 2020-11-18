@@ -163,16 +163,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\MoneyConverter.cs" />
+    <Compile Include="DBManager\OrderDBManager.cs" />
+    <Compile Include="DBManager\ProductDBManager.cs" />
+    <Compile Include="DBManager\SeatDBManager.cs" />
+    <Compile Include="DBManagerImpl\OrderDBManagerImpl.cs" />
+    <Compile Include="DBManagerImpl\ProductDBManagerImpl.cs" />
+    <Compile Include="DBManagerImpl\SeatDBManagerImpl.cs" />
     <Compile Include="Model\Category.cs" />
-    <Compile Include="RepositoryImpl\OrderRepositoryImpl.cs" />
-    <Compile Include="RepositoryImpl\ProductRepositoryImpl.cs" />
-    <Compile Include="RepositoryImpl\SettlementRepositoryImpl.cs" />
-    <Compile Include="RepositoryImpl\SeatRepositoryImpl.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\SettlementRepository.cs" />
     <Compile Include="Repository\SeatRepository.cs" />
+    <Compile Include="Util\DBManagerController.cs" />
     <Compile Include="Util\RepositoryController.cs" />
     <Compile Include="View\Pages\CashPayment.xaml.cs">
       <DependentUpon>CashPayment.xaml</DependentUpon>

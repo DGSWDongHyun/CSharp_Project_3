@@ -9,5 +9,6 @@ namespace MainScene
     public partial class App : Application
     {
         public static RepositoryController repositoryController = new RepositoryController();
+        public static DBManagerController dbManagerController = new DBManagerController();
     }
 }

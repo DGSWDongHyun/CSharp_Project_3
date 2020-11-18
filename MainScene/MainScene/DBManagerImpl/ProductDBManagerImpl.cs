@@ -1,19 +1,22 @@
-﻿using MainScene.Model;
-using MainScene.Repository;
+﻿using MainScene.DBManagerImpl;
+using MainScene.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MainScene.RepositoryImpl
+namespace MainScene.DBManager
 {
-    class ProductRepositoryImpl: ProductRepository
+    public class ProductDBManagerImpl: ProductDBManager
     {
         public List<Product> GetProduct()
         {
             var productList = new List<Product>();
             string dbName = "Product.db";
-            
+
             using (var dbContext = new ProductContext())
             {
                 if (File.Exists(dbName))
