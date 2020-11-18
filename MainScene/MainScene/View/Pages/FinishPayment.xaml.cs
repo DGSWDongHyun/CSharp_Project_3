@@ -31,6 +31,7 @@ namespace MainScene.View.Pages
             InitializeComponent();
             this.order = order;
             price.Text = "금액 : " + allPrices() + "원";
+            orderNumber.Text = "주문번호 : " + order.Index; 
             Exit();
         }
 

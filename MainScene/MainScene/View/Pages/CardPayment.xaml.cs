@@ -38,10 +38,10 @@ namespace MainScene.View.Pages
         {
             tbRecog.Text = "인식된 카드번호 : " + e;
 
-            order.OrderIdx = orderRepository.GetLastOrderNumber()+1;
+           
             if (!order.IsTakeout)
             {
-                order.Table.UsedTime = DateTime.Now;
+                order.Seat.UsedTime = DateTime.Now;
             }
 
             order.Payment = new Model.Payment()
@@ -52,10 +52,11 @@ namespace MainScene.View.Pages
             };
             
 
-            var isSuccessSave = orderRepository.SaveOrder(order);
+            var orderIdx = orderRepository.SaveOrder(order);
 
-            if (isSuccessSave)
+            if (orderIdx != -1)
             {
+                order.Index = orderIdx;
                 NavigationService.Navigate(new FinishPayment(order));
             }
             else

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using Table = MainScene.Model.Table;
+using Seat = MainScene.Model.Seat;
 using MainScene.Repository;
 using System.Diagnostics;
 using System.Windows;
@@ -23,7 +23,7 @@ namespace MainScene.View.Pages
         public Tablepage(Order order)
         {   
             InitializeComponent();
-            List<Table> table = TableRepository.GetTable();
+            List<Seat> table = TableRepository.GetTable();
             this.tableListbox.ItemsSource = table;
 
             this.order = order;
@@ -42,9 +42,9 @@ namespace MainScene.View.Pages
         private void ListBoxItem_Selected(object sender, SelectionChangedEventArgs e)
         {
 
-            Table table = tableListbox.SelectedItem as Table;
+            Seat table = tableListbox.SelectedItem as Seat;
 
-            order.Table = table;
+            order.Seat = table;
 
             //MessageBox.Show(selecttablenum.ToString());
         }

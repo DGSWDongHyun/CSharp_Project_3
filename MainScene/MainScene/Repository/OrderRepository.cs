@@ -12,6 +12,6 @@ namespace MainScene.Repository
         
         int GetLastOrderNumber();
 
-        bool SaveOrder(Order order);
+        int SaveOrder(Order order);
     }
 }

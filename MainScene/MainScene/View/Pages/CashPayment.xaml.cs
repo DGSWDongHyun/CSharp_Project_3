@@ -54,10 +54,9 @@ namespace MainScene.View
         private void finishPayment_Click(object sender, RoutedEventArgs e)
         {
             //order 저장 구현 (예외처리)
-            order.OrderIdx = orderRepository.GetLastOrderNumber() + 1;
             if (!order.IsTakeout)
             {
-                order.Table.UsedTime = DateTime.Now;
+                order.Seat.UsedTime = DateTime.Now;
             }
             order.Payment = new Model.Payment()
             {
@@ -67,10 +66,11 @@ namespace MainScene.View
             };
 
 
-            var isSuccessSave = orderRepository.SaveOrder(order);
+            var orderIdx = orderRepository.SaveOrder(order);
 
-            if (isSuccessSave)
+            if (orderIdx != -1)
             {
+                order.Index = orderIdx;
                 NavigationService.Navigate(new FinishPayment(order));
             }
             else

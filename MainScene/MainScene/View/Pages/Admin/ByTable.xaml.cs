@@ -17,7 +17,7 @@ namespace MainScene.View.Pages.Admin
         private TableRepository tableRepository = App.repositoryController.GetTableRepository();
         private ProductRepository productRepository = App.repositoryController.GetProductRepository();
 
-        List<Model.Table> tableList;
+        List<Model.Seat> tableList;
         List<Order> orderList;
         List<Product> productList;
         List<Product> productListByTable;
@@ -45,7 +45,7 @@ namespace MainScene.View.Pages.Admin
 
         private void lbTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Model.Table table = lbTable.SelectedItem as Model.Table;
+            Model.Seat table = lbTable.SelectedItem as Model.Seat;
 
             lbMenus.ItemsSource = mappingCellCount(orderList, table);
 
@@ -59,10 +59,10 @@ namespace MainScene.View.Pages.Admin
             statisticsInfo.Text = "총" + productListByTable.Count + "개 판매, 총" + totalMargin + "원";
         }
 
-        private List<Product> mappingCellCount(List<Order> orderList, Model.Table table)
+        private List<Product> mappingCellCount(List<Order> orderList, Model.Seat table)
         {
             productList = productRepository.GetProduct();
-            List<Order> orderListByTable = orderList.Where(x => x.Table.tablenum == table.tablenum).ToList();
+            List<Order> orderListByTable = orderList.Where(x => x.Seat.tablenum == table.tablenum).ToList();
 
             productListByTable = new List<Product>();
 

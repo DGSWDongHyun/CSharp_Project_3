@@ -1,12 +1,14 @@
 ﻿using Microsoft.SqlServer.Server;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MainScene.Model
 {
     public class Product
     {
         [Key]
-        public int index { get; set; }
+        public int Index { get; set; }
+        public int? OrderIndex { get; set; }
         public CategoryEnum Category { get; set; }
         public int Count { get; set; }
         public string Image { get; set; }

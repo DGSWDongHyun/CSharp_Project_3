@@ -17,7 +17,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="price">금액 :</TextBlock>
-            <TextBlock Grid.Row="1" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center">주문 번호 : </TextBlock>
+            <TextBlock Grid.Row="1" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="orderNumber"> 주문 번호 : </TextBlock>
             <TextBlock Grid.Row="2" FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center">결제되었습니다.</TextBlock>
             <TextBlock Grid.Row="3" FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center">5초후 홈 화면으로 이동합니다.</TextBlock>
         </Grid>

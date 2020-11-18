@@ -12,9 +12,9 @@ namespace MainScene.RepositoryImpl
 {
     class TableRepositoryImpl: TableRepository
     {
-        public List<Table> GetTable()
+        public List<Seat> GetTable()
         {
-            var tableList = new List<Table>();
+            var tableList = new List<Seat>();
             string dbName = "Table.db";
 
             using (var dbContext = new TableContext())
@@ -29,17 +29,17 @@ namespace MainScene.RepositoryImpl
 
                     if (!dbContext.Table.Any())
                     {
-                        dbContext.Table.AddRange(new Table[]
+                        dbContext.Table.AddRange(new Seat[]
                         {
-                            new Table() { UsedTime = DateTime.Now, tablenum = 1 },
-                            new Table() { UsedTime = DateTime.Now, tablenum = 2 },
-                            new Table() { UsedTime = DateTime.Now, tablenum = 3 },
-                            new Table() { UsedTime = DateTime.Now, tablenum = 4 },
-                            new Table() { UsedTime = DateTime.Now, tablenum = 5 },
-                            new Table() { UsedTime = DateTime.Now, tablenum = 6 },
-                            new Table() { UsedTime = DateTime.Now, tablenum = 7 },
-                            new Table() { UsedTime = DateTime.Now, tablenum = 8 },
-                            new Table() { UsedTime = DateTime.Now, tablenum = 9 }
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 1 },
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 2 },
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 3 },
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 4 },
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 5 },
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 6 },
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 7 },
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 8 },
+                            new Seat() { UsedTime = DateTime.Now, tablenum = 9 }
 
                         });
 
@@ -55,7 +55,7 @@ namespace MainScene.RepositoryImpl
 
 public class TableContext : DbContext
 {
-    public DbSet<Table> Table { get; set; }
+    public DbSet<Seat> Table { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite("Data Source=Table.db");

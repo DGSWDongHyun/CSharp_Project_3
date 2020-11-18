@@ -44,7 +44,7 @@ namespace MainScene.View.Pages
 
         private void Takeout_Click(object sender, RoutedEventArgs e)
         {
-            Model.Table table = new Model.Table();
+            Model.Seat table = new Model.Seat();
             table.tablenum = 0;
             order.IsTakeout = true;
             NavigationService.Navigate(new Payment(order));    

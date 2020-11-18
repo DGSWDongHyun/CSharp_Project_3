@@ -7,6 +7,6 @@ namespace MainScene.Repository
 {
     public interface TableRepository
     {
-        List<Table> GetTable();
+        List<Seat> GetTable();
     }
 }

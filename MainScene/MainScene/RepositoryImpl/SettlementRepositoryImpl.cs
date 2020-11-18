@@ -62,11 +62,12 @@ namespace MainScene.RepositoryImpl
         {
             var orderList = new List<Order>();
             string dbName = "Order.db";
+
             using (var dbContext = new OrderContext())
             {
                 if (File.Exists(dbName))
                 {
-                    orderList.AddRange(dbContext.Order);
+                    orderList.AddRange(dbContext.Order.ToArray());
                 }
             }
             return orderList;
