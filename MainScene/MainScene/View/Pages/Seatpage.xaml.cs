@@ -21,29 +21,22 @@ namespace MainScene.View.Pages
         Order order = new Order();
         
         public SeatPage(Order order)
-        {   
+        {
             InitializeComponent();
             List<Seat> seatList = TableRepository.GetSeatList(); //우리매장에 있는 테이블 정보
             List<Seat> usedSeatList = TableRepository.GetUsedSeatList(); //사용된 테이블 정보
 
             foreach (var usedSeat in usedSeatList)
-            {
+            { 
                 foreach(var seat in seatList)
                 {
-                    if (usedSeat.UsedTime > DateTime.Now.AddMinutes(-1)) { break; }// 검증이 필요함. 1분이 지났으면 매핑 생략
+
                     if (usedSeat.seatNum == seat.seatNum)
                     {
                         seat.UsedTime = usedSeat.UsedTime;
                     }
                 }
             }
-
-
-            
-
-
-
-            
             this.seatListbox.ItemsSource = seatList;
 
             this.order = order;

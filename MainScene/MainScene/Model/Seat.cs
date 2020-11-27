@@ -19,11 +19,19 @@ namespace MainScene.Model
         }
         
         [NotMapped]
-        public int ust
+        public string ust
         {
             get
-            {
-                return (int)(UsedTime - DateTime.Now).TotalSeconds;
+            {   
+                if((int)(UsedTime - DateTime.Now).TotalSeconds + 60 < 0)
+                {
+                    return " ";
+                }
+                else
+                {
+                    int totalsec = (int)(UsedTime - DateTime.Now).Seconds + 60;
+                    return Convert.ToString(totalsec);
+                }        
             }
             set
             {
