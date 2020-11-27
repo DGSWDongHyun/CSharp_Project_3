@@ -7,6 +7,7 @@ using Seat = MainScene.Model.Seat;
 using MainScene.Repository;
 using System.Diagnostics;
 using System.Windows;
+using System.Timers;
 
 namespace MainScene.View.Pages
 {
@@ -19,27 +20,39 @@ namespace MainScene.View.Pages
         int selecttablenum = 0;
         public System.Collections.IList SelectedItems { get; }
         Order order = new Order();
+        Timer timer = new System.Timers.Timer(100);
+
         
         public SeatPage(Order order)
         {
             InitializeComponent();
+
+            List<Seat> seatList = TableRepository.GetSeatList(); //우리매장에 있는 테이블 정보
+            List<Seat> usedSeatList = TableRepository.GetUsedSeatList(); //사용된 테이블 정보
+
+            timer.Elapsed += new ElapsedEventHandler(seattime);
+            timer.Start();
+
+            this.order = order;
+            this.seatListbox.ItemsSource = seatList;
+        }
+
+        public void seattime(object sender, ElapsedEventArgs e)
+        {   
             List<Seat> seatList = TableRepository.GetSeatList(); //우리매장에 있는 테이블 정보
             List<Seat> usedSeatList = TableRepository.GetUsedSeatList(); //사용된 테이블 정보
 
             foreach (var usedSeat in usedSeatList)
-            { 
-                foreach(var seat in seatList)
+            {
+                foreach (var seat in seatList)
                 {
-
                     if (usedSeat.seatNum == seat.seatNum)
                     {
                         seat.UsedTime = usedSeat.UsedTime;
+                        Debug.WriteLine(seat.ust);
                     }
                 }
             }
-            this.seatListbox.ItemsSource = seatList;
-
-            this.order = order;
         }
 
         private void BackClick(object sender, System.Windows.RoutedEventArgs e)

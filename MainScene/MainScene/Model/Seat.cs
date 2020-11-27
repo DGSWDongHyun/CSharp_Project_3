@@ -7,6 +7,7 @@ namespace MainScene.Model
 {
     public class Seat : INotifyPropertyChanged
     {
+        int i = 1;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Index { get; set; }
@@ -17,7 +18,6 @@ namespace MainScene.Model
         {
             get;set;
         }
-        
         [NotMapped]
         public string ust
         {
@@ -25,7 +25,8 @@ namespace MainScene.Model
             {   
                 if((int)(UsedTime - DateTime.Now).TotalSeconds + 60 < 0)
                 {
-                    return " ";
+                    i++;
+                    return Convert.ToString(i);
                 }
                 else
                 {
@@ -35,7 +36,7 @@ namespace MainScene.Model
             }
             set
             {
-                OnPropertyChanged("ust");
+                OnPropertyChanged(nameof(ust));
             }
         }
         
