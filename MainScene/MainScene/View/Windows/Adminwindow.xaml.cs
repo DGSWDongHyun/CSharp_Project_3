@@ -144,7 +144,14 @@ namespace MainScene.View.Windows
 
         private void HomeButton_Click_1(object sender, RoutedEventArgs e)
         {
+            Window.GetWindow(this).Close();
+        }
 
+        private void AdminDiscount(object sender, RoutedEventArgs e)
+        {
+            ProductManagerWindow TestWindow = new ProductManagerWindow();
+
+            TestWindow.ShowDialog();
         }
     }
 }

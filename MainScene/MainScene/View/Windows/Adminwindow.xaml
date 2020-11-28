@@ -16,6 +16,7 @@
         <Grid Grid.Row="0" Background="Red">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="3">
                 <Label Name="lb_Time" Content="null" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="white"/>
+                <Button Content="Discount" Width="75" Height="75" Margin="10" Click="AdminDiscount"/>
                 <Button Name="HomeButton" Content="Home" Width="75" Height="75" Margin="10" Click="HomeButton_Click_1"/>
             </StackPanel>
         </Grid>

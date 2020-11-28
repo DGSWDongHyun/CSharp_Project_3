@@ -71,7 +71,7 @@ namespace MainScene.View.Pages
 
             if (foodSelected.Count == 0)
             {
-                price += product.Price;
+                price += product.FinalPrice;
 
                 foodSelected.Add(product);
                 RefreshItemWithPrice();
@@ -84,7 +84,7 @@ namespace MainScene.View.Pages
                     {
                         if (i == foodSelected.Count - 1)
                         {
-                            price += product.Price;
+                            price += product.FinalPrice;
                          
                             foodSelected.Add(product);
                             RefreshItemWithPrice();
@@ -132,7 +132,7 @@ namespace MainScene.View.Pages
 
 
             item.Count++;
-            price += item.Price;
+            price += item.FinalPrice;
             RefreshItemWithPrice();
         }
 
@@ -148,7 +148,7 @@ namespace MainScene.View.Pages
                 item.Count = 1;
                 foodSelected.Remove(item);
             }
-            price += -(item.Price);
+            price += -(item.FinalPrice);
             RefreshItemWithPrice();
 
         }
@@ -160,7 +160,7 @@ namespace MainScene.View.Pages
             if (item == null) return;
 
 
-            price -= (item.Price * item.Count);
+            price -= (item.FinalPrice * item.Count);
             item.Count = 1;
             foodSelected.Remove(item);
           

@@ -18,6 +18,8 @@ namespace MainScene.Model
         public int IsDiscount { get; set; }
         public int TotalCellCount { get; set; }
         public int TotalCellPriceCount { get; set; }
+        [NotMapped]
+        public int FinalPrice { get { return Price - DiscountPrice; } set {  } }
     }
 
     public enum CategoryEnum

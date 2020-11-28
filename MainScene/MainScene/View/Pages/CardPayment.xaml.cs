@@ -71,7 +71,7 @@ namespace MainScene.View.Pages
             for(int i = 0; i < order.Products.Count; i++)
             {
                 Product products = order.Products[i];
-                prices += (products.Price * products.Count);
+                prices += (products.FinalPrice * products.Count);
             }
             return prices;
         }
