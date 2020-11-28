@@ -23,7 +23,7 @@
                 </StackPanel.RenderTransform>
             </StackPanel>
             <StackPanel Height="409">
-                <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Bottom" Height="406">
+                <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Bottom" Height="325">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Title="매출액" LabelFormatter="{Binding Formatter}"></lvc:Axis>
                     </lvc:CartesianChart.AxisX>

@@ -36,11 +36,25 @@ namespace MainScene.View.Windows
 
             SetUpBaseSet();
             SetUpView();
+
+
+            DispatcherTimer timer = new DispatcherTimer();    //객체생성
+
+            timer.Interval = TimeSpan.FromMilliseconds(500);    //시간간격 설정
+            timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
+            timer.Start();                                       //타이머 시작. 종료는 timer.Stop(); 으로 한다
         }
 
         private void TimerTick(object sender, EventArgs e)
         {
             DriveTimeLabel.Content = DriveTime.Elapsed;
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            DateTime dt = DateTime.Now;
+            string datePart = dt.ToString("yyyy-MM-dd hh:mm:ss");
+            lb_Time.Content = datePart;
         }
 
         private void SetUpBaseSet()
@@ -126,6 +140,11 @@ namespace MainScene.View.Windows
         {
             //datePicker1.IsEnabled = false;
             frame.Navigate(new Uri("View/Pages/Admin/ByMember.xaml", UriKind.Relative));
+        }
+
+        private void HomeButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
