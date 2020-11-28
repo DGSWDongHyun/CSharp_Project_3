@@ -8,6 +8,7 @@ using MainScene.Repository;
 using System.Diagnostics;
 using System.Windows;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace MainScene.View.Pages
 {
@@ -17,30 +18,26 @@ namespace MainScene.View.Pages
     public partial class SeatPage : Page
     {
         SeatRepository TableRepository = App.repositoryController.GetTableRepository();
-        int selecttablenum = 0;
         public System.Collections.IList SelectedItems { get; }
         Order order = new Order();
         Timer timer = new System.Timers.Timer(100);
+    
 
-        
         public SeatPage(Order order)
         {
             InitializeComponent();
-
-            List<Seat> seatList = TableRepository.GetSeatList(); //우리매장에 있는 테이블 정보
-            List<Seat> usedSeatList = TableRepository.GetUsedSeatList(); //사용된 테이블 정보
 
             timer.Elapsed += new ElapsedEventHandler(seattime);
             timer.Start();
 
             this.order = order;
-            this.seatListbox.ItemsSource = seatList;
         }
 
         public void seattime(object sender, ElapsedEventArgs e)
-        {   
+        {
             List<Seat> seatList = TableRepository.GetSeatList(); //우리매장에 있는 테이블 정보
             List<Seat> usedSeatList = TableRepository.GetUsedSeatList(); //사용된 테이블 정보
+            
 
             foreach (var usedSeat in usedSeatList)
             {
@@ -49,10 +46,13 @@ namespace MainScene.View.Pages
                     if (usedSeat.seatNum == seat.seatNum)
                     {
                         seat.UsedTime = usedSeat.UsedTime;
-                        Debug.WriteLine(seat.ust);
                     }
                 }
             }
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
+             {
+                seatListbox.ItemsSource = seatList;
+             }));
         }
 
         private void BackClick(object sender, System.Windows.RoutedEventArgs e)
@@ -60,19 +60,26 @@ namespace MainScene.View.Pages
             NavigationService.GoBack();
         }
 
-        private void OrderClick(object sender, System.Windows.RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Payment(order));
-        }
-
         private void ListBoxItem_Selected(object sender, SelectionChangedEventArgs e)
         {
-
             Seat seat = seatListbox.SelectedItem as Seat;
+            if (seat != null)
+            {
+                if (seat.canuse)
+                {
+                    order.Seat = seat;
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
 
-            order.Seat = seat;
-
-            //MessageBox.Show(selecttablenum.ToString());
+        private void Order_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+            NavigationService.Navigate(new Payment(order));
         }
     }
 }
