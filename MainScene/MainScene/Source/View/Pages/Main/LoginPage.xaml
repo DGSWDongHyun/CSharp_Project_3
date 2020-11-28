@@ -39,7 +39,7 @@
             </Grid>
 
             <Grid Grid.Row="2" VerticalAlignment="Center" Margin="40 0 40 0">
-                <CheckBox FontSize="20" Height="30">자동 로그인</CheckBox>
+                <CheckBox FontSize="14" Height="30" x:Name="check">자동 로그인</CheckBox>
             </Grid>
 
         </Grid>

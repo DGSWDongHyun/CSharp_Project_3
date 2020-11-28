@@ -25,16 +25,48 @@ namespace MainScene.Source.View.Pages.Main
             InitializeComponent();
         }
 
+        void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            storageGet(); 
+            this.NavigationService.LoadCompleted -= new LoadCompletedEventHandler(NavigationService_LoadCompleted);
+        }
+
         private void AccessManager(object sender, RoutedEventArgs e)
         {
             if (idTextBox.Text == "manager" && passwordTextBox.Text == "1234")
             {
-                NavigationService.Navigate(PagesURI.HomePage.Value);   
+               if(check.IsChecked == true)
+                {
+                    storageSave();
+                    NavigationService.Navigate(PagesURI.HomePage.Value);
+                }
+                else
+                {
+                    NavigationService.Navigate(PagesURI.HomePage.Value);
+                }
             }
             else
             {
                 MessageBox.Show("로그인에 실패했습니다.");
             }
         }
+
+        private void storageSave()
+        {
+            Properties.Settings.Default.LoginIdOnPage = idTextBox.Text;
+            Properties.Settings.Default.IsCheckedOnPage = check.IsEnabled;
+            Properties.Settings.Default.Save();
+        }
+
+        private void storageGet()
+        {
+            if (Properties.Settings.Default.LoginIdOnPage == "manager" && Properties.Settings.Default.IsCheckedOnPage == true)
+            {
+               
+                // NavigationService.Navigate(PagesURI.HomePage.Value);
+              
+            }
+        }
+
     }
 }

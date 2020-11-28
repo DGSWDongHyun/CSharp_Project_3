@@ -46,5 +46,29 @@ namespace MainScene.Properties {
                 this["IsChecked"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LoginIdOnPage {
+            get {
+                return ((string)(this["LoginIdOnPage"]));
+            }
+            set {
+                this["LoginIdOnPage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsCheckedOnPage {
+            get {
+                return ((bool)(this["IsCheckedOnPage"]));
+            }
+            set {
+                this["IsCheckedOnPage"] = value;
+            }
+        }
     }
 }
