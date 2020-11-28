@@ -37,7 +37,7 @@
             <Button Content="이전" HorizontalAlignment="Left" Margin="59,692,0,0" VerticalAlignment="Top" Width="197" Height="62" FontSize="22" Click="BackClick"/>
         </Grid>
         <Grid Grid.Column="2">
-            <Button Content="주문하기" HorizontalAlignment="Right" Margin="0,692,56,0" VerticalAlignment="Top" Width="197" Height="62" FontSize="22" Click="OrderClick"/>
+            <Button Content="주문하기" HorizontalAlignment="Right" Margin="0,692,56,0" VerticalAlignment="Top" Width="197" Height="62" FontSize="22" Click="Order_Click"/>
         </Grid>
     </Grid>
 </Page>
