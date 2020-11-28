@@ -48,7 +48,7 @@
                 <ColumnDefinition Width="55*"/>
                 <ColumnDefinition Width="43*"/>
             </Grid.ColumnDefinitions>
-            <Button Margin="40,40,39.6,39.8" Grid.ColumnSpan="2">로그인</Button>
+            <Button Click="AccessManager" Margin="40,40,39.6,39.8" Grid.ColumnSpan="2">로그인</Button>
         </Grid>
     </Grid>
 </Window>

@@ -23,7 +23,7 @@
             </StackPanel>
         </Grid>
 
-        <Frame Grid.Row="1" Source="../Pages/Page1.xaml" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated" Name="FrameNavigation"/>
+        <Frame Grid.Row="1" Source="../Pages/Login/LoginPage.xaml" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated" Name="FrameNavigation"/>
 
 
     </Grid>
