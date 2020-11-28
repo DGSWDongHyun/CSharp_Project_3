@@ -1,11 +1,17 @@
-﻿using MainScene.Source.Data.Util;
-using MainScene.widget;
-using System;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace MainScene.Source.View.Pages.Main
 {
@@ -23,38 +29,12 @@ namespace MainScene.Source.View.Pages.Main
         {
             if (idTextBox.Text == "manager" && passwordTextBox.Text == "1234")
             {
-                ConnectServer();
-
-                NavigationService.Navigate(PagesURI.HomePage.Value);
+                NavigationService.Navigate(PagesURI.HomePage.Value);   
             }
             else
             {
                 MessageBox.Show("로그인에 실패했습니다.");
             }
         }
-
-        private void ConnectServer()
-        {
-            if (NetworkInterface.GetIsNetworkAvailable() == true)
-            {
-                try
-                {
-                    App.tcpClient = new TcpClient();
-                    var result = App.tcpClient.BeginConnect(Constants.SERVER_URL, Constants.SERVER_PORT, null, null);
-                    bool success = result.AsyncWaitHandle.WaitOne(1000, false);
-
-                    if (success)
-                        App.tcpClient.EndConnect(result);
-                    else
-                        throw new Exception();
-                }
-                catch
-                {
-                    NotificationMessage toast = new NotificationMessage();
-                    toast.ShowNotification("서버 에러", "서버가 연결되어 있지 않습니다");
-                }
-            }
-        }
-
     }
 }

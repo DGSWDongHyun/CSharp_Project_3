@@ -18,7 +18,6 @@ namespace MainScene.Source.View.Pages.Main
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< Updated upstream:MainScene/MainScene/View/Pages/Page1.xaml.cs
             if (NavigationService.CanGoBack)
             {
                 NavigationService.RemoveBackEntry();
@@ -28,9 +27,7 @@ namespace MainScene.Source.View.Pages.Main
                 new Uri("View/Pages/Page2.xaml", UriKind.Relative)
 
                 );
-=======
             NavigationService.Navigate(PagesURI.MenuPickPage.Value);
->>>>>>> Stashed changes:MainScene/MainScene/Source/View/Pages/Main/HomePage.xaml.cs
         }
 
         private void admv_MediaEnded(object sender, RoutedEventArgs e)

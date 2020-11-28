@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Windows;
-<<<<<<< Updated upstream:MainScene/MainScene/View/Windows/LoginWindow.xaml.cs
 using System.Windows.Controls;
 using System.Diagnostics;
 using System.Windows.Data;
@@ -12,9 +11,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MainScene.Util;
 using System.Runtime.Serialization.Formatters.Binary;
-=======
->>>>>>> Stashed changes:MainScene/MainScene/Source/View/Windows/LoginWindow.xaml.cs
-
 namespace MainScene.Source.View.Windows
 {
     /// <summary>
@@ -39,16 +35,12 @@ namespace MainScene.Source.View.Windows
         }
         private void storageSetting()
         {
-<<<<<<< Updated upstream:MainScene/MainScene/View/Windows/LoginWindow.xaml.cs
             FileStream storageStream;
             SaveManager save = new SaveManager(idTextBox.Text);
             storageStream = File.Create(@"C:\saved.localdb");
             BinaryFormatter format = new BinaryFormatter();
             format.Serialize(storageStream, save);
             storageStream.Close();
-=======
-
->>>>>>> Stashed changes:MainScene/MainScene/Source/View/Windows/LoginWindow.xaml.cs
         }
     }
 }
