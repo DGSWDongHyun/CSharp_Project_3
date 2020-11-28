@@ -18,5 +18,7 @@ namespace MainScene.Repository
         }
 
         public List<Product> GetProduct() => productDBManager.GetProduct();
+
+        public bool ModifyProduct(List<Product> products) => productDBManager.ModifyProduct(products);
     }
 }

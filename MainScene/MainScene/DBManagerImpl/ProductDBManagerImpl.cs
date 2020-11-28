@@ -5,12 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MainScene.DBManager
 {
-    public class ProductDBManagerImpl: ProductDBManager
+    public class ProductDBManagerImpl : ProductDBManager
     {
         public List<Product> GetProduct()
         {
@@ -21,15 +19,15 @@ namespace MainScene.DBManager
             {
                 if (File.Exists(dbName))
                 {
-                    productList.AddRange(dbContext.Table);
+                    productList.AddRange(dbContext.Product);
                 }
                 else
                 {
                     dbContext.Database.EnsureCreated();
 
-                    if (!dbContext.Table.Any())
+                    if (!dbContext.Product.Any())
                     {
-                        dbContext.Table.AddRange(new Product[]
+                        dbContext.Product.AddRange(new Product[]
                         {
                             new Product() { Category = CategoryEnum.Bugger, name = "치킨버거", Image = @"/Assets/ch.png", Price = 6200, Count = 1 },
                             new Product() { Category = CategoryEnum.Bugger, name = "리치치즈징거버거", Image = @"/Assets/bbq_c.png", Price = 5600, Count = 1 },
@@ -53,17 +51,43 @@ namespace MainScene.DBManager
 
                         dbContext.SaveChanges();
                     }
-                    productList.AddRange(dbContext.Table);
+                    productList.AddRange(dbContext.Product);
                 }
             }
             return productList;
+        }
+
+        public bool ModifyProduct(List<Product> products)
+        {
+            string dbName = "Product.db";
+            try
+            {
+                using (var dbContext = new ProductContext())
+                {
+                    if (!File.Exists(dbName))
+                    {
+                        dbContext.Database.EnsureCreated();
+                    }
+                    foreach(Product prooduct in products)
+                    {
+                        dbContext.Product.Update(prooduct);
+                        dbContext.SaveChanges();
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
 
 public class ProductContext : DbContext
 {
-    public DbSet<Product> Table { get; set; }
+    public DbSet<Product> Product { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite("Data Source=Product.db");
