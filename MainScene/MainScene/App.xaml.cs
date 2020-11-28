@@ -1,4 +1,5 @@
 ﻿using MainScene.Util;
+using System.Net.Sockets;
 using System.Windows;
 
 namespace MainScene
@@ -8,6 +9,7 @@ namespace MainScene
     /// </summary>
     public partial class App : Application
     {
+        public static TcpClient tcpClient { set; get; }
         public static RepositoryController repositoryController = new RepositoryController();
         public static DBManagerController dbManagerController = new DBManagerController();
     }

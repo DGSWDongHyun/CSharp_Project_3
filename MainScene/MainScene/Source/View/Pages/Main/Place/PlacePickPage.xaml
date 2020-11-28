@@ -1,0 +1,29 @@
+﻿<Page x:Class="MainScene.Source.View.Pages.Main.Place.PlacePickPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MainScene.Source.View.Pages.Main.Place"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Page3" Loaded="Page_Loaded_1">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Button Width="292" Height="292" Content="매장 식사" VerticalAlignment="Center" HorizontalAlignment="Center" Click="SelectStore" Background="LemonChiffon" FontSize="30" FontWeight="Bold"/>
+        </Grid>
+        <Grid Grid.Column="1">
+        </Grid>
+        <Grid Grid.Column="2">
+            <Button Content="포장 주문"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="292" Height="292" Background="LemonChiffon" Grid.Column="2" FontSize="30" FontWeight="Bold" Click="Takeout_Click"/>
+        </Grid>
+        <Grid Grid.Column="0">
+            <Button Content="이전" HorizontalAlignment="Left" Margin="59,692,0,0" VerticalAlignment="Top" Width="197" Height="62" Click="Back_Click" FontSize="22"/>
+        </Grid>
+    </Grid>
+</Page>

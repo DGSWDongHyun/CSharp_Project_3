@@ -133,6 +133,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -151,6 +152,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -169,6 +171,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< Updated upstream
     <Compile Include="DBManagerImpl\SystemDBManagerImpl.cs" />
     <Compile Include="DBManager\OrderDBManager.cs" />
     <Compile Include="DBManager\ProductDBManager.cs" />
@@ -190,133 +193,158 @@
     <Compile Include="Util\SaveManager.cs" />
     <Compile Include="View\Pages\CashPayment.xaml.cs">
       <DependentUpon>CashPayment.xaml</DependentUpon>
+=======
+    <Compile Include="Source\Data\DBManagerImpl\SystemDBManagerImpl.cs" />
+    <Compile Include="Source\Data\DBManager\OrderDBManager.cs" />
+    <Compile Include="Source\Data\DBManager\ProductDBManager.cs" />
+    <Compile Include="Source\Data\DBManager\SeatDBManager.cs" />
+    <Compile Include="Source\Data\DBManagerImpl\OrderDBManagerImpl.cs" />
+    <Compile Include="Source\Data\DBManagerImpl\ProductDBManagerImpl.cs" />
+    <Compile Include="Source\Data\DBManagerImpl\SeatDBManagerImpl.cs" />
+    <Compile Include="Source\Data\DBManager\SystemDBManager.cs" />
+    <Compile Include="Source\Data\Model\Category.cs" />
+    <Compile Include="Source\Data\Repository\SystemRepository.cs" />
+    <Compile Include="Source\Data\Repository\OrderRepository.cs" />
+    <Compile Include="Source\Data\Repository\ProductRepository.cs" />
+    <Compile Include="Source\Data\Repository\SettlementRepository.cs" />
+    <Compile Include="Source\Data\Repository\SeatRepository.cs" />
+    <Compile Include="Source\Data\SocketManager\BaseSockentManager.cs" />
+    <Compile Include="Source\Data\SocketManager\SocketManager.cs" />
+    <Compile Include="Source\Data\Util\Constants.cs" />
+    <Compile Include="Source\Data\Util\DBManagerController.cs" />
+    <Compile Include="Source\Data\Util\RepositoryController.cs" />
+    <Compile Include="Source\View\Pages\Main\Payment\CashPaymentPage.xaml.cs">
+      <DependentUpon>CashPaymentPage.xaml</DependentUpon>
+>>>>>>> Stashed changes
     </Compile>
-    <Compile Include="View\Pages\Admin\ByCategory.xaml.cs">
-      <DependentUpon>ByCategory.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Admin\ByCategoryPage.xaml.cs">
+      <DependentUpon>ByCategoryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Admin\ByDate.xaml.cs">
-      <DependentUpon>ByDate.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Admin\ByDatePage.xaml.cs">
+      <DependentUpon>ByDatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Admin\ByMember.xaml.cs">
-      <DependentUpon>ByMember.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Admin\ByMemberPage.xaml.cs">
+      <DependentUpon>ByMemberPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Admin\BySeat.xaml.cs">
-      <DependentUpon>BySeat.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Admin\BySeatPage.xaml.cs">
+      <DependentUpon>BySeatPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\CardPayment.xaml.cs">
-      <DependentUpon>CardPayment.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Main\Payment\CardPaymentPage.xaml.cs">
+      <DependentUpon>CardPaymentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\FinishPayment.xaml.cs">
-      <DependentUpon>FinishPayment.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Main\Payment\FinishPaymentPage.xaml.cs">
+      <DependentUpon>FinishPaymentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Login\LoginPage.xaml.cs">
+    <Compile Include="Source\View\Pages\Main\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Main\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Page2.xaml.cs">
-      <DependentUpon>Page2.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Main\Menu\MenuPickPage.xaml.cs">
+      <DependentUpon>MenuPickPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Page3.xaml.cs">
-      <DependentUpon>Page3.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Main\Place\PlacePickPage.xaml.cs">
+      <DependentUpon>PlacePickPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Seatpage.xaml.cs">
-      <DependentUpon>Seatpage.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Main\Place\SeatPickPage.xaml.cs">
+      <DependentUpon>SeatPickPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\Payment.xaml.cs">
-      <DependentUpon>Payment.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\Main\Payment\PaymentPickPage.xaml.cs">
+      <DependentUpon>PaymentPickPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\Adminwindow.xaml.cs">
-      <DependentUpon>Adminwindow.xaml</DependentUpon>
+    <Compile Include="Source\View\Pages\PagesURI.cs" />
+    <Compile Include="Source\View\Windows\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\LoginWindow.xaml.cs">
+    <Compile Include="Source\View\Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\MainWindow.xaml.cs">
+    <Compile Include="Source\View\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\Windows\ProductManagerWindow.xaml.cs">
+    <Compile Include="Source\View\Windows\ProductManagerWindow.xaml.cs">
       <DependentUpon>ProductManagerWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\Pages\CashPayment.xaml">
+    <Compile Include="Source\View\widget\NotificationMessage.cs" />
+    <Page Include="Source\View\Pages\Main\Payment\CashPaymentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Admin\ByCategory.xaml">
+    <Page Include="Source\View\Pages\Admin\ByCategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Admin\ByDate.xaml">
+    <Page Include="Source\View\Pages\Admin\ByDatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Admin\ByMember.xaml">
+    <Page Include="Source\View\Pages\Admin\ByMemberPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Admin\BySeat.xaml">
+    <Page Include="Source\View\Pages\Admin\BySeatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\CardPayment.xaml">
+    <Page Include="Source\View\Pages\Main\Payment\CardPaymentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\FinishPayment.xaml">
+    <Page Include="Source\View\Pages\Main\Payment\FinishPaymentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Login\LoginPage.xaml">
+    <Page Include="Source\View\Pages\Main\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Page1.xaml">
+    <Page Include="Source\View\Pages\Main\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Page2.xaml">
+    <Page Include="Source\View\Pages\Main\Menu\MenuPickPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Pages\Page3.xaml">
+    <Page Include="Source\View\Pages\Main\Place\PlacePickPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Seatpage.xaml">
+    <Page Include="Source\View\Pages\Main\Place\SeatPickPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Payment.xaml">
+    <Page Include="Source\View\Pages\Main\Payment\PaymentPickPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Windows\Adminwindow.xaml">
+    <Page Include="Source\View\Windows\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Windows\LoginWindow.xaml">
+    <Page Include="Source\View\Windows\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Windows\MainWindow.xaml">
+    <Page Include="Source\View\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Windows\ProductManagerWindow.xaml">
+    <Page Include="Source\View\Windows\ProductManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Order.cs" />
-    <Compile Include="Model\Payment.cs" />
-    <Compile Include="Model\Product.cs" />
-    <Compile Include="Model\Seat.cs" />
+    <Compile Include="Source\Data\Model\Order.cs" />
+    <Compile Include="Source\Data\Model\Payment.cs" />
+    <Compile Include="Source\Data\Model\Product.cs" />
+    <Compile Include="Source\Data\Model\Seat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -344,28 +372,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\bl_c.png" />
-    <Resource Include="Assets\zinger.png" />
-    <Resource Include="Assets\italian.png" />
-    <Content Include="Assets\ch.png">
+    <Resource Include="Resource\Assets\bl_c.png" />
+    <Resource Include="Resource\Assets\zinger.png" />
+    <Resource Include="Resource\Assets\italian.png" />
+    <Content Include="Resource\Assets\ch.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\cola.png">
+    <Content Include="Resource\Assets\cola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\crustch.png">
+    <Content Include="Resource\Assets\crustch.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\cyida.png">
+    <Content Include="Resource\Assets\cyida.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Assets\bbq_c.png" />
-    <Resource Include="Assets\tower.png" />
-    <Resource Include="Assets\to_c.png" />
-    <Content Include="Assets\tender.png">
+    <Resource Include="Resource\Assets\bbq_c.png" />
+    <Resource Include="Resource\Assets\tower.png" />
+    <Resource Include="Resource\Assets\to_c.png" />
+    <Content Include="Resource\Assets\tender.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\admv.mp4" />
+    <Content Include="Resource\admv.mp4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KQRCode\KQRCode.csproj">
@@ -373,6 +401,7 @@
       <Name>KQRCode</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

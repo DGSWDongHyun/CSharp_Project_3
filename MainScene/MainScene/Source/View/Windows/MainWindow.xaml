@@ -1,0 +1,30 @@
+﻿<Window x:Class="MainScene.Source.View.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainScene.Source.View.Windows"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        Closing="Exit"
+        Title="MainWindow" Height="1080" Width="1920" KeyDown="Window_KeyDown">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="red">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="3">
+                <Label Name="lb_Time" Content="null" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="white"/>
+                <Button Name="HomeButton" Content="Home" Width="75" Height="75" Margin="10" Click="HomeButton_Click_1"/>
+            </StackPanel>
+        </Grid>
+
+        <Frame Grid.Row="1" Source="../Pages/Main/LoginPage.xaml" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated" Name="FrameNavigation"/>
+
+
+    </Grid>
+</Window>
