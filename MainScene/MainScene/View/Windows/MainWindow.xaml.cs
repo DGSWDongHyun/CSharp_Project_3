@@ -23,7 +23,6 @@ namespace MainScene.View.Windows
           public MainWindow()
         {
             InitializeComponent();
-
             var tempSystemRunningTime = systemRepository.GetRunningTime();
 
             stopWatch = tempSystemRunningTime == null ? new Stopwatch() : tempSystemRunningTime;
@@ -61,7 +60,7 @@ namespace MainScene.View.Windows
         {
             if (e.Key == System.Windows.Input.Key.F2)
             {
-                if (!FrameNavigation.CanGoBack)//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
+                if (FrameNavigation.CanGoForward)//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
                 {
                     LoginWindow();
                 }

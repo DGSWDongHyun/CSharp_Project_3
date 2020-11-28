@@ -23,12 +23,15 @@ namespace MainScene.View.Pages
         public Page1()
         {
             InitializeComponent();
-
             admv.Play();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.RemoveBackEntry();
+            }
             NavigationService.Navigate(
 
                 new Uri("View/Pages/Page2.xaml", UriKind.Relative)

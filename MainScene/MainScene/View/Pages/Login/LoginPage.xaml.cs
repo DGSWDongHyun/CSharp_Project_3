@@ -29,7 +29,7 @@ namespace MainScene.View.Pages.Login
         {
             if (idTextBox.Text == "manager" && passwordTextBox.Text == "1234")
             {
-                NavigationService.Navigate(new Page1());
+                NavigationService.Navigate(new Page1());   
             }
             else
             {

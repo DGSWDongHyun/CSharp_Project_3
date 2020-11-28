@@ -7,11 +7,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Diagnostics;
 using System.Windows.Data;
+using System.IO;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MainScene.Util;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MainScene.View.Windows
 { 
@@ -37,7 +40,12 @@ namespace MainScene.View.Windows
         }
         private void storageSetting()
         {
-           
+            FileStream storageStream;
+            SaveManager save = new SaveManager(idTextBox.Text);
+            storageStream = File.Create(@"C:\saved.localdb");
+            BinaryFormatter format = new BinaryFormatter();
+            format.Serialize(storageStream, save);
+            storageStream.Close();
         }
     }
 }

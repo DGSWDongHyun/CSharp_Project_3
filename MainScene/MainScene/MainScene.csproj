@@ -187,6 +187,7 @@
     <Compile Include="SocketManager\SocketManager.cs" />
     <Compile Include="Util\DBManagerController.cs" />
     <Compile Include="Util\RepositoryController.cs" />
+    <Compile Include="Util\SaveManager.cs" />
     <Compile Include="View\Pages\CashPayment.xaml.cs">
       <DependentUpon>CashPayment.xaml</DependentUpon>
     </Compile>
