@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainScene.View.Windows"
         mc:Ignorable="d"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         Title="Adminwindow" Height="1080" Width="1920">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -31,7 +32,7 @@
                 </StackPanel>
             </GroupBox>
 
-            <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Center" Height="150" Grid.Column="0" Margin="50">
+            <Border BorderBrush="Black" BorderThickness="1" VerticalAlignment="Center" Height="100" Grid.Column="0" Margin="50">
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <Label Content="구동시간 :" HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Center" FontSize="40"/>
                     <Label Content=" " Name="DriveTimeLabel" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40"/>
@@ -43,11 +44,11 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Margin="30" Grid.Row="0" Height ="400">
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="0" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>
@@ -58,27 +59,27 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Margin="5" Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Text="총 매출액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="50" Width="405"/>
+                        <TextBlock Text="총 매출액 : " TextAlignment="Left" VerticalAlignment="Center" FontSize="45" Width="Auto" Margin="0,0,0,8.8" Height="68"/>
                         <Label Content=" " Name="TotalSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="50"/>
                     </StackPanel>
 
                     <StackPanel Margin="5"  Grid.Row="1"  Orientation="Horizontal">
-                        <TextBlock Text="ㄴ순수 매출액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="30" Width="400"/>
+                        <TextBlock Text="ㄴ순수 매출액 : " TextAlignment="Left" VerticalAlignment="Center" FontSize="30" Width="Auto"/>
                         <Label Content=" " Name="Sales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30"/>
                     </StackPanel>
 
                     <StackPanel Margin="5" Grid.Row="2"  Orientation="Horizontal">
-                        <TextBlock Text="ㄴ카드 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="20" Width="400"/>
+                        <TextBlock Text="ㄴ카드 : " TextAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="Auto"/>
                         <Label Content=" " Name="CardSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
                     </StackPanel>
 
                     <StackPanel Margin="5" Grid.Row="3" Orientation="Horizontal">
-                        <TextBlock Text="ㄴ현금 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="20" Width="400"/>
+                        <TextBlock Text="ㄴ현금 : " TextAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="Auto"/>
                         <Label Content=" " Name="CacheSales" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
                     </StackPanel>
 
                     <StackPanel Margin="5" Grid.Row="4"  Orientation="Horizontal">
-                        <TextBlock Text="ㄴ할인액 : " TextAlignment="Right" VerticalAlignment="Center" FontSize="20" Width="400"/>
+                        <TextBlock Text="ㄴ할인액 : " TextAlignment="Left" VerticalAlignment="Center" FontSize="20" Width="Auto"/>
                         <Label Content=" " Name="DiscountLabel" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
                     </StackPanel>
 
@@ -88,7 +89,7 @@
 
 
             <Border BorderBrush="Black" BorderThickness="1"  Grid.Row="1" HorizontalAlignment="Center" Margin="30" Grid.Column="1">
-                <Frame Margin="5" Width="650" Height="Auto" NavigationUIVisibility="Hidden" x:Name="frame" />
+                <Frame Margin="5" Width="1000" Height="Auto"  NavigationUIVisibility="Hidden" x:Name="frame" />
             </Border>
 
         </Grid>

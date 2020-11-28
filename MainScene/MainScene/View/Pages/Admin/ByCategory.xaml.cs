@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace MainScene.View.Pages.Admin
 {
@@ -42,7 +44,38 @@ namespace MainScene.View.Pages.Admin
         private void SetupView()
         {
             lbCategory.SelectedIndex = 0;
+            DataContext = this;
+            InitGraph();
+
         }
+
+        private void InitGraph()
+        {
+
+            piechart.Series = new SeriesCollection
+            {
+               
+               new PieSeries
+               {
+                Title = "버거",
+                Values = new ChartValues<double> {dividedProductList[CategoryEnum.Bugger].Count},
+                DataLabels = true,
+                },
+                new PieSeries
+                {
+                    Title = "음료",
+                    Values = new ChartValues<double> {dividedProductList[CategoryEnum.Drink].Count},
+                    DataLabels = true,  
+                },
+                new PieSeries
+                {
+                    Title = "사이드 메뉴",
+                    Values = new ChartValues<double> {dividedProductList[CategoryEnum.Side].Count},
+                    DataLabels = true,
+                    },
+                };
+
+            }
 
         private Dictionary<CategoryEnum, List<Product>> DivideProductListByCategory(List<Order> orderHistoryList)
         {
@@ -85,10 +118,8 @@ namespace MainScene.View.Pages.Admin
                 foreach (Product product in dividedProductList[CategoryEnum.Bugger])
                 {
                     totalMargin += product.Price;
-                }
-                
-                statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Bugger].Count + "개 판매, 총" + totalMargin + "원";
-
+                }   
+                statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Bugger].Count + "개 판매, 총" + totalMargin + "원";   
                 lbMenus.ItemsSource = mappingCellCount(productList, CategoryEnum.Bugger);
             }
             else if (lbi.Content.ToString() == "음료")

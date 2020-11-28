@@ -4,12 +4,24 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MainScene.View.Pages.Admin"
+       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ByCategory">
 
     <Grid>
-        <StackPanel Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock x:Name="statisticsInfo" FontSize="15px"><Run Text="총 판매 수 : 20개, 총 액 20,000원"/></TextBlock>
+            <lvc:PieChart x:Name ="piechart" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="427">
+             
+            </lvc:PieChart>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
             <ListBox x:Name="lbCategory" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbCategory_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -52,9 +64,7 @@
                 <ListBoxItem>사이드 메뉴</ListBoxItem>
             </ListBox>
 
-            <TextBlock x:Name="statisticsInfo" FontSize="15px">총 판매 수 : 20개, 총 액 20,000원</TextBlock>
-            
-            <ListBox x:Name="lbMenus" Grid.Row="1" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" Height="383">
+            <ListBox x:Name="lbMenus" Grid.Row="1" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" Margin="20 20 20 20" Height="367" >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="3"/>
@@ -98,9 +108,9 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
+         
         </StackPanel>
 
     </Grid>
-    
+
 </Page>

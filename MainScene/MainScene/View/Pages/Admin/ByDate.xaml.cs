@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace MainScene.View.Pages.Admin
 {
@@ -34,20 +36,20 @@ namespace MainScene.View.Pages.Admin
 
             datePicker1.SelectedDate = DateTime.Now;
             setupView();
+            InitGraph();
         }
 
         private void dpick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             setupView();
+            UpdateGraph();
+            InitGraph();
+
         }
 
         private void setupView()
         {
             orderListByDate = GetOrderListByDate(orderRepository.GetOrderHistoryList(), datePicker1.SelectedDate.Value);
-
-            totalLabel.Content = GetTotalMargin();
-            amLabel.Content = GetAmMargin();
-            pmLabel.Content = GetPmMargin();
         }
 
         private List<Order> GetOrderListByDate(List<Order> orderHistoryList, DateTime date)
@@ -84,6 +86,48 @@ namespace MainScene.View.Pages.Admin
 
             return tempAmMargin;
         }
+        private void InitGraph()
+        {
+            double totalAM = GetAmMargin();
+            double totalPM = GetPmMargin();
+            double totalEarn = GetTotalMargin();
+
+            SeriesCollection = new SeriesCollection
+            {
+                new RowSeries
+                {
+                    Title = "시간대 별 총 매출액",
+                    Values = new ChartValues<double> { totalPM, totalAM, totalEarn }
+                }
+            };
+
+            Labels = new[] { "오후", "오전" , "총 매출액" };
+            Formatter = value => value.ToString("N");
+
+            DataContext = this;
+        }
+
+        private void UpdateGraph()
+        {
+            if(SeriesCollection != null)
+            {
+                SeriesCollection[0].Values.Clear();
+
+                double totalAM = GetAmMargin();
+                double totalPM = GetPmMargin();
+                double totalEarn = GetTotalMargin();
+          
+                SeriesCollection[0].Values.Add(totalEarn);
+                SeriesCollection[0].Values.Add(totalAM);
+                SeriesCollection[0].Values.Add(totalPM);
+
+                Labels = new[] { "오후", "오전", "총 매출액" };
+                Formatter = value => value.ToString("N");
+
+                DataContext = this;
+            }
+        }
+
 
         private int GetPmMargin()
         {
@@ -98,5 +142,9 @@ namespace MainScene.View.Pages.Admin
 
             return tempPmMargin;
         }
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
+
     }
 }
