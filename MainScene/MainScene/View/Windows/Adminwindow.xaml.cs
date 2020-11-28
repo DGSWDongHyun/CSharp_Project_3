@@ -146,12 +146,11 @@ namespace MainScene.View.Windows
         {
             Window.GetWindow(this).Close();
         }
-
         private void AdminDiscount(object sender, RoutedEventArgs e)
         {
-            ProductManagerWindow TestWindow = new ProductManagerWindow();
+            ProductManagerWindow DiscountWindow = new ProductManagerWindow();
 
-            TestWindow.ShowDialog();
+            DiscountWindow.ShowDialog();
         }
     }
 }

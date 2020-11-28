@@ -63,8 +63,7 @@ namespace MainScene.View.Windows
             {
                 if (!FrameNavigation.CanGoBack)//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
                 {
-                    Window win2 = new Adminwindow(stopWatch);          
-                    win2.ShowDialog();
+                    LoginWindow();
                 }
 
                 e.Handled = true;
@@ -75,7 +74,12 @@ namespace MainScene.View.Windows
 
         }
 
-     
+        private void LoginWindow()
+        {
+            LoginWindow LoginWindow = new LoginWindow(stopWatch);
+
+            LoginWindow.ShowDialog();
+        }
 
         private void HomeButton_Click_1(object sender, RoutedEventArgs e)
         {
