@@ -48,8 +48,8 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="50" Height="20">
-                            <TextBlock Text="{Binding tablenum}" HorizontalAlignment="Center"/>
+                        <StackPanel Width="50" Height="50">
+                            <TextBlock Text="{Binding tablenum}" Foreground="Black"  HorizontalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

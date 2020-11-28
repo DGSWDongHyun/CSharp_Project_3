@@ -62,7 +62,14 @@ namespace MainScene.Source.View.Windows
             {
                 if (FrameNavigation.CanGoForward)//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
                 {
-                    LoginWindow();
+                    if((Properties.Settings.Default.LoginId != "manager")){
+                        LoginWindow();
+                    }
+                    else
+                    {
+                        Window win2 = new AdminWindow(stopWatch);
+                        win2.ShowDialog();
+                    }
                 }
 
                 e.Handled = true;

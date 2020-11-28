@@ -14,6 +14,7 @@ namespace MainScene.Source.View.Pages.Main
         {
             InitializeComponent();
             admv.Play();
+         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -23,24 +23,43 @@ namespace MainScene.Source.View.Windows
         {
             InitializeComponent();
             this.stopWatch = stopWatch;
-        }
 
+            storageGet();  
+        }
+      
         private void AccessManager(object sender, RoutedEventArgs e)
         {
             if (idTextBox.Text == "manager" && passwordTextBox.Text == "1234")
             {
+                if (check.IsChecked == true)
+                {
+                    storageSave();
+                    Window win2 = new AdminWindow(stopWatch);
+                    win2.ShowDialog(); 
+                }
+                else
+                {
+                    Window win2 = new AdminWindow(stopWatch);
+                    win2.ShowDialog();
+                }
+              
+            }
+        }
+      
+        private void storageSave()
+        {
+            Properties.Settings.Default.LoginId = idTextBox.Text;
+            Properties.Settings.Default.IsChecked = check.IsEnabled;
+            Properties.Settings.Default.Save();
+        }
+
+        private void storageGet()
+        {
+            if(Properties.Settings.Default.LoginId == "manager" && Properties.Settings.Default.IsChecked == true)
+            {
                 Window win2 = new AdminWindow(stopWatch);
                 win2.ShowDialog();
             }
-        }
-        private void storageSetting()
-        {
-            FileStream storageStream;
-            SaveManager save = new SaveManager(idTextBox.Text);
-            storageStream = File.Create(@"C:\saved.localdb");
-            BinaryFormatter format = new BinaryFormatter();
-            format.Serialize(storageStream, save);
-            storageStream.Close();
         }
     }
 }
