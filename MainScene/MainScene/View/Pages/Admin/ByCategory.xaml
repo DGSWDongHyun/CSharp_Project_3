@@ -17,7 +17,7 @@
 
         <StackPanel Grid.Column="0">
             <TextBlock x:Name="statisticsInfo" FontSize="15px"><Run Text="총 판매 수 : 20개, 총 액 20,000원"/></TextBlock>
-            <lvc:PieChart x:Name ="piechart" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="430">
+            <lvc:PieChart x:Name ="piechart" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="345">
              
             </lvc:PieChart>
         </StackPanel>
@@ -63,7 +63,7 @@
                 <ListBoxItem>음료</ListBoxItem>
                 <ListBoxItem>사이드 메뉴</ListBoxItem>
             </ListBox>
-            <lvc:PieChart x:Name ="piechart_cell" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="401">
+            <lvc:PieChart x:Name ="piechart_cell" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="300">
 
             </lvc:PieChart>
         </StackPanel>
