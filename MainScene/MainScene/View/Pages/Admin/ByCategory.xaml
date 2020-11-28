@@ -17,7 +17,7 @@
 
         <StackPanel Grid.Column="0">
             <TextBlock x:Name="statisticsInfo" FontSize="15px"><Run Text="총 판매 수 : 20개, 총 액 20,000원"/></TextBlock>
-            <lvc:PieChart x:Name ="piechart" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="427">
+            <lvc:PieChart x:Name ="piechart" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="430">
              
             </lvc:PieChart>
         </StackPanel>
@@ -63,52 +63,9 @@
                 <ListBoxItem>음료</ListBoxItem>
                 <ListBoxItem>사이드 메뉴</ListBoxItem>
             </ListBox>
+            <lvc:PieChart x:Name ="piechart_cell" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="401">
 
-            <ListBox x:Name="lbMenus" Grid.Row="1" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" Margin="20 20 20 20" Height="367" >
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="3"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListBoxItem}">
-                        <Setter Property="Foreground" Value="Gray" />
-                        <Setter Property="Background" Value="Transparent" />
-                        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-                        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-                        <Setter Property="Padding" Value="18,10,18,10" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                    <Grid>
-                                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"></ContentPresenter>
-                                        </Border>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Width="250" Height="300">
-                            <Image Source="{Binding Image}"/>
-                            <TextBlock Text="{Binding name}" HorizontalAlignment="Center"/>
-                            <TextBlock  HorizontalAlignment="Center">
-                                         <Run Text="{Binding TotalCellCount}"/>
-                                         <Run Text="개 판매"/>
-                            </TextBlock>
-                            <TextBlock  HorizontalAlignment="Center">
-                                         <Run Text="("/>
-                                         <Run Text="{Binding TotalCellPriceCount}"/>
-                                         <Run Text="원 )"/>
-                            </TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-         
+            </lvc:PieChart>
         </StackPanel>
 
     </Grid>

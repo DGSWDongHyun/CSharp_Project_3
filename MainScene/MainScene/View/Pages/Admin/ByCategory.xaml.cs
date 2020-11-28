@@ -27,7 +27,7 @@ namespace MainScene.View.Pages.Admin
     {
         private OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
         private ProductRepository productRepository = App.repositoryController.GetProductRepository();
-
+        SeriesCollection piechartData;
         Dictionary<CategoryEnum, List<Product>> dividedProductList;
         List<Product> productList;
 
@@ -38,6 +38,7 @@ namespace MainScene.View.Pages.Admin
             dividedProductList = DivideProductListByCategory(orderRepository.GetOrderHistoryList());
             productList = productRepository.GetProduct();
 
+            InitGraph();
             SetupView();
         }
 
@@ -45,7 +46,7 @@ namespace MainScene.View.Pages.Admin
         {
             lbCategory.SelectedIndex = 0;
             DataContext = this;
-            InitGraph();
+           
 
         }
 
@@ -54,7 +55,7 @@ namespace MainScene.View.Pages.Admin
 
             piechart.Series = new SeriesCollection
             {
-               
+
                new PieSeries
                {
                 Title = "버거",
@@ -65,17 +66,22 @@ namespace MainScene.View.Pages.Admin
                 {
                     Title = "음료",
                     Values = new ChartValues<double> {dividedProductList[CategoryEnum.Drink].Count},
-                    DataLabels = true,  
+                    DataLabels = true,
                 },
                 new PieSeries
                 {
                     Title = "사이드 메뉴",
                     Values = new ChartValues<double> {dividedProductList[CategoryEnum.Side].Count},
                     DataLabels = true,
-                    },
-                };
+                  },
+            };
 
-            }
+             piechartData = new SeriesCollection
+            {
+
+
+            };
+         }
 
         private Dictionary<CategoryEnum, List<Product>> DivideProductListByCategory(List<Order> orderHistoryList)
         {
@@ -119,8 +125,10 @@ namespace MainScene.View.Pages.Admin
                 {
                     totalMargin += product.Price;
                 }   
-                statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Bugger].Count + "개 판매, 총" + totalMargin + "원";   
-                lbMenus.ItemsSource = mappingCellCount(productList, CategoryEnum.Bugger);
+                statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Bugger].Count + "개 판매, 총" + totalMargin + "원";
+
+                UpdateGraph(mappingCellCount(productList, CategoryEnum.Bugger));
+               
             }
             else if (lbi.Content.ToString() == "음료")
             {
@@ -131,9 +139,8 @@ namespace MainScene.View.Pages.Admin
                 }
 
                 statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Drink].Count + "개 판매, 총" + totalMargin + "원";
+                UpdateGraph(mappingCellCount(productList, CategoryEnum.Drink));
 
-
-                lbMenus.ItemsSource = mappingCellCount(productList, CategoryEnum.Drink);
             }
             else if (lbi.Content.ToString() == "사이드 메뉴")
             {
@@ -144,9 +151,7 @@ namespace MainScene.View.Pages.Admin
                 }
 
                 statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Side].Count + "개 판매, 총" + totalMargin + "원";
-
-
-                lbMenus.ItemsSource = mappingCellCount(productList, CategoryEnum.Side);
+                UpdateGraph(mappingCellCount(productList, CategoryEnum.Side));
             }
         }
 
@@ -161,6 +166,23 @@ namespace MainScene.View.Pages.Admin
             }
 
             return categoryMenuList;
+        }
+        private void UpdateGraph(List<Product> products)
+        {
+            piechart_cell.Series.Clear();
+            for(int i = 0; i < products.Count; i++)
+            {
+                if(products[i].TotalCellCount != 0)
+                {
+                    piechartData.Add(new PieSeries
+                    {
+                        Title = products[i].name,
+                        Values = new ChartValues<double> { products[i].TotalCellCount },
+                        DataLabels = true,
+                    });
+                }
+            }
+            piechart_cell.Series = piechartData;
         }
     }
 }
