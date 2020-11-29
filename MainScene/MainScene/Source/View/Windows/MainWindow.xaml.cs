@@ -29,19 +29,21 @@ namespace MainScene.Source.View.Windows
         public MainWindow()
         {
             InitializeComponent();
+
             var tempSystemRunningTime = systemRepository.GetRunningTime();
 
             stopWatch = tempSystemRunningTime == null ? new Stopwatch() : tempSystemRunningTime;
 
-            stopWatch.Start();
+            LoginWindow((int)LoginWindowModel.Model.initModel);
 
+            stopWatch.Start();
             DispatcherTimer timer = new DispatcherTimer();    //객체생성
 
             timer.Interval = TimeSpan.FromMilliseconds(500);    //시간간격 설정
             timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
             timer.Start();               //타이머 시작. 종료는 timer.Stop(); 으로 한다
 
-            LoginWindow((int)LoginWindowModel.Model.initModel);
+
         }
 
 
@@ -69,21 +71,21 @@ namespace MainScene.Source.View.Windows
             if (e.Key == System.Windows.Input.Key.F2)
             {
 
-                    if (!FrameNavigation.CanGoBack)
+                if (!FrameNavigation.CanGoBack)
+                {
+                    if ((Properties.Settings.Default.LoginId != "manager"))
                     {
-                        if ((Properties.Settings.Default.LoginId != "manager"))
-                        {
-                            LoginWindow((int)LoginWindowModel.Model.adminModel);
-                        }
-                        else
-                        {
-                            Window win2 = new AdminWindow(stopWatch);
-                            win2.ShowDialog();
-                        }
+                        LoginWindow((int)LoginWindowModel.Model.adminModel);
                     }
-                    e.Handled = true;
+                    else
+                    {
+                        Window win2 = new AdminWindow(stopWatch);
+                        win2.ShowDialog();
+                    }
+                }
+                e.Handled = true;
 
-             
+
             }
 
 
@@ -121,7 +123,7 @@ namespace MainScene.Source.View.Windows
             {
                 if (FrameNavigation.CanGoBack)
                 {
-                    
+
                     if (FrameNavigation.CurrentSource == PagesURI.HomePage.Value)
                     {
                         break;
@@ -129,7 +131,8 @@ namespace MainScene.Source.View.Windows
 
 
                     FrameNavigation.GoBack();
-                } else
+                }
+                else
                 {
                     break;
                 }

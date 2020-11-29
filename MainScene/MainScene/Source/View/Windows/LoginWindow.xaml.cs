@@ -31,7 +31,6 @@ namespace MainScene.Source.View.Windows
 
         private void AccessManager(object sender, RoutedEventArgs e)
         {
-
             if (ModelNum == (int)LoginWindowModel.Model.initModel)
             {
                 if (idTextBox.Text == "manager2" && passwordTextBox.Text == "12345")
@@ -39,13 +38,13 @@ namespace MainScene.Source.View.Windows
                     if (check.IsChecked == true)
                     {
                         storageSave();
-                        Window.GetWindow(this).Close();
                         (App.Current.MainWindow as MainWindow).Login();
                     }
-                    else
-                    {
-                        Window.GetWindow(this).Close();
-                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("로그인에 실패했습니다.");
 
                 }
             }
@@ -56,14 +55,13 @@ namespace MainScene.Source.View.Windows
                     if (check.IsChecked == true)
                     {
                         storageSave();
-                        Window win2 = new AdminWindow(stopWatch);
-                        win2.ShowDialog();
                     }
-                    else
-                    {
-                        Window win2 = new AdminWindow(stopWatch);
-                        win2.ShowDialog();
-                    }
+                    Window win2 = new AdminWindow(stopWatch);
+                    win2.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("로그인에 실패했습니다.");
 
                 }
             }
@@ -84,6 +82,7 @@ namespace MainScene.Source.View.Windows
                 Properties.Settings.Default.IsChecked = check.IsEnabled;
                 Properties.Settings.Default.Save();
             }
+            Window.GetWindow(this).Close();
         }
 
         private void storageGet()
