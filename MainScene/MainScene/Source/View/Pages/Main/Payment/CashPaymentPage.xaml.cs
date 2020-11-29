@@ -60,11 +60,11 @@ namespace MainScene.Source.View.Pages.Main.Payment
             if (orderIdx != -1)
             {
                 order.Index = orderIdx;
-                NavigationService.Navigate(new FinishPaymentPage(order));
             }
             else
             {
                 MessageBox.Show("주문 실패");
+                return;
             }
 
             NavigationService.Navigate(new FinishPaymentPage(order));

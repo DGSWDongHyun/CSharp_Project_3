@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainScene.Source.View.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,15 +36,13 @@ namespace MainScene.Source.View.Pages.Main
         {
             if (idTextBox.Text == "manager" && passwordTextBox.Text == "1234")
             {
-               if(check.IsChecked == true)
+                (App.Current.MainWindow as MainWindow).Login();
+
+                if (check.IsChecked.Value)
                 {
                     storageSave();
-                    NavigationService.Navigate(PagesURI.HomePage.Value);
                 }
-                else
-                {
-                    NavigationService.Navigate(PagesURI.HomePage.Value);
-                }
+                NavigationService.Navigate(PagesURI.HomePage.Value);
             }
             else
             {

@@ -1,7 +1,7 @@
 ﻿using MainScene.DBManager;
 using MainScene.DBManagerImpl;
 
-namespace MainScene.Util
+namespace MainScene.Source.Data.Util
 {
     public class DBManagerController
     {
@@ -43,8 +43,5 @@ namespace MainScene.Util
             }
             return systemDBManager;
         }
-
-
-
     }
 }

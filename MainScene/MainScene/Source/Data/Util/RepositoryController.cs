@@ -1,6 +1,6 @@
 ﻿using MainScene.Repository;
 
-namespace MainScene.Util
+namespace MainScene.Source.Data.Util
 {
     public class RepositoryController
     {

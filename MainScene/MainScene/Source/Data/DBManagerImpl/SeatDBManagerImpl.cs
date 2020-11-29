@@ -18,15 +18,15 @@ namespace MainScene.DBManager
             {
                 if (File.Exists(dbName))
                 {
-                    tableList.AddRange(dbContext.Table);
+                    tableList.AddRange(dbContext.Seat);
                 }
                 else
                 {
                     dbContext.Database.EnsureCreated();
 
-                    if (!dbContext.Table.Any())
+                    if (!dbContext.Seat.Any())
                     {
-                        dbContext.Table.AddRange(new Seat[]
+                        dbContext.Seat.AddRange(new Seat[]
                         {
                             new Seat() { seatNum = 1 },
                             new Seat() { seatNum = 2 },
@@ -42,7 +42,7 @@ namespace MainScene.DBManager
 
                         dbContext.SaveChanges();
                     }
-                    tableList.AddRange(dbContext.Table);
+                    tableList.AddRange(dbContext.Seat);
                 }
             }
             return tableList;
@@ -66,7 +66,7 @@ namespace MainScene.DBManager
 }
 public class SeatContext : DbContext
 {
-    public DbSet<Seat> Table { get; set; }
+    public DbSet<Seat> Seat { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite("Data Source=Seat.db");

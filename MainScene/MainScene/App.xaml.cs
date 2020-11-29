@@ -1,6 +1,6 @@
-﻿using MainScene.Util;
+﻿using System.Windows;
 using System.Net.Sockets;
-using System.Windows;
+using MainScene.Source.Data.Util;
 
 namespace MainScene
 {
@@ -9,7 +9,9 @@ namespace MainScene
     /// </summary>
     public partial class App : Application
     {
-        public static TcpClient tcpClient { set; get; }
+        public static TcpClient tcpClient { get; set; }
+
+        public static NetWorkManagerController netWorkManagerController = new NetWorkManagerController();
         public static RepositoryController repositoryController = new RepositoryController();
         public static DBManagerController dbManagerController = new DBManagerController();
     }

@@ -61,6 +61,7 @@ namespace MainScene.Source.View.Pages.Main
 
         private void lbMenus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            orderButton.IsEnabled = true;
             if (lbMenus.SelectedIndex == -1) return;
 
             Product product = lbMenus.SelectedItem as Product;
@@ -104,7 +105,7 @@ namespace MainScene.Source.View.Pages.Main
         {
             if (foodSelected.Count == 0)
             {
-                MessageBox.Show("제품을 선택해주세요.");
+                System.Windows.MessageBox.Show("제품을 선택해주세요.");
             }
             else
             {
@@ -116,6 +117,15 @@ namespace MainScene.Source.View.Pages.Main
 
         private void ButtonGoBack(object sender, System.Windows.RoutedEventArgs e) // go back button
         {
+            if (foodSelected.Count > 0)
+            {
+                var result = System.Windows.Forms.MessageBox.Show("뒤로갈겨?", "이스터에그여ㅎ", System.Windows.Forms.MessageBoxButtons.YesNo);
+
+                if (result == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+            }
             NavigationService.GoBack();
         }
 
@@ -172,11 +182,22 @@ namespace MainScene.Source.View.Pages.Main
 
         private void ButtonDeleteAll(object sender, RoutedEventArgs e) // delete all items 
         {
+            if (foodSelected.Count > 0)
+            {
+                var result = System.Windows.Forms.MessageBox.Show("전부 지울겨?", "이스터에그여ㅎ", System.Windows.Forms.MessageBoxButtons.YesNo);
+
+                if (result == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+            }
             for (int i = 0; i < foodSelected.Count; i++)
                 foodSelected[i].Count = 1;
             foodSelected.Clear();
             price = 0;
             RefreshItemWithPrice();
+
+            orderButton.IsEnabled = false;
         }
         //Button function on items
 

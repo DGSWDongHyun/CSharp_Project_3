@@ -1,4 +1,5 @@
 ﻿using MainScene.Model;
+using MainScene.Source.Data.NetWorkManager;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace MainScene.Source.View.Pages.Main.Payment
     {
         Order order;
 
+        OrderNetWorkManager orderNetWorkManager = App.netWorkManagerController.GetOrderNetWorkManager();
 
         public FinishPaymentPage(Order order)
         {
@@ -21,6 +23,7 @@ namespace MainScene.Source.View.Pages.Main.Payment
             this.order = order;
             price.Text = "금액 : " + allPrices() + "원";
             orderNumber.Text = "주문번호 : " + order.Index;
+            orderNetWorkManager.PostOrderInfo(order);
             Exit();
         }
 
@@ -45,6 +48,7 @@ namespace MainScene.Source.View.Pages.Main.Payment
                 }
             }
         }
+
         private int allPrices()
         {
             int prices = 0;

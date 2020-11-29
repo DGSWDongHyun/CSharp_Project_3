@@ -1,8 +1,10 @@
 ﻿using MainScene.Repository;
+using MainScene.Source.Data.NetWorkManager;
 using MainScene.Source.View.Pages;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -13,12 +15,15 @@ namespace MainScene.Source.View.Windows
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, ReciveHandler
     {
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         Stopwatch stopWatch;
         string currentTime = string.Empty;
         SystemRepository systemRepository = App.repositoryController.GetSystemRepository();
+        AuthNetWorkManager authNetWorkManager = App.netWorkManagerController.GetAuthNetWorkManager();
+        SettlementRepository settlementRepository = App.repositoryController.GetSettlementRepository();
+        OrderNetWorkManager orderNetWorkManager = App.netWorkManagerController.GetOrderNetWorkManager();
 
         public MainWindow()
         {
@@ -87,6 +92,15 @@ namespace MainScene.Source.View.Windows
             LoginWindow.ShowDialog();
         }
 
+        public void Login()
+        {
+            authNetWorkManager.Connect();
+            authNetWorkManager.PostLogin();
+
+            Thread reciverThread = new Thread(() => authNetWorkManager.Recive(this));
+            reciverThread.Start();
+        }
+
         private void HomeButton_Click_1(object sender, RoutedEventArgs e)
         {
             while (true)
@@ -105,6 +119,19 @@ namespace MainScene.Source.View.Windows
                 {
                     break;
                 }
+            }
+        }
+
+        public void ReciveData(string data)
+        {
+            if (data.Contains("총매출액"))
+            {
+                orderNetWorkManager.PostTotalSalse("총 매출액 : " + settlementRepository.GetTotalSales().ToString());
+                MessageBox.Show("총매출액 전송완료");
+            }
+            else
+            {
+                MessageBox.Show(data);
             }
         }
     }
