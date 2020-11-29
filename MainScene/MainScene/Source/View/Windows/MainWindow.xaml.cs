@@ -29,7 +29,6 @@ namespace MainScene.Source.View.Windows
         public MainWindow()
         {
             InitializeComponent();
-
             var tempSystemRunningTime = systemRepository.GetRunningTime();
 
             stopWatch = tempSystemRunningTime == null ? new Stopwatch() : tempSystemRunningTime;

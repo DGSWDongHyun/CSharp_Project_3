@@ -56,6 +56,10 @@ namespace MainScene.Source.View.Windows
                     {
                         storageSave();
                     }
+                    else
+                    {
+                        Window.GetWindow(this).Close();
+                    }
                     Window win2 = new AdminWindow(stopWatch);
                     win2.ShowDialog();
                 }
