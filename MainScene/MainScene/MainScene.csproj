@@ -214,9 +214,6 @@
     <Compile Include="Source\View\Pages\Main\Payment\FinishPaymentPage.xaml.cs">
       <DependentUpon>FinishPaymentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Pages\Main\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Source\View\Pages\Main\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -274,10 +271,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Source\View\Pages\Main\Payment\FinishPaymentPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Source\View\Pages\Main\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

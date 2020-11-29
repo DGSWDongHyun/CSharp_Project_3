@@ -66,6 +66,7 @@ namespace MainScene.Source.View.Windows
         {
             if (e.Key == System.Windows.Input.Key.F2)
             {
+
                     if (!FrameNavigation.CanGoBack)
                     {
                         if ((Properties.Settings.Default.LoginId != "manager"))
@@ -89,10 +90,15 @@ namespace MainScene.Source.View.Windows
 
         private void LoginWindow(int ModelNum)
         {
-          
+            if (Properties.Settings.Default.LoginIdOnPage == "manager2" && ModelNum == (int)LoginWindowModel.Model.initModel)
+            {
+                return;
+            }
+            else
+            {
                 LoginWindow LoginWindow = new LoginWindow(stopWatch, ModelNum);
                 LoginWindow.ShowDialog();
-            
+            }
 
 
         }
