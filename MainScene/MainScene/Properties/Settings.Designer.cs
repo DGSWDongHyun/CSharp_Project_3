@@ -70,5 +70,17 @@ namespace MainScene.Properties {
                 this["IsCheckedOnPage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isGroupMsg {
+            get {
+                return ((bool)(this["isGroupMsg"]));
+            }
+            set {
+                this["isGroupMsg"] = value;
+            }
+        }
     }
 }

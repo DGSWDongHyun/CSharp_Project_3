@@ -30,6 +30,7 @@ namespace MainScene.Source.Data.NetWorkManager
 
             data.Add("MSGType", 2);
             data.Add("Id", "2215");
+            data.Add("Group", Properties.Settings.Default.isGroupMsg);
             data.Add("Content", "");
             data.Add("ShopName", "KFC");
             data.Add("OrderNumber", order.Index.ToString("000"));

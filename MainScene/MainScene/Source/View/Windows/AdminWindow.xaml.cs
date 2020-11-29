@@ -3,6 +3,7 @@ using MainScene.Source.View.Pages;
 using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace MainScene.Source.View.Windows
@@ -60,8 +61,14 @@ namespace MainScene.Source.View.Windows
             SetSales();
             SetCardSales();
             SetCacheSales();
+            SetGroupMsgCheckBox();
 
             //datePicker1.SelectedDate = DateTime.Now;
+        }
+
+        private void SetGroupMsgCheckBox()
+        {
+            groupMsgCheckBox.IsChecked = Properties.Settings.Default.isGroupMsg;
         }
 
 
@@ -132,6 +139,12 @@ namespace MainScene.Source.View.Windows
             ProductManagerWindow DiscountWindow = new ProductManagerWindow();
 
             DiscountWindow.ShowDialog();
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.isGroupMsg = ((CheckBox)sender).IsChecked.Value;
+            Properties.Settings.Default.Save();
         }
     }
 }
