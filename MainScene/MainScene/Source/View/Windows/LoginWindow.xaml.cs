@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.Serialization.Formatters.Binary;
+using MainScene.Source.Data.Model;
+
 namespace MainScene.Source.View.Windows
 {
     /// <summary>
@@ -18,47 +20,90 @@ namespace MainScene.Source.View.Windows
     public partial class LoginWindow : Window
     {
         Stopwatch stopWatch;
-        public LoginWindow(Stopwatch stopWatch)
+        int ModelNum = 0;
+        public LoginWindow(Stopwatch stopWatch, int ModelNum)
         {
             InitializeComponent();
             this.stopWatch = stopWatch;
+            this.ModelNum = ModelNum;
 
-            storageGet();  
+            storageGet();
         }
-      
+
         private void AccessManager(object sender, RoutedEventArgs e)
         {
-            if (idTextBox.Text == "manager" && passwordTextBox.Text == "1234")
+
+            if (ModelNum == (int)LoginWindowModel.Model.initModel)
             {
-                if (check.IsChecked == true)
+                if (idTextBox.Text == "manager2" && passwordTextBox.Text == "12345")
                 {
-                    storageSave();
-                    Window win2 = new AdminWindow(stopWatch);
-                    win2.ShowDialog(); 
+                    if (check.IsChecked == true)
+                    {
+                        storageSave();
+                        Window.GetWindow(this).Close();
+                    }
+                    else
+                    {
+                        Window.GetWindow(this).Close();
+                    }
+
                 }
-                else
-                {
-                    Window win2 = new AdminWindow(stopWatch);
-                    win2.ShowDialog();
-                }
-              
             }
+            else
+            {
+                if (idTextBox.Text == "manager" && passwordTextBox.Text == "1234")
+                {
+                    if (check.IsChecked == true)
+                    {
+                        storageSave();
+                        Window win2 = new AdminWindow(stopWatch);
+                        win2.ShowDialog();
+                    }
+                    else
+                    {
+                        Window win2 = new AdminWindow(stopWatch);
+                        win2.ShowDialog();
+                    }
+
+                }
+            }
+
         }
-      
+
         private void storageSave()
         {
-            Properties.Settings.Default.LoginId = idTextBox.Text;
-            Properties.Settings.Default.IsChecked = check.IsEnabled;
-            Properties.Settings.Default.Save();
+            if (ModelNum == (int)LoginWindowModel.Model.initModel)
+            {
+                Properties.Settings.Default.LoginIdOnPage = idTextBox.Text;
+                Properties.Settings.Default.IsCheckedOnPage = check.IsEnabled;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.LoginId = idTextBox.Text;
+                Properties.Settings.Default.IsChecked = check.IsEnabled;
+                Properties.Settings.Default.Save();
+            }
         }
 
         private void storageGet()
         {
-            if(Properties.Settings.Default.LoginId == "manager" && Properties.Settings.Default.IsChecked == true)
+            if (ModelNum == (int)LoginWindowModel.Model.initModel)
             {
-                Window win2 = new AdminWindow(stopWatch);
-                win2.ShowDialog();
+                if (Properties.Settings.Default.LoginIdOnPage == "manager2" && Properties.Settings.Default.IsCheckedOnPage == true)
+                {
+                    Window.GetWindow(this).Close();
+                }
             }
+            else
+            {
+                if (Properties.Settings.Default.LoginId == "manager" && Properties.Settings.Default.IsChecked == true)
+                {
+                    Window win2 = new AdminWindow(stopWatch);
+                    win2.ShowDialog();
+                }
+            }
+
         }
     }
 }

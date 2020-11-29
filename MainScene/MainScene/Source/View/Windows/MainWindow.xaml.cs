@@ -1,4 +1,5 @@
 ﻿using MainScene.Repository;
+using MainScene.Source.Data.Model;
 using MainScene.Source.Data.NetWorkManager;
 using MainScene.Source.View.Pages;
 using System;
@@ -65,31 +66,35 @@ namespace MainScene.Source.View.Windows
         {
             if (e.Key == System.Windows.Input.Key.F2)
             {
-                if (FrameNavigation.CanGoForward)//chris, 페이지1에서만 관리자페이지로 이동할 수 있도록 처리
-                {
-                    if((Properties.Settings.Default.LoginId != "manager")){
-                        LoginWindow();
-                    }
-                    else
+                    if (!FrameNavigation.CanGoBack)
                     {
-                        Window win2 = new AdminWindow(stopWatch);
-                        win2.ShowDialog();
+                        if ((Properties.Settings.Default.LoginId != "manager"))
+                        {
+                            LoginWindow((int)LoginWindowModel.Model.adminModel);
+                        }
+                        else
+                        {
+                            Window win2 = new AdminWindow(stopWatch);
+                            win2.ShowDialog();
+                        }
                     }
-                }
+                    e.Handled = true;
 
-                e.Handled = true;
-
-
+             
             }
+
 
 
         }
 
-        private void LoginWindow()
+        private void LoginWindow(int ModelNum)
         {
-            LoginWindow LoginWindow = new LoginWindow(stopWatch);
+          
+                LoginWindow LoginWindow = new LoginWindow(stopWatch, ModelNum);
+                LoginWindow.ShowDialog();
+            
 
-            LoginWindow.ShowDialog();
+
         }
 
         public void Login()
