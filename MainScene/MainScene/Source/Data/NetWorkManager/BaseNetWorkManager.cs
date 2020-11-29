@@ -40,9 +40,7 @@ namespace MainScene.Source.Data.NetWorkManager
                     reciveHandler.ReciveData(message);
                 }
             }
-            catch {
-                reciveHandler.ReciveData("오류빌생");
-            }
+            catch { }
         }
 
         public bool Connect()
