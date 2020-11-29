@@ -40,6 +40,7 @@ namespace MainScene.Source.View.Windows
                     {
                         storageSave();
                         Window.GetWindow(this).Close();
+                        (App.Current.MainWindow as MainWindow).Login();
                     }
                     else
                     {

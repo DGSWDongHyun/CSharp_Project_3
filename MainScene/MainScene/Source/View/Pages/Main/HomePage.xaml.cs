@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainScene.Source.View.Windows;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -14,7 +15,7 @@ namespace MainScene.Source.View.Pages.Main
         {
             InitializeComponent();
             admv.Play();
-         
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -94,6 +94,7 @@ namespace MainScene.Source.View.Windows
         {
             if (Properties.Settings.Default.LoginIdOnPage == "manager2" && ModelNum == (int)LoginWindowModel.Model.initModel)
             {
+                (App.Current.MainWindow as MainWindow).Login();
                 return;
             }
             else

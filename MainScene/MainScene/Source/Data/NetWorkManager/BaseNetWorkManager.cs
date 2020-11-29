@@ -49,7 +49,7 @@ namespace MainScene.Source.Data.NetWorkManager
         {
             App.tcpClient = new TcpClient();
             var result = App.tcpClient.BeginConnect(Constants.SERVER_URL, Constants.SERVER_PORT, null, null);
-            var success =  result.AsyncWaitHandle.WaitOne(10000, true);
+            var success =  result.AsyncWaitHandle.WaitOne(1000, true);
 
             if (success) { App.tcpClient.EndConnect(result); }
 
