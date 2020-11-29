@@ -39,7 +39,9 @@ namespace MainScene.Source.View.Windows
 
             timer.Interval = TimeSpan.FromMilliseconds(500);    //시간간격 설정
             timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
-            timer.Start();                                       //타이머 시작. 종료는 timer.Stop(); 으로 한다
+            timer.Start();               //타이머 시작. 종료는 timer.Stop(); 으로 한다
+
+            LoginWindow((int)LoginWindowModel.Model.initModel);
         }
 
 

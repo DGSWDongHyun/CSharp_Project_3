@@ -98,6 +98,7 @@ namespace MainScene.Source.View.Windows
             {
                 if (Properties.Settings.Default.LoginId == "manager" && Properties.Settings.Default.IsChecked == true)
                 {
+                    Window.GetWindow(this).Close();
                     Window win2 = new AdminWindow(stopWatch);
                     win2.ShowDialog();
                 }
