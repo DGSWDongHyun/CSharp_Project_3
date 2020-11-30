@@ -16,59 +16,64 @@ namespace MainScene.Source.View.Pages.Admin
         private ProductRepository productRepository = App.repositoryController.GetProductRepository();
 
         List<Seat> seatList;
-        List<Order> orderList;
-        List<Product> productList;
-        List<Product> productListByTable;
 
         public BySeatPage()
         {
             InitializeComponent();
 
-            setupData();
-            setupView();
+            SetupData();
+            SetupView();
         }
 
-        private void setupData()
+        private void SetupData()
         {
             seatList = tableRepository.GetSeatList();
-            orderList = orderRepository.GetOrderHistoryList();
-            productList = productRepository.GetProduct();
         }
 
-        private void setupView()
+        private void SetupView()
         {
             lbSeat.ItemsSource = seatList;
             lbSeat.SelectedIndex = 0;
         }
 
-        private void lbTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LbTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Model.Seat table = lbSeat.SelectedItem as Model.Seat;
+            Seat seat = lbSeat.SelectedItem as Seat;
+            var productListByTable = MapOrderToProduct(seat);
 
-            lbMenus.ItemsSource = mappingCellCount(orderList, table);
-
-
-            int totalMargin = 0;
-            foreach (Product product in productListByTable)
-            {
-                totalMargin += product.FinalPrice;
-            }
-
-            statisticsInfo.Text = "총" + productListByTable.Count + "개 판매, 총" + totalMargin + "원";
+            SetupProductView(productListByTable); 
         }
 
-        private List<Product> mappingCellCount(List<Order> orderList, Model.Seat table)
+        private void SetupProductView(List<Product> productList)
         {
-            productList = productRepository.GetProduct();
-            List<Order> orderListByTable = orderList
-                .Where(x => !x.IsTakeout)
-                .Where(x => x.Seat.seatNum == table.seatNum).ToList();
+            lbMenus.ItemsSource = productList;
 
-            productListByTable = new List<Product>();
+            int totalMargin = 0;
+            int totalCount = 0;
+            foreach (Product product in productList)
+            {
+                totalMargin += product.Count > 0 ? product.TotalCellPrice : 0;
+                totalCount += product.Count;
+            }
+
+            statisticsInfo.Text = "총" + totalCount + "개 판매, 총" + totalMargin + "원";
+        }
+
+        private List<Product> MapOrderToProduct(Seat seat)
+        {
+            List<Product> productList = productRepository.GetProduct();
+            List<Order> orderListByTable = orderRepository.GetOrderListBySeat(seat);
+
+            var productListByTable = new List<Product>();
 
             foreach (Order order in orderListByTable)
             {
                 productListByTable.AddRange(order.Products);
+            }
+
+            foreach(Product product in productList)
+            {
+                product.Count = productListByTable.Where(x => x.name == product.name).Count();
             }
 
             return productList;

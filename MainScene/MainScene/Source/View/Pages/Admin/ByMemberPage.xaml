@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel Margin="0,0,0,0">
-            <ListBox x:Name="lbMember" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbMember_SelectionChanged">
+            <ListBox x:Name="lbMember" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="LbMember_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
@@ -88,12 +88,12 @@
                             <Image Source="{Binding Image}"/>
                             <TextBlock Text="{Binding name}" HorizontalAlignment="Center"/>
                             <TextBlock  HorizontalAlignment="Center">
-                                         <Run Text="{Binding TotalCellCount}"/>
+                                         <Run Text="{Binding Count}"/>
                                          <Run Text="개 판매"/>
                             </TextBlock>
                             <TextBlock  HorizontalAlignment="Center">
                                          <Run Text="("/>
-                                         <Run Text="{Binding TotalCellPriceCount}"/>
+                                         <Run Text="{Binding TotalCellPrice}"/>
                                          <Run Text="원 )"/>
                             </TextBlock>
                         </StackPanel>

@@ -14,7 +14,8 @@ namespace MainScene.Source.Data.Util
         {
             if (orderRepositoryInstance == null)
             {
-                orderRepositoryInstance = new OrderRepository(App.dbManagerController.GetOrderDBManager());
+                orderRepositoryInstance = new OrderRepository(App.dbManagerController.GetOrderDBManager(),
+                                                              App.dbManagerController.GetProductDBManager());
             }
             return orderRepositoryInstance;
         }

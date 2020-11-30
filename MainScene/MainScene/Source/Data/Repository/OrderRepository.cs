@@ -9,8 +9,12 @@ namespace MainScene.Repository
     public class OrderRepository
     {
         private OrderDBManager orderDBManager;
+        private ProductDBManager productDBManager;
 
-        public OrderRepository(OrderDBManager orderDBManager) => this.orderDBManager = orderDBManager;
+        public OrderRepository(OrderDBManager orderDBManager, ProductDBManager productDBManager) {
+            this.orderDBManager = orderDBManager;
+            this.productDBManager = productDBManager;
+        }
 
         public List<Order> GetOrderHistoryList()
         {
@@ -36,7 +40,7 @@ namespace MainScene.Repository
             return (IsSuccessSaveOrder && IsSuccessSaveProduct && IsSuccessSavePayment && IsSuccessSaveSeat) ? order.Index : -1;
         }
 
-        public Dictionary<CategoryEnum, List<Product>> GetOrderHistoryByCategory()
+        public Dictionary<CategoryEnum, List<Product>> GetOrderedProductByCategory()
         {
             return DivideProductListByCategory(GetOrderHistoryList());
         }
@@ -51,19 +55,63 @@ namespace MainScene.Repository
             return orderlist;
         }
 
+        public List<string> GetOrderedUserCodeList()
+        {
+            var orderHistoryList = GetOrderHistoryList();
+            List<string> tempOrderedUserCodeList = new List<string>();
+
+            foreach (Order order in orderHistoryList)
+            {
+                tempOrderedUserCodeList.Add(order.Payment.UserCode);
+            }
+
+            return tempOrderedUserCodeList.Distinct().ToList();
+        }
+
+        public List<Order> GetOrderListBySeat(Seat seat)
+        {
+            var orderListByTable = GetOrderHistoryList()
+                .Where(x => !x.IsTakeout)
+                .Where(x => x.Seat.seatNum == seat.seatNum).ToList();
+
+            return orderListByTable;
+        }
+
+        public List<Product> GetOrderedProductListByUser(string userCode)
+        {
+            var productList = productDBManager.GetProduct();
+            var orderHistoryList = GetOrderHistoryList();
+            List<Product> orderedProductList = new List<Product>();
+
+            var devidedOrderList = orderHistoryList.Where(x => x.Payment.UserCode.Equals(userCode)).ToList();
+
+            foreach (var devidedOrder in devidedOrderList)
+            {
+                orderedProductList.AddRange(devidedOrder.Products);
+            }
+
+            foreach(var product in productList)
+            {
+                product.Count = orderedProductList.Where(x => x.name == product.name).Count();
+            }
+
+            return productList;
+        }
+
         private Dictionary<CategoryEnum, List<Product>> DivideProductListByCategory(List<Order> orderHistoryList)
         {
             Dictionary<CategoryEnum, List<Product>> tempDividedOrderHistoryList = new Dictionary<CategoryEnum, List<Product>>();
+            var productList = productDBManager.GetProduct();
 
             //Eum의 길이
             int length = System.Enum.GetValues(typeof(CategoryEnum)).Length;
 
             //orderList to product mapping
-            List<Product> tempProductList = new List<Product>();
+            List<Product> orderedProductList = new List<Product>();
 
             foreach (Order order in orderHistoryList)
             {
-                tempProductList.AddRange(order.Products);
+                orderedProductList.AddRange(order.Products);
             }
 
             //divide products by category
@@ -72,14 +120,19 @@ namespace MainScene.Repository
             {
                 CategoryEnum tempCategoryEnum = (CategoryEnum)count;
 
-                List<Product> dividedProductList = tempProductList.Where(x => x.Category == tempCategoryEnum).ToList();
+                List<Product> dividedOrderedProductListProductList = orderedProductList.Where(x => x.Category == tempCategoryEnum).ToList();
 
-                tempDividedOrderHistoryList.Add(tempCategoryEnum, dividedProductList);
+                foreach (var product in productList)
+                {
+                    product.Count = dividedOrderedProductListProductList.Where(x => x.name == product.name).Count();
+                }
+
+                tempDividedOrderHistoryList.Add(tempCategoryEnum, dividedOrderedProductListProductList);
 
                 count++;
             }
 
             return tempDividedOrderHistoryList;
-        }
+        }  
     }
 }
