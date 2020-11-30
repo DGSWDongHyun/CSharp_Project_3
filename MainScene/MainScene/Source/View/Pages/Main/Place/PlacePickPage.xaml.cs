@@ -21,9 +21,8 @@ namespace MainScene.Source.View.Pages.Main.Place
 
         private void SelectStore(object sender, RoutedEventArgs e)
         {
-
+            order.IsTakeout = true;
             NavigationService.Navigate(new SeatPickPage(order));
-
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

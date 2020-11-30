@@ -69,6 +69,7 @@ namespace MainScene.Source.View.Pages.Main.Place
                 if (seat._canuse)
                 {
                     order.Seat = seat;
+                    order.IsTakeout = false;
                 }
                 else
                 {
@@ -78,9 +79,17 @@ namespace MainScene.Source.View.Pages.Main.Place
         }
 
         private void Order_Click(object sender, RoutedEventArgs e)
-        {
-            timer.Stop();
-            NavigationService.Navigate(new PaymentPickPage(order));
+        {   
+            if(order.IsTakeout != true)
+            {
+                timer.Stop();
+                NavigationService.Navigate(new PaymentPickPage(order));
+            }
+            else
+            {
+                MessageBox.Show("테이블을 선택해주세요");
+            }
+            
         }
     }
 }
