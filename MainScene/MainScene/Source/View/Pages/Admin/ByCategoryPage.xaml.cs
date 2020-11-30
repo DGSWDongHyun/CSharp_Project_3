@@ -3,6 +3,7 @@ using LiveCharts.Wpf;
 using MainScene.Model;
 using MainScene.Repository;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
 
@@ -20,6 +21,7 @@ namespace MainScene.Source.View.Pages.Admin
 
         private SeriesCollection piechartData;
         private List<Product> productList;
+        private List<string> kindofproduct = new List<string>();
 
         public ByCategoryPage()
         {
@@ -27,8 +29,28 @@ namespace MainScene.Source.View.Pages.Admin
 
             SetupData();
             SetupView();
+            Findproductkind();
         }
 
+        public void Findproductkind()
+        {
+            foreach (var buggerproduct in orderHistoryByCategory[0])
+            {
+                bool Isinlist = false; 
+                foreach (var buggerkind in kindofproduct)
+                {
+                    if (buggerkind == buggerproduct.name)
+                    {
+                        Isinlist = true;
+                    }
+                }
+                if (!Isinlist)
+                {
+                    kindofproduct.Add(buggerproduct.name);
+                }
+            }
+            Debug.WriteLine(kindofproduct);
+        }
         private void SetupView()
         {
             InitGraph();
