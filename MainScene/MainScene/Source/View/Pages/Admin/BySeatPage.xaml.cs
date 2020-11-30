@@ -51,7 +51,7 @@ namespace MainScene.Source.View.Pages.Admin
             int totalMargin = 0;
             foreach (Product product in productListByTable)
             {
-                totalMargin += product.Price;
+                totalMargin += product.FinalPrice;
             }
 
             statisticsInfo.Text = "총" + productListByTable.Count + "개 판매, 총" + totalMargin + "원";

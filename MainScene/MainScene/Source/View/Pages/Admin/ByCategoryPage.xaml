@@ -63,7 +63,7 @@
                 <ListBoxItem>음료</ListBoxItem>
                 <ListBoxItem>사이드 메뉴</ListBoxItem>
             </ListBox>
-            <lvc:PieChart x:Name ="piechart_cell" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="300">
+            <lvc:PieChart x:Name ="piechart_cell" LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="300" Loaded="piechart_cell_Loaded">
 
             </lvc:PieChart>
         </StackPanel>
