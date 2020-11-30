@@ -98,7 +98,7 @@ namespace MainScene.Source.View.Pages.Admin
             piechart_cell.Series.Clear();
             for (int i = 0; i < products.Count; i++)
             {
-                if (products[i].Count != 0)
+                if (products[i].Count != 0 && CheckDuplicateItem(products[i], i, products))
                 {
                     piechartData.Add(new PieSeries
                     {
@@ -110,6 +110,25 @@ namespace MainScene.Source.View.Pages.Admin
             }
             piechart_cell.Series = piechartData;
 
+        }
+        private bool CheckDuplicateItem(Product product, int index, List<Product> products)
+        {
+            for(int i = 0; i < index; i++)
+            {
+                if(products[i].name == product.name)
+                {
+                    continue;
+                }
+            }
+
+            for(int i = index; i < products.Count; i++)
+            {
+                if(products[i].name == product.name)
+                {
+                    continue;
+                }
+            }
+            return true;
         }
 
         private void LbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
