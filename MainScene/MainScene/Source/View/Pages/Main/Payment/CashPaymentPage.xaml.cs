@@ -21,23 +21,13 @@ namespace MainScene.Source.View.Pages.Main.Payment
             orderRepository = App.repositoryController.GetOrderRepository();
 
             this.order = order;
-            price.Text = "총 금액 : " + allPrices() + "원";
+            price.Text = "총 금액 : " + order.GetTotalPrice() + "원";
             tbCash.Focusable = true;
             tbCash.Focus();
         }
         private void Back(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
-        }
-        private int allPrices()
-        {
-            int prices = 0;
-            for (int i = 0; i < order.Products.Count; i++)
-            {
-                Product products = order.Products[i];
-                prices += (products.FinalPrice * products.Count);
-            }
-            return prices;
         }
 
         private void finishPayment_Click(object sender, RoutedEventArgs e)
