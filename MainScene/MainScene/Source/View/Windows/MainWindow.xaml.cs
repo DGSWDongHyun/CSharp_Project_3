@@ -1,5 +1,4 @@
 ﻿using MainScene.Repository;
-using MainScene.Source.Data.Model;
 using MainScene.Source.Data.NetWorkManager;
 using MainScene.Source.View.Pages;
 using System;
@@ -18,13 +17,13 @@ namespace MainScene.Source.View.Windows
     /// </summary>
     public partial class MainWindow : Window, ReciveHandler
     {
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        Stopwatch stopWatch;
-        string currentTime = string.Empty;
-        SystemRepository systemRepository = App.repositoryController.GetSystemRepository();
-        AuthNetWorkManager authNetWorkManager = App.netWorkManagerController.GetAuthNetWorkManager();
-        SettlementRepository settlementRepository = App.repositoryController.GetSettlementRepository();
-        OrderNetWorkManager orderNetWorkManager = App.netWorkManagerController.GetOrderNetWorkManager();
+        private readonly DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        private Stopwatch stopWatch;
+        private readonly string currentTime = string.Empty;
+        private SystemRepository systemRepository = App.repositoryController.GetSystemRepository();
+        private AuthNetWorkManager authNetWorkManager = App.netWorkManagerController.GetAuthNetWorkManager();
+        private SettlementRepository settlementRepository = App.repositoryController.GetSettlementRepository();
+        private OrderNetWorkManager orderNetWorkManager = App.netWorkManagerController.GetOrderNetWorkManager();
 
         public MainWindow()
         {
@@ -33,32 +32,17 @@ namespace MainScene.Source.View.Windows
 
             stopWatch = tempSystemRunningTime == null ? new Stopwatch() : tempSystemRunningTime;
 
-            LoginWindow((int)LoginWindowModel.Model.initModel);
+            LoginWindow(LoginViewType.LunchLogin);
 
             stopWatch.Start();
             DispatcherTimer timer = new DispatcherTimer();    //객체생성
 
             timer.Interval = TimeSpan.FromMilliseconds(500);    //시간간격 설정
-            timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
+            timer.Tick += new EventHandler(Timer_Tick);          //이벤트 추가
             timer.Start();               //타이머 시작. 종료는 timer.Stop(); 으로 한다
-
-
         }
 
-
-        private void Exit(object sender, CancelEventArgs e)
-        {
-            systemRepository.SaveRunningTime(stopWatch);
-        }
-
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
-
-
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
             string datePart = dt.ToString("yyyy-MM-dd hh:mm:ss");
@@ -69,12 +53,11 @@ namespace MainScene.Source.View.Windows
         {
             if (e.Key == System.Windows.Input.Key.F2)
             {
-
                 if (!FrameNavigation.CanGoBack)
                 {
                     if ((Properties.Settings.Default.LoginId != "manager"))
                     {
-                        LoginWindow((int)LoginWindowModel.Model.adminModel);
+                        LoginWindow(LoginViewType.AdminLogin);
                     }
                     else
                     {
@@ -83,31 +66,26 @@ namespace MainScene.Source.View.Windows
                     }
                 }
                 e.Handled = true;
-
-
             }
-
-
-
         }
 
-        private void LoginWindow(int ModelNum)
+        private void LoginWindow(LoginViewType loginViewType)
         {
-            if (Properties.Settings.Default.LoginIdOnPage == "manager2" && ModelNum == (int)LoginWindowModel.Model.initModel)
+            if (Properties.Settings.Default.LoginIdOnPage == "manager2" && loginViewType == LoginViewType.LunchLogin)
             {
-                (App.Current.MainWindow as MainWindow).Login();
+                (App.Current.MainWindow as MainWindow).LoginToServer();
                 return;
             }
             else
             {
-                LoginWindow LoginWindow = new LoginWindow(stopWatch, ModelNum);
+                LoginWindow LoginWindow = new LoginWindow(stopWatch, loginViewType);
                 LoginWindow.ShowDialog();
             }
 
 
         }
 
-        public void Login()
+        public void LoginToServer()
         {
             authNetWorkManager.Connect();
             authNetWorkManager.PostLogin();
@@ -127,8 +105,6 @@ namespace MainScene.Source.View.Windows
                     {
                         break;
                     }
-
-
                     FrameNavigation.GoBack();
                 }
                 else

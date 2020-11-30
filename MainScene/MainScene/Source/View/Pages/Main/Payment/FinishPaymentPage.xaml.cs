@@ -13,38 +13,43 @@ namespace MainScene.Source.View.Pages.Main.Payment
     /// </summary>
     public partial class FinishPaymentPage : Page
     {
-        Order order;
+        private readonly Order order;
 
-        OrderNetWorkManager orderNetWorkManager = App.netWorkManagerController.GetOrderNetWorkManager();
+        private readonly OrderNetWorkManager orderNetWorkManager = App.netWorkManagerController.GetOrderNetWorkManager();
 
         public FinishPaymentPage(Order order)
         {
             InitializeComponent();
             this.order = order;
+            SetupView();
+            Exit();
+        }
+
+        private void SetupView()
+        {
             price.Text = "금액 : " + order.GetTotalPrice() + "원";
             orderNumber.Text = "주문번호 : " + order.Index;
             orderNetWorkManager.PostOrderInfo(order);
-            Exit();
         }
 
         private async void Exit()
         {
             await Task.Run(() => Thread.Sleep(TimeSpan.FromSeconds(5)));
             if (NavigationService == null) { return; }
-            goHome();
+            GotoHome();
         }
 
-        private void goHome()
+        private void GotoHome()
         {
             while (true)
             {
-                if (!NavigationService.CanGoBack)
+                if (NavigationService.CanGoBack)
                 {
-                    break;
+                    NavigationService.GoBack();
                 }
                 else
                 {
-                    NavigationService.GoBack();
+                    break;
                 }
             }
         }

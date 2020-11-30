@@ -14,7 +14,7 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement Name ="admv" Grid.Row="0" Source="../../Resource/admv.mp4" MediaEnded="admv_MediaEnded" LoadedBehavior="Manual"/>
+        <MediaElement Name ="admv" Grid.Row="0" Source="../../Resource/admv.mp4" MediaEnded="Admv_MediaEnded" LoadedBehavior="Manual"/>
 
         <Button Grid.Row="1" Content="다음페이지로" HorizontalAlignment="Center" Width="300" Click="Button_Click" Height="70" VerticalAlignment="Center"  FontSize="25"/>
 

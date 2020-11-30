@@ -12,58 +12,54 @@ namespace MainScene.Source.View.Pages.Main.Payment
     /// </summary>
     public partial class CardPaymentPage : Page
     {
-        Order order;
-        OrderRepository orderRepository;
-
+        private readonly Order order;
+        private readonly OrderRepository orderRepository;
 
         public CardPaymentPage(Order order)
         {
             InitializeComponent();
             orderRepository = App.repositoryController.GetOrderRepository();
+            this.order = order;
 
             webcam.CameraIndex = 0;
-            this.order = order;
-            price.Text = "총 금액 : " + allPrices() + "원";
+
+            SetupView();
         }
-        private void webcam_QrDecoded(object sender, string e)
+
+        private void SetupView()
         {
+            price.Text = "총 금액 : " + order.GetTotalPrice() + "원";
+        }
+
+        private void Webcam_QrDecoded(object sender, string e)
+        {
+
             tbRecog.Text = "인식된 카드번호 : " + e;
 
+            var orderIdx = Order(e);
 
-            if (!order.IsTakeout)
+            if (orderIdx == -1)
             {
-                order.Seat.UsedTime = DateTime.Now;
+                MessageBox.Show("주문 실패");
+                return;
             }
+
+            order.Index = orderIdx;
+            NavigationService.Navigate(new FinishPaymentPage(order));
+        }
+
+        private int Order(string userCode)
+        {
+            if (!order.IsTakeout) { order.Seat.UsedTime = DateTime.Now; }
 
             order.Payment = new Model.Payment()
             {
                 PaymentTime = DateTime.Now,
-                UserCode = e,
-                paymentType = PayMentType.Card
+                paymentType = PayMentType.Card,
+                UserCode = userCode
             };
 
-
-            var orderIdx = orderRepository.SaveOrder(order);
-
-            if (orderIdx != -1)
-            {
-                order.Index = orderIdx;
-                NavigationService.Navigate(new FinishPaymentPage(order));
-            }
-            else
-            {
-                MessageBox.Show("주문 실패");
-            }
-        }
-        private int allPrices()
-        {
-            int prices = 0;
-            for (int i = 0; i < order.Products.Count; i++)
-            {
-                Product products = order.Products[i];
-                prices += (products.FinalPrice * products.Count);
-            }
-            return prices;
+            return orderRepository.SaveOrder(order);
         }
 
         private void Back(object sender, RoutedEventArgs e)

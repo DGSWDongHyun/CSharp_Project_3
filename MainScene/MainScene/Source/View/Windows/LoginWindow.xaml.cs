@@ -9,7 +9,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.Serialization.Formatters.Binary;
-using MainScene.Source.Data.Model;
 
 namespace MainScene.Source.View.Windows
 {
@@ -18,62 +17,69 @@ namespace MainScene.Source.View.Windows
     /// </summary>
     public partial class LoginWindow : Window
     {
-        Stopwatch stopWatch;
-        int ModelNum = 0;
-        public LoginWindow(Stopwatch stopWatch, int ModelNum)
+        private readonly Stopwatch stopWatch;
+        private readonly LoginViewType loginViewType;
+
+        private readonly string Admin_ID = "manager";
+        private readonly string Admin_PW = "1234";
+
+        private readonly string Launch_ID = "manager2";
+        private readonly string Launch_PW = "12345";
+
+        public LoginWindow(Stopwatch stopWatch, LoginViewType loginViewType)
         {
             InitializeComponent();
             this.stopWatch = stopWatch;
-            this.ModelNum = ModelNum;
+            this.loginViewType = loginViewType;
 
-            storageGet();
+            StorageGet();
         }
 
         private void AccessManager(object sender, RoutedEventArgs e)
         {
-            if (ModelNum == (int)LoginWindowModel.Model.initModel)
+            switch(loginViewType)
             {
-                if (idTextBox.Text == "manager2" && passwordTextBox.Text == "12345")
-                {
-                    if (check.IsChecked == true)
-                    {
-                        storageSave();
-                    }
-                    (App.Current.MainWindow as MainWindow).Login();
-                }
-                else
-                {
-                    MessageBox.Show("로그인에 실패했습니다.");
-
-                }
+                case LoginViewType.LunchLogin:
+                    SetupLunchLoginView();
+                    return;
+                case LoginViewType.AdminLogin:
+                    SetupAdminLoginView();
+                    return;
             }
-            else
-            {
-                if (idTextBox.Text == "manager" && passwordTextBox.Text == "1234")
-                {
-                    if (check.IsChecked == true)
-                    {
-                        storageSave();
-                    }
-                    else
-                    {
-                        Window.GetWindow(this).Close();
-                    }
-                    Window win2 = new AdminWindow(stopWatch);
-                    win2.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("로그인에 실패했습니다.");
-
-                }
-            }
-
         }
 
-        private void storageSave()
+        private void SetupLunchLoginView()
         {
-            if (ModelNum == (int)LoginWindowModel.Model.initModel)
+            if (!(idTextBox.Text == Launch_ID && passwordTextBox.Text == Launch_PW))
+            {
+                MessageBox.Show("로그인에 실패했습니다.");
+                return;
+            }
+
+            if (check.IsChecked == true) { StorageSave(); }
+            
+            Window.GetWindow(this).Close();
+            (App.Current.MainWindow as MainWindow).LoginToServer();
+        }
+
+        private void SetupAdminLoginView()
+        {
+            if (!(idTextBox.Text == Admin_ID && passwordTextBox.Text == Admin_PW))
+            {
+                MessageBox.Show("로그인에 실패했습니다.");
+                return;
+            }
+
+            if (check.IsChecked == true) { StorageSave(); }
+            Window.GetWindow(this).Close();
+
+            Window win2 = new AdminWindow(stopWatch);
+            win2.ShowDialog();
+        }
+
+        private void StorageSave()
+        {
+            if (loginViewType == LoginViewType.LunchLogin)
             {
                 Properties.Settings.Default.LoginIdOnPage = idTextBox.Text;
                 Properties.Settings.Default.IsCheckedOnPage = check.IsEnabled;
@@ -85,12 +91,11 @@ namespace MainScene.Source.View.Windows
                 Properties.Settings.Default.IsChecked = check.IsEnabled;
                 Properties.Settings.Default.Save();
             }
-            Window.GetWindow(this).Close();
         }
 
-        private void storageGet()
+        private void StorageGet()
         {
-            if (ModelNum == (int)LoginWindowModel.Model.initModel)
+            if (loginViewType == LoginViewType.LunchLogin)
             {
                 if (Properties.Settings.Default.LoginIdOnPage == "manager2" && Properties.Settings.Default.IsCheckedOnPage == true)
                 {
@@ -108,5 +113,11 @@ namespace MainScene.Source.View.Windows
             }
 
         }
+    }
+
+    public enum LoginViewType
+    {
+        LunchLogin,
+        AdminLogin
     }
 }

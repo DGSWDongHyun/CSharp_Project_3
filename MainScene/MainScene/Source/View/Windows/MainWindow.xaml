@@ -8,7 +8,6 @@
         WindowStyle="None"
         WindowState="Maximized"
         ResizeMode="NoResize"
-        Closing="Exit"
         Title="MainWindow" Height="1080" Width="1920" KeyDown="Window_KeyDown">
 
     <Grid>
@@ -23,7 +22,7 @@
             </StackPanel>
         </Grid>
 
-        <Frame Grid.Row="1" Source="../Pages/Main/HomePage.xaml" NavigationUIVisibility="Hidden" Navigated="Frame_Navigated" Name="FrameNavigation"/>
+        <Frame Grid.Row="1" Source="../Pages/Main/HomePage.xaml" NavigationUIVisibility="Hidden" Name="FrameNavigation"/>
 
 
     </Grid>

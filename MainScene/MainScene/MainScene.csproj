@@ -180,7 +180,6 @@
     <Compile Include="Source\Data\DBManagerImpl\SeatDBManagerImpl.cs" />
     <Compile Include="Source\Data\DBManager\SystemDBManager.cs" />
     <Compile Include="Source\Data\Model\Category.cs" />
-    <Compile Include="Source\Data\Model\LoginWindowModel.cs" />
     <Compile Include="Source\Data\NetWorkManager\AuthNetWorkManager.cs" />
     <Compile Include="Source\Data\Repository\SystemRepository.cs" />
     <Compile Include="Source\Data\Repository\OrderRepository.cs" />

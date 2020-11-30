@@ -13,201 +13,129 @@ namespace MainScene.Source.View.Pages.Main
     /// </summary>
     public partial class MenuPickPage : Page
     {
-        ProductRepository productRepository = App.repositoryController.GetProductRepository();
-        private List<Product> foodProduct;
-        private List<Product> foodSelected;
-        private int position;
-        Order order;
-        private int price;
+        private readonly ProductRepository productRepository = App.repositoryController.GetProductRepository();
+        private List<Product> productList;
+        private readonly List<Product> selectProductList = new List<Product>();
+        private readonly Order order = new Order();
+        private int totalPrice;
 
-        public MenuPickPage() // initialize page
+        public MenuPickPage()
         {
             InitializeComponent();
 
-            foodProduct = productRepository.GetProduct();
-            foodSelected = new List<Product>();
-            order = new Order();
+            SetupData();
+            SetupView();
+        }
 
-            lbMenus.ItemsSource = foodProduct;
-            lbSelected.ItemsSource = foodSelected;
+        private void SetupView()
+        {
+            lbMenus.ItemsSource = productList;
+            lbSelected.ItemsSource = selectProductList;
             lbCategory.SelectedIndex = 0;
-
         }
 
-        // Selected Changed when get each products
-        private void lbSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SetupData()
         {
-            position = lbSelected.SelectedIndex;
-        }
-        // Selected Changed when get each products
-
-        //Category, Menus SelectionChanged methods.
-        private void lbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
-            if (lbi.Content.ToString() == "버거")
-            {
-                lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Bugger).ToList();
-            }
-            else if (lbi.Content.ToString() == "음료")
-            {
-                lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Drink).ToList();
-            }
-            else if (lbi.Content.ToString() == "사이드 메뉴")
-            {
-                lbMenus.ItemsSource = foodProduct.Where(x => x.Category == CategoryEnum.Side).ToList();
-            }
+            productList = productRepository.GetProduct();
         }
 
-        private void lbMenus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void LbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int SelectedIndex = (sender as ListBox).SelectedIndex;
+            UpdateMenuList((CategoryEnum)SelectedIndex);
+        }
+
+        private void UpdateMenuList(CategoryEnum categoryEnum)
+        {
+            lbMenus.ItemsSource = productList.Where(x => x.Category == categoryEnum).ToList();
+        }
+
+
+        private void LbMenus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbMenus.SelectedIndex == -1) { return; }
+            Product selectedProduct = lbMenus.SelectedItem as Product;
+
+            if (selectProductList.Where(x => x.name == selectedProduct.name).Count() > 0) { return; } //이미 리스트에 값이 있으면 함수종료
+
             orderButton.IsEnabled = true;
-            if (lbMenus.SelectedIndex == -1) return;
+            selectedProduct.Count = 1;
 
-            Product product = lbMenus.SelectedItem as Product;
-
-            if (product == null) return;
-            product.Count = 1;
-
-            if (foodSelected.Count == 0)
-            {
-                price += product.FinalPrice;
-
-                foodSelected.Add(product);
-                RefreshItemWithPrice();
-            }
-            else
-            {
-                for (int i = 0; i < foodSelected.Count; i++)
-                {
-                    if (!product.name.Equals(foodSelected[i].name))
-                    {
-                        if (i == foodSelected.Count - 1)
-                        {
-                            price += product.FinalPrice;
-
-                            foodSelected.Add(product);
-                            RefreshItemWithPrice();
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-
-        }
-        //Category, Menus SelectionChanged methods.
-
-        //Button functions on page
-
-        private void ButtonOrder(object sender, System.Windows.RoutedEventArgs e) // order button
-        {
-            if (foodSelected.Count == 0)
-            {
-                System.Windows.MessageBox.Show("제품을 선택해주세요.");
-            }
-            else
-            {
-                order.Products = foodSelected;
-                NavigationService.Navigate(new PlacePickPage(order));
-            }
-            lbMenus.SelectedItem = null;
+            totalPrice += selectedProduct.FinalPrice;
+            selectProductList.Add(selectedProduct);
+            SetSelectMenuInfo();
         }
 
-        private void ButtonGoBack(object sender, System.Windows.RoutedEventArgs e) // go back button
+        private void ButtonOrder(object sender, RoutedEventArgs e)
         {
-            if (foodSelected.Count > 0)
-            {
+            order.Products = selectProductList;
+            NavigationService.Navigate(new PlacePickPage(order));
+            //lbMenus.SelectedItem = null;
+        }
+
+        private void ButtonGoBack(object sender, RoutedEventArgs e)
+        {
+            if (selectProductList.Count > 0) {
                 var result = System.Windows.Forms.MessageBox.Show("뒤로갈겨?", "이스터에그여ㅎ", System.Windows.Forms.MessageBoxButtons.YesNo);
-
-                if (result == System.Windows.Forms.DialogResult.No)
-                {
-                    return;
-                }
+                if (result == System.Windows.Forms.DialogResult.No) { return; }
             }
             NavigationService.GoBack();
         }
 
-        //Button functions on page
-
-        //Button functions on each item
-
-        private void ButtonAdd(object sender, RoutedEventArgs e) // add button ( count each products )
+        private void ButtonAdd(object sender, RoutedEventArgs e)
         {
             Product item = ((Button)sender).DataContext as Product;
-
-            if (item == null) return;
-
+            if (item == null) { return; }
 
             item.Count++;
-            price += item.FinalPrice;
-            RefreshItemWithPrice();
+
+            totalPrice += item.FinalPrice;
+            SetSelectMenuInfo();
         }
 
-        private void ButtonSubstract(object sender, RoutedEventArgs e) // substract button ( count each products also. )
+        private void ButtonSubstract(object sender, RoutedEventArgs e)
         {
             Product item = ((Button)sender).DataContext as Product;
+            if (item == null) { return; }
 
-            if (item == null) return;
+            if (item.Count > 1) { item.Count--; }
+            else{ selectProductList.Remove(item); }
 
-            if (item.Count > 1)
-            {
-                item.Count--;
-            }
-            else
-            {
-                item.Count = 1;
-                foodSelected.Remove(item);
-            }
-            price += -(item.FinalPrice);
-            RefreshItemWithPrice();
-
+            totalPrice -= item.FinalPrice;
+            SetSelectMenuInfo();
         }
 
-        private void ButtonDelete(object sender, RoutedEventArgs e) // delete each item
+        private void ButtonDelete(object sender, RoutedEventArgs e)
         {
             Product item = ((Button)sender).DataContext as Product;
+            if (item == null) { return; }
 
-            if (item == null) return;
+            selectProductList.Remove(item);
 
-
-            price -= (item.FinalPrice * item.Count);
-            item.Count = 1;
-            foodSelected.Remove(item);
-
-            RefreshItemWithPrice();
-
+            totalPrice -= item.TotalCellPrice;
+            SetSelectMenuInfo();
         }
 
-        private void ButtonDeleteAll(object sender, RoutedEventArgs e) // delete all items 
+        private void ButtonDeleteAll(object sender, RoutedEventArgs e)
         {
-            if (foodSelected.Count > 0)
+            if (selectProductList.Count > 0)
             {
-                var result = System.Windows.Forms.MessageBox.Show("전부 지울겨?", "이스터에그여ㅎ", System.Windows.Forms.MessageBoxButtons.YesNo);
-
-                if (result == System.Windows.Forms.DialogResult.No)
-                {
-                    return;
-                }
+                var result = System.Windows.Forms.MessageBox.Show("전부다 지울겨?", "이스터에그여ㅎ", System.Windows.Forms.MessageBoxButtons.YesNo);
+                if (result == System.Windows.Forms.DialogResult.No) { return; }
             }
-            for (int i = 0; i < foodSelected.Count; i++)
-                foodSelected[i].Count = 1;
-            foodSelected.Clear();
-            price = 0;
-            RefreshItemWithPrice();
 
             orderButton.IsEnabled = false;
-        }
-        //Button function on items
 
-        //Refresh item Prices when after done count process
-        private void RefreshItemWithPrice()
+            selectProductList.Clear();
+            totalPrice = 0;
+            SetSelectMenuInfo();
+        }
+
+        private void SetSelectMenuInfo()
         {
-            valueOrder.Content = "가격 : " + price + "원";
+            valueOrder.Content = "가격 : " + totalPrice + "원";
             lbSelected.Items.Refresh();
         }
-        //Refresh item Prices when after done count process
     }
 }

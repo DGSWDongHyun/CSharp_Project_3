@@ -15,7 +15,6 @@ namespace MainScene.Source.View.Pages.Main
         {
             InitializeComponent();
             admv.Play();
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -24,15 +23,10 @@ namespace MainScene.Source.View.Pages.Main
             {
                 NavigationService.RemoveBackEntry();
             }
-            NavigationService.Navigate(
-
-                new Uri("View/Pages/Page2.xaml", UriKind.Relative)
-
-                );
             NavigationService.Navigate(PagesURI.MenuPickPage.Value);
         }
 
-        private void admv_MediaEnded(object sender, RoutedEventArgs e)
+        private void Admv_MediaEnded(object sender, RoutedEventArgs e)
         {
             admv.Position = new TimeSpan(0, 0, 1);
             admv.Play();

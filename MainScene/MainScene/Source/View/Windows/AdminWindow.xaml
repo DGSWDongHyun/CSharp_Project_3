@@ -33,7 +33,7 @@
 
                 <GroupBox Header="통계 기준" Grid.Row="0"  Grid.Column="1" VerticalAlignment="Center" Margin="50">
                     <StackPanel Margin="10">
-                        <RadioButton Margin="5" GroupName="category" Content="카테고리별 판매수" Checked="ByCategoryPageRadioButton_Checked"/>
+                        <RadioButton Margin="5" GroupName="category" Content="카테고리 / 메뉴 별 판매수" Checked="ByCategoryPageRadioButton_Checked"/>
                         <RadioButton Margin="5" GroupName="category" Content="좌석별 메뉴 판매수" Checked="BySeatPageRadioButton_Checked"/>
 
                         <StackPanel Margin="5" Orientation="Horizontal">

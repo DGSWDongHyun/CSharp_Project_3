@@ -17,23 +17,23 @@ namespace MainScene.Source.View.Pages.Main.Place
     /// </summary>
     public partial class SeatPickPage : Page
     {
-        SeatRepository TableRepository = App.repositoryController.GetTableRepository();
+        private readonly SeatRepository TableRepository = App.repositoryController.GetTableRepository();
         public System.Collections.IList SelectedItems { get; }
-        Order order = new Order();
-        Timer timer = new System.Timers.Timer(100);
+        private readonly Order order = new Order();
+        private readonly Timer timer = new Timer(100);
 
 
         public SeatPickPage(Order order)
         {
             InitializeComponent();
 
-            timer.Elapsed += new ElapsedEventHandler(seattime);
+            timer.Elapsed += new ElapsedEventHandler(SeatTime);
             timer.Start();
 
             this.order = order;
         }
 
-        public void seattime(object sender, ElapsedEventArgs e)
+        public void SeatTime(object sender, ElapsedEventArgs e)
         {
             List<Seat> seatList = TableRepository.GetSeatList(); //우리매장에 있는 테이블 정보
             List<Seat> usedSeatList = TableRepository.GetUsedSeatList(); //사용된 테이블 정보

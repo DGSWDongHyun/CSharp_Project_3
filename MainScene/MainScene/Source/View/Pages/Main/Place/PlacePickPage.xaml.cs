@@ -37,11 +37,6 @@ namespace MainScene.Source.View.Pages.Main.Place
             order.IsTakeout = true;
             NavigationService.Navigate(new PaymentPickPage(order));
         }
-
-        private void Page_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
 
