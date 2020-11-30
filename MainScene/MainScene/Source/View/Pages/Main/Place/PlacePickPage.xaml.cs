@@ -17,6 +17,8 @@ namespace MainScene.Source.View.Pages.Main.Place
             InitializeComponent();
             this.order = order;
         }
+
+
         private void SelectStore(object sender, RoutedEventArgs e)
         {
             order.IsTakeout = true;
