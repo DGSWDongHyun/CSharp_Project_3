@@ -48,7 +48,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="50" Height="20">
+                        <StackPanel Width="Auto" Height="20">
                             <TextBlock Text="{Binding}" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>

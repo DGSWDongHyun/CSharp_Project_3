@@ -111,11 +111,11 @@ namespace MainScene.Source.View.Pages.Admin
                 int totalMargin = 0;
                 foreach (Product product in dividedProductList[CategoryEnum.Bugger])
                 {
-                    totalMargin += product.Price;
+                    totalMargin += product.FinalPrice;
                 }
                 statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Bugger].Count + "개 판매, 총" + totalMargin + "원";
 
-                UpdateGraph(mappingCellCount(productList, CategoryEnum.Bugger));
+                UpdateGraph(mappingCellCount(dividedProductList[CategoryEnum.Bugger], CategoryEnum.Bugger));
 
             }
             else if (lbi.Content.ToString() == "음료")
@@ -123,11 +123,11 @@ namespace MainScene.Source.View.Pages.Admin
                 int totalMargin = 0;
                 foreach (Product product in dividedProductList[CategoryEnum.Drink])
                 {
-                    totalMargin += product.Price;
+                    totalMargin += product.FinalPrice;
                 }
 
                 statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Drink].Count + "개 판매, 총" + totalMargin + "원";
-                UpdateGraph(mappingCellCount(productList, CategoryEnum.Drink));
+                UpdateGraph(mappingCellCount(dividedProductList[CategoryEnum.Drink], CategoryEnum.Drink));
 
             }
             else if (lbi.Content.ToString() == "사이드 메뉴")
@@ -135,11 +135,11 @@ namespace MainScene.Source.View.Pages.Admin
                 int totalMargin = 0;
                 foreach (Product product in dividedProductList[CategoryEnum.Side])
                 {
-                    totalMargin += product.Price;
+                    totalMargin += product.FinalPrice;
                 }
 
                 statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Side].Count + "개 판매, 총" + totalMargin + "원";
-                UpdateGraph(mappingCellCount(productList, CategoryEnum.Side));
+                UpdateGraph(mappingCellCount(dividedProductList[CategoryEnum.Side], CategoryEnum.Side));
             }
         }
 
@@ -155,6 +155,7 @@ namespace MainScene.Source.View.Pages.Admin
 
             return categoryMenuList;
         }
+
         private void UpdateGraph(List<Product> products)
         {
             piechart_cell.Series.Clear();
@@ -165,12 +166,17 @@ namespace MainScene.Source.View.Pages.Admin
                     piechartData.Add(new PieSeries
                     {
                         Title = products[i].name,
-                        Values = new ChartValues<double> { products[i].TotalCellCount },
+                        Values = new ChartValues<double> { products[i].Count },
                         DataLabels = true,
                     });
                 }
             }
             piechart_cell.Series = piechartData;
+
+        }
+        private void piechart_cell_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+
         }
     }
 }

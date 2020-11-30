@@ -48,8 +48,8 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="50" Height="50">
-                            <TextBlock Text="{Binding tablenum}" Foreground="Black"  HorizontalAlignment="Center"/>
+                        <StackPanel Width="50" Height="Auto">
+                            <TextBlock Text="{Binding seatNum}" Foreground="Black"  HorizontalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -71,14 +71,14 @@
                             </TextBlock>
                             <TextBlock  HorizontalAlignment="Center">
                                          <Run Text="("/>
-                                         <Run Text="{Binding TotalCellPriceCount}"/>
+                                         <Run Text="{Binding FinalPrice}"/>
                                          <Run Text="원 )"/>
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <TextBlock x:Name="statisticsInfo" FontSize="15px">총 판매 수 : 20개, 총 액 20,000원</TextBlock>
+            <TextBlock x:Name="statisticsInfo" FontSize="15px">총 판매 수 : -개, 총 액 -원</TextBlock>
 
 
             <ListBox x:Name="lbMenus" Grid.Row="1" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" Height="383">
@@ -118,7 +118,7 @@
                             </TextBlock>
                             <TextBlock  HorizontalAlignment="Center">
                                          <Run Text="("/>
-                                         <Run Text="{Binding TotalCellPriceCount}"/>
+                                         <Run Text="{Binding FinalPrice}"/>
                                          <Run Text="원 )"/>
                             </TextBlock>
                         </StackPanel>
