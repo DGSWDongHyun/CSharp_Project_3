@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 using Seat = MainScene.Model.Seat;
 
@@ -62,9 +63,10 @@ namespace MainScene.Source.View.Pages.Main.Place
         private void ListBoxItem_Selected(object sender, SelectionChangedEventArgs e)
         {
             Seat seat = seatListbox.SelectedItem as Seat;
+
             if (seat != null)
             {
-                if (seat.canuse)
+                if (seat._canuse)
                 {
                     order.Seat = seat;
                 }

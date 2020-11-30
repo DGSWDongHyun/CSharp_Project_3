@@ -23,13 +23,13 @@ namespace MainScene.Model
         {
             get
             {
-                if ((int)(UsedTime - DateTime.Now).TotalSeconds + 60 < 0)
+                if ((int)(UsedTime - DateTime.Now).TotalSeconds + 59 < 0)
                 {
                     return " ";
                 }
                 else
                 {
-                    int totalsec = (int)(UsedTime - DateTime.Now).Seconds + 60;
+                    int totalsec = (int)(UsedTime - DateTime.Now).Seconds + 59;
                     canuse = false;
                     return Convert.ToString(totalsec);
                 }
@@ -40,9 +40,22 @@ namespace MainScene.Model
             }
         }
 
-        public bool canuse = true; //사용할수 있는지 없는지 확인
+        public bool _canuse = true; //사용할수 있는지 없는지 확인
 
         public int seatNum { get; set; }
+
+        public bool canuse
+        {
+            get
+            {
+                return _canuse;
+            }
+            set
+            {
+                _canuse = value;
+                OnPropertyChanged(nameof(canuse));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -54,8 +67,5 @@ namespace MainScene.Model
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        public Brush brush = new SolidColorBrush(Colors.Red);
-
     }
 }
