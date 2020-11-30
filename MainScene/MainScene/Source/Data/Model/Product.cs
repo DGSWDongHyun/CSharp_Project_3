@@ -15,8 +15,9 @@ namespace MainScene.Model
         public int Price { get; set; }
         public int DiscountPrice { get; set; }
         public int IsDiscount { get; set; }
-        public int TotalCellCount { get; set; }
-        public int TotalCellPriceCount { get; set; }
+        public int TotalCellPriceCount { get {
+                return Count * FinalPrice;
+            } set { } }
         [NotMapped]
         public int FinalPrice { get { return Price - DiscountPrice; } set { } }
     }

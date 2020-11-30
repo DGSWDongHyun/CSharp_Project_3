@@ -71,13 +71,6 @@ namespace MainScene.Source.View.Pages.Admin
                 productListByTable.AddRange(order.Products);
             }
 
-            foreach (Product product in productList)
-            {
-                product.TotalCellCount = productListByTable.Where(x => x.name == product.name).Count();
-                product.TotalCellPriceCount = product.TotalCellCount * product.Price;
-            }
-
-
             return productList;
         }
     }

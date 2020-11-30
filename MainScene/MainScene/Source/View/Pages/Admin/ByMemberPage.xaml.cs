@@ -47,14 +47,6 @@ namespace MainScene.Source.View.Pages.Admin
             productList = productRepository.GetProduct();
 
 
-
-            foreach (Product product in productList)
-            {
-                product.TotalCellCount = productLisyByMember.Where(x => x.name == product.name).Count();
-                product.TotalCellPriceCount = product.TotalCellCount * product.Price;
-            }
-
-
             int totalMargin = 0;
             foreach (Product product in productLisyByMember)
             {

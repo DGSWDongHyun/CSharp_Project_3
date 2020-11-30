@@ -15,41 +15,31 @@ namespace MainScene.Source.View.Pages.Admin
     /// </summary>
     public partial class ByDatePage : Page
     {
-
         private OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
 
         List<Order> orderListByDate;
+
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
 
         public ByDatePage()
         {
             InitializeComponent();
 
-            datePicker1.SelectedDate = DateTime.Now;
-            setupView();
+            datePicker.SelectedDate = DateTime.Now;
+            SetupData();
+            SetupView();
+        }
+
+        private void SetupData()
+        {
+            orderListByDate = orderRepository.GetOrderListByDate(datePicker.SelectedDate.Value);
+        }
+
+        private void SetupView()
+        {
             InitGraph();
-        }
-
-        private void dpick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            setupView();
-            UpdateGraph();
-            InitGraph();
-
-        }
-
-        private void setupView()
-        {
-            orderListByDate = GetOrderListByDate(orderRepository.GetOrderHistoryList(), datePicker1.SelectedDate.Value);
-        }
-
-        private List<Order> GetOrderListByDate(List<Order> orderHistoryList, DateTime date)
-        {
-            var orderlist = orderHistoryList.Where(x => x.Payment.PaymentTime.Year == date.Year &&
-                                                        x.Payment.PaymentTime.Month == date.Month &&
-                                                        x.Payment.PaymentTime.Day == date.Day).ToList();
-
-
-            return orderlist;
         }
 
         private int GetTotalMargin()
@@ -76,18 +66,33 @@ namespace MainScene.Source.View.Pages.Admin
 
             return tempAmMargin;
         }
+
+        private int GetPmMargin()
+        {
+            int tempPmMargin = 0;
+            foreach (Order order in orderListByDate)
+            {
+                if (order.Payment.PaymentTime.ToString("tt", CultureInfo.CreateSpecificCulture("en-US")).Equals("PM"))//오후인가?
+                {
+                    tempPmMargin += order.GetTotalPrice();
+                }
+            }
+
+            return tempPmMargin;
+        }
+
         private void InitGraph()
         {
-            double totalAM = GetAmMargin();
-            double totalPM = GetPmMargin();
-            double totalEarn = GetTotalMargin();
+            int totalAM = GetAmMargin();
+            int totalPM = GetPmMargin();
+            int totalEarn = GetTotalMargin();
 
             SeriesCollection = new SeriesCollection
             {
                 new RowSeries
                 {
                     Title = "시간대 별 총 매출액",
-                    Values = new ChartValues<double> { totalPM, totalAM, totalEarn }
+                    Values = new ChartValues<int> { totalPM, totalAM, totalEarn }
                 }
             };
 
@@ -103,9 +108,9 @@ namespace MainScene.Source.View.Pages.Admin
             {
                 SeriesCollection[0].Values.Clear();
 
-                double totalAM = GetAmMargin();
-                double totalPM = GetPmMargin();
-                double totalEarn = GetTotalMargin();
+                int totalAM = GetAmMargin();
+                int totalPM = GetPmMargin();
+                int totalEarn = GetTotalMargin();
 
                 SeriesCollection[0].Values.Add(totalEarn);
                 SeriesCollection[0].Values.Add(totalAM);
@@ -118,23 +123,9 @@ namespace MainScene.Source.View.Pages.Admin
             }
         }
 
-
-        private int GetPmMargin()
+        private void Dpick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            int tempPmMargin = 0;
-            foreach (Order order in orderListByDate)
-            {
-                if (order.Payment.PaymentTime.ToString("tt", CultureInfo.CreateSpecificCulture("en-US")).Equals("PM"))//오후인가?
-                {
-                    tempPmMargin += order.GetTotalPrice();
-                }
-            }
-
-            return tempPmMargin;
+            UpdateGraph();
         }
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
-
     }
 }

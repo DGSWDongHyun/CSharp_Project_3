@@ -39,7 +39,7 @@ namespace MainScene.Source.Data.Util
         {
             if (settlementRepositoryInstance == null)
             {
-                settlementRepositoryInstance = new SettlementRepository();
+                settlementRepositoryInstance = new SettlementRepository(App.dbManagerController.GetOrderDBManager());
             }
 
             return settlementRepositoryInstance;

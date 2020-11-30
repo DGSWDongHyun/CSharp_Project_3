@@ -13,29 +13,33 @@ namespace MainScene.Source.View.Pages.Admin
     /// </summary>
     public partial class ByCategoryPage : Page
     {
-        private OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
-        private ProductRepository productRepository = App.repositoryController.GetProductRepository();
-        SeriesCollection piechartData;
-        Dictionary<CategoryEnum, List<Product>> dividedProductList;
-        List<Product> productList;
+        private readonly OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
+        private readonly ProductRepository productRepository = App.repositoryController.GetProductRepository();
+
+        private Dictionary<CategoryEnum, List<Product>> orderHistoryByCategory;
+
+        private SeriesCollection piechartData;
+        private List<Product> productList;
 
         public ByCategoryPage()
         {
             InitializeComponent();
-            DataContext = this;
-            dividedProductList = DivideProductListByCategory(orderRepository.GetOrderHistoryList());
-            productList = productRepository.GetProduct();
 
-            InitGraph();
+            SetupData();
             SetupView();
         }
 
         private void SetupView()
         {
-            lbCategory.SelectedIndex = 0;
+            InitGraph();
+            lbCategory.SelectedIndex = 0; //첫번째 카테고리 선택
+        }
+
+        private void SetupData()
+        {
             DataContext = this;
-
-
+            orderHistoryByCategory = orderRepository.GetOrderHistoryByCategory();
+            productList = productRepository.GetProduct();
         }
 
         private void InitGraph()
@@ -47,19 +51,19 @@ namespace MainScene.Source.View.Pages.Admin
                new PieSeries
                {
                 Title = "버거",
-                Values = new ChartValues<double> {dividedProductList[CategoryEnum.Bugger].Count},
+                Values = new ChartValues<double> { orderHistoryByCategory[CategoryEnum.Bugger].Count },
                 DataLabels = true,
                 },
                 new PieSeries
                 {
                     Title = "음료",
-                    Values = new ChartValues<double> {dividedProductList[CategoryEnum.Drink].Count},
+                    Values = new ChartValues<double> { orderHistoryByCategory[CategoryEnum.Drink].Count },
                     DataLabels = true,
                 },
                 new PieSeries
                 {
                     Title = "사이드 메뉴",
-                    Values = new ChartValues<double> {dividedProductList[CategoryEnum.Side].Count},
+                    Values = new ChartValues<double> { orderHistoryByCategory[CategoryEnum.Side].Count },
                     DataLabels = true,
                   },
             };
@@ -71,89 +75,22 @@ namespace MainScene.Source.View.Pages.Admin
             };
         }
 
-        private Dictionary<CategoryEnum, List<Product>> DivideProductListByCategory(List<Order> orderHistoryList)
+        private int GetMarginByCategory(CategoryEnum categoryEnum)
         {
-            Dictionary<CategoryEnum, List<Product>> tempDividedOrderHistoryList = new Dictionary<CategoryEnum, List<Product>>();
-
-            //Eum의 길이
-            int length = System.Enum.GetValues(typeof(CategoryEnum)).Length;
-
-            //orderList to product mapping
-            List<Product> tempProductList = new List<Product>();
-
-            foreach (Order order in orderHistoryList)
+            int totalMargin = 0;
+            foreach (Product product in orderHistoryByCategory[categoryEnum])
             {
-                tempProductList.AddRange(order.Products);
+                totalMargin += product.FinalPrice;
             }
-
-            //divide products by category
-            int count = 0;
-            while (count <= length)
-            {
-                CategoryEnum tempCategoryEnum = (CategoryEnum)count;
-
-                List<Product> dividedProductList = tempProductList.Where(x => x.Category == tempCategoryEnum).ToList();
-
-                tempDividedOrderHistoryList.Add(tempCategoryEnum, dividedProductList);
-
-                count++;
-            }
-
-            return tempDividedOrderHistoryList;
+            return totalMargin;
         }
 
-        private void lbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UpdateStatisticsInfo(CategoryEnum categoryEnum)
         {
-            ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
+            int totalMargin = GetMarginByCategory(categoryEnum);
+            int totalCellCount = orderHistoryByCategory[categoryEnum].Count;
 
-            if (lbi.Content.ToString() == "버거")
-            {
-                int totalMargin = 0;
-                foreach (Product product in dividedProductList[CategoryEnum.Bugger])
-                {
-                    totalMargin += product.FinalPrice;
-                }
-                statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Bugger].Count + "개 판매, 총" + totalMargin + "원";
-
-                UpdateGraph(mappingCellCount(dividedProductList[CategoryEnum.Bugger], CategoryEnum.Bugger));
-
-            }
-            else if (lbi.Content.ToString() == "음료")
-            {
-                int totalMargin = 0;
-                foreach (Product product in dividedProductList[CategoryEnum.Drink])
-                {
-                    totalMargin += product.FinalPrice;
-                }
-
-                statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Drink].Count + "개 판매, 총" + totalMargin + "원";
-                UpdateGraph(mappingCellCount(dividedProductList[CategoryEnum.Drink], CategoryEnum.Drink));
-
-            }
-            else if (lbi.Content.ToString() == "사이드 메뉴")
-            {
-                int totalMargin = 0;
-                foreach (Product product in dividedProductList[CategoryEnum.Side])
-                {
-                    totalMargin += product.FinalPrice;
-                }
-
-                statisticsInfo.Text = "총" + dividedProductList[CategoryEnum.Side].Count + "개 판매, 총" + totalMargin + "원";
-                UpdateGraph(mappingCellCount(dividedProductList[CategoryEnum.Side], CategoryEnum.Side));
-            }
-        }
-
-        private List<Product> mappingCellCount(List<Product> productList, CategoryEnum category)
-        {
-            var categoryMenuList = productList.Where(x => x.Category == category).ToList();
-
-            foreach (Product product in categoryMenuList)
-            {
-                product.TotalCellCount = dividedProductList[category].Where(x => x.name == product.name).ToList().Count();
-                product.TotalCellPriceCount = product.TotalCellCount * product.Price;
-            }
-
-            return categoryMenuList;
+            statisticsInfo.Text = ("총" + totalCellCount + "개 판매, 총" + totalMargin + "원");
         }
 
         private void UpdateGraph(List<Product> products)
@@ -161,7 +98,7 @@ namespace MainScene.Source.View.Pages.Admin
             piechart_cell.Series.Clear();
             for (int i = 0; i < products.Count; i++)
             {
-                if (products[i].TotalCellCount != 0)
+                if (products[i].Count != 0)
                 {
                     piechartData.Add(new PieSeries
                     {
@@ -174,9 +111,13 @@ namespace MainScene.Source.View.Pages.Admin
             piechart_cell.Series = piechartData;
 
         }
-        private void piechart_cell_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
 
+        private void LbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int SelectedIndex = (sender as ListBox).SelectedIndex;
+
+            UpdateStatisticsInfo((CategoryEnum)SelectedIndex);
+            UpdateGraph(orderHistoryByCategory[(CategoryEnum)SelectedIndex]);
         }
     }
 }

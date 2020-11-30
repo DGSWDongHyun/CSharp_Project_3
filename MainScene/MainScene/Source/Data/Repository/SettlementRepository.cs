@@ -1,4 +1,5 @@
-﻿using MainScene.Model;
+﻿using MainScene.DBManagerImpl;
+using MainScene.Model;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,13 @@ namespace MainScene.Repository
 {
     public class SettlementRepository
     {
+        private OrderDBManager orderDBManager;
+
+        public SettlementRepository(OrderDBManager orderDBManager)
+        {
+            this.orderDBManager = orderDBManager;
+        }
+
         //총매출액
         public int GetTotalSales()
         {
@@ -18,6 +26,7 @@ namespace MainScene.Repository
             }
             return totalSales;
         }
+
         //할인액
         public int GetDiscount()
         {
@@ -29,11 +38,13 @@ namespace MainScene.Repository
             }
             return totalDiscount;
         }
+
         //순수 매출액
         public int GetSales()
         {
             return GetTotalSales() - GetDiscount();
         }
+
         //카드매출액
         public int GetCardSales()
         {
@@ -45,6 +56,7 @@ namespace MainScene.Repository
             }
             return totalSales;
         }
+
         //현금매출액
         public int GetCacheSales()
         {
@@ -56,57 +68,19 @@ namespace MainScene.Repository
             }
             return totalSales;
         }
-        public List<Order> GetOrderHistoryList()
-        {
-            var orderList = new List<Order>();
-            string dbName = "Order.db";
 
-            using (var dbContext = new OrderContext())
-            {
-                if (File.Exists(dbName))
-                {
-                    orderList.AddRange(dbContext.Order);
-                }
-            }
+        private List<Order> GetOrderHistoryList()
+        {
+            var orderList = orderDBManager.GetOrderList();
 
             foreach (var order in orderList)
             {
-                order.Payment = GetPaymeent(order.Index);
-                order.Products = GetOrderedProductList(order.Index);
+                order.Payment = orderDBManager.GetPaymeent(order.Index);
+                order.Products = orderDBManager.GetOrderedProductList(order.Index);
+                order.Seat = order.IsTakeout ? null : orderDBManager.GetUsedSeat(order.Index);
             }
 
             return orderList;
-        }
-
-
-        private Payment GetPaymeent(int orderIdx)
-        {
-            var paymentList = new List<Payment>();
-            string dbName = "Payment.db";
-
-            using (var dbContext = new PaymentContext())
-            {
-                if (File.Exists(dbName))
-                {
-                    paymentList.AddRange(dbContext.Payment);
-                }
-            }
-            return paymentList.Where(x => x.OrderIndex == orderIdx).First();
-        }
-
-        private List<Product> GetOrderedProductList(int orderIdx)
-        {
-            var productList = new List<Product>();
-            string dbName = "Order.db";
-
-            using (var dbContext = new OrderedProductContext())
-            {
-                if (File.Exists(dbName))
-                {
-                    productList.AddRange(dbContext.Product);
-                }
-            }
-            return productList.Where(x => x.OrderIndex == orderIdx).ToList();
         }
     }
 }

@@ -27,7 +27,6 @@ namespace MainScene.Model
                 totalPrice += product.FinalPrice;
             }
 
-
             return totalPrice;
         }
 
