@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel Margin="0,0,0,0">
-            <ListBox x:Name="lbSeat" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbTable_SelectionChanged">
+            <ListBox x:Name="lbSeat" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="LbTable_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
@@ -55,7 +55,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <ListBox x:Name="IbCategory" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="lbTable_SelectionChanged">
+            <ListBox x:Name="IbCategory" Grid.Row="0" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Top" BorderBrush="Transparent" SelectionChanged="LbTable_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />
@@ -66,12 +66,12 @@
                         <StackPanel Width="250" Height="300">
                             <TextBlock Text="{Binding name}" HorizontalAlignment="Center"/>
                             <TextBlock  HorizontalAlignment="Center">
-                                         <Run Text="{Binding TotalCellCount}"/>
+                                         <Run Text="{Binding Count}"/>
                                          <Run Text="개 판매"/>
                             </TextBlock>
                             <TextBlock  HorizontalAlignment="Center">
                                          <Run Text="("/>
-                                         <Run Text="{Binding FinalPrice}"/>
+                                         <Run Text="{Binding TotalCellPrice}"/>
                                          <Run Text="원 )"/>
                             </TextBlock>
                         </StackPanel>
@@ -113,7 +113,7 @@
                             <Image Source="{Binding Image}"/>
                             <TextBlock Text="{Binding name}" HorizontalAlignment="Center"/>
                             <TextBlock  HorizontalAlignment="Center">
-                                         <Run Text="{Binding TotalCellCount}"/>
+                                         <Run Text="{Binding Count}"/>
                                          <Run Text="개 판매"/>
                             </TextBlock>
                             <TextBlock  HorizontalAlignment="Center">

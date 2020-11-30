@@ -21,7 +21,7 @@ namespace MainScene.Source.View.Pages.Main.Payment
         {
             InitializeComponent();
             this.order = order;
-            price.Text = "금액 : " + allPrices() + "원";
+            price.Text = "금액 : " + order.GetTotalPrice() + "원";
             orderNumber.Text = "주문번호 : " + order.Index;
             orderNetWorkManager.PostOrderInfo(order);
             Exit();
@@ -47,17 +47,6 @@ namespace MainScene.Source.View.Pages.Main.Payment
                     NavigationService.GoBack();
                 }
             }
-        }
-
-        private int allPrices()
-        {
-            int prices = 0;
-            for (int i = 0; i < order.Products.Count; i++)
-            {
-                Product products = order.Products[i];
-                prices += (products.Price * products.Count);
-            }
-            return prices;
         }
     }
 }

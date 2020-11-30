@@ -14,12 +14,9 @@ namespace MainScene.Source.View.Pages.Admin
     public partial class ByCategoryPage : Page
     {
         private readonly OrderRepository orderRepository = App.repositoryController.GetOrderRepository();
-        private readonly ProductRepository productRepository = App.repositoryController.GetProductRepository();
 
-        private Dictionary<CategoryEnum, List<Product>> orderHistoryByCategory;
-
-        private SeriesCollection piechartData;
-        private List<Product> productList;
+        private Dictionary<CategoryEnum, List<Product>> orderedProductByCategory;
+        private readonly SeriesCollection piechartData = new SeriesCollection();
 
         public ByCategoryPage()
         {
@@ -38,47 +35,62 @@ namespace MainScene.Source.View.Pages.Admin
         private void SetupData()
         {
             DataContext = this;
-            orderHistoryByCategory = orderRepository.GetOrderHistoryByCategory();
-            productList = productRepository.GetProduct();
+            orderedProductByCategory = orderRepository.GetOrderedProductByCategory();
         }
 
         private void InitGraph()
         {
-
             piechart.Series = new SeriesCollection
             {
 
                new PieSeries
                {
                 Title = "버거",
-                Values = new ChartValues<double> { orderHistoryByCategory[CategoryEnum.Bugger].Count },
+                Values = new ChartValues<double> { orderedProductByCategory[CategoryEnum.Bugger].Count },
                 DataLabels = true,
                 },
                 new PieSeries
                 {
                     Title = "음료",
-                    Values = new ChartValues<double> { orderHistoryByCategory[CategoryEnum.Drink].Count },
+                    Values = new ChartValues<double> { orderedProductByCategory[CategoryEnum.Drink].Count },
                     DataLabels = true,
                 },
                 new PieSeries
                 {
                     Title = "사이드 메뉴",
-                    Values = new ChartValues<double> { orderHistoryByCategory[CategoryEnum.Side].Count },
+                    Values = new ChartValues<double> { orderedProductByCategory[CategoryEnum.Side].Count },
                     DataLabels = true,
                   },
             };
+        }
 
-            piechartData = new SeriesCollection
+        private void UpdateGraph(List<Product> products)
+        {
+            piechart_cell.Series.Clear();
+            for (int i = 0; i < products.Count; i++)
             {
+                if (CheckDuplicateItem(products[i], i, products))
+                {
+                    piechartData.Add(new PieSeries
+                    {
+                        Title = products[i].name,
+                        Values = new ChartValues<double> { products[i].Count },
+                        DataLabels = true,
+                    });
+                }
+                else
+                {
+                    piechartData[i].Values = new ChartValues<double> { products[i].Count };
+                }
+            }
+            piechart_cell.Series = piechartData;
 
-
-            };
         }
 
         private int GetMarginByCategory(CategoryEnum categoryEnum)
         {
             int totalMargin = 0;
-            foreach (Product product in orderHistoryByCategory[categoryEnum])
+            foreach (Product product in orderedProductByCategory[categoryEnum])
             {
                 totalMargin += product.FinalPrice;
             }
@@ -88,42 +100,16 @@ namespace MainScene.Source.View.Pages.Admin
         private void UpdateStatisticsInfo(CategoryEnum categoryEnum)
         {
             int totalMargin = GetMarginByCategory(categoryEnum);
-            int totalCellCount = orderHistoryByCategory[categoryEnum].Count;
+            int totalCellCount = orderedProductByCategory[categoryEnum].Count;
 
             statisticsInfo.Text = ("총" + totalCellCount + "개 판매, 총" + totalMargin + "원");
         }
 
-        private void UpdateGraph(List<Product> products)
-        {
-            piechart_cell.Series.Clear();
-            for (int i = 0; i < products.Count; i++)
-            {
-                if (products[i].Count != 0 && CheckDuplicateItem(products[i], i, products))
-                {
-                    piechartData.Add(new PieSeries
-                    {
-                        Title = products[i].name,
-                        Values = new ChartValues<double> { products[i].Count },
-                        DataLabels = true,
-                    });
-                }
-            }
-            piechart_cell.Series = piechartData;
-
-        }
         private bool CheckDuplicateItem(Product product, int index, List<Product> products)
         {
-            for(int i = 0; i < index; i++)
-            {
-                if(products[i].name == product.name)
-                {
-                    continue;
-                }
-            }
-
             for(int i = index; i < products.Count; i++)
             {
-                if(products[i].name == product.name)
+                if(product.name.Equals(products[i].name))
                 {
                     continue;
                 }
@@ -136,7 +122,7 @@ namespace MainScene.Source.View.Pages.Admin
             int SelectedIndex = (sender as ListBox).SelectedIndex;
 
             UpdateStatisticsInfo((CategoryEnum)SelectedIndex);
-            UpdateGraph(orderHistoryByCategory[(CategoryEnum)SelectedIndex]);
+            UpdateGraph(orderedProductByCategory[(CategoryEnum)SelectedIndex]);
         }
     }
 }

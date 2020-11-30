@@ -67,6 +67,7 @@ namespace MainScene.Source.View.Pages.Main
             Product product = lbMenus.SelectedItem as Product;
 
             if (product == null) return;
+            product.Count = 1;
 
             if (foodSelected.Count == 0)
             {

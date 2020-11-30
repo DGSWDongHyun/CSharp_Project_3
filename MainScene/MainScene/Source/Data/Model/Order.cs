@@ -24,7 +24,7 @@ namespace MainScene.Model
 
             foreach (Product product in Products)
             {
-                totalPrice += product.FinalPrice;
+                totalPrice += product.TotalCellPrice;
             }
 
             return totalPrice;

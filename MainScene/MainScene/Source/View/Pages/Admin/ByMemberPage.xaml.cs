@@ -16,72 +16,42 @@ namespace MainScene.Source.View.Pages.Admin
 
         List<string> orderedUserCodeList;
         List<Order> orderHistoryList;
-        List<Product> productList;
 
         public ByMemberPage()
         {
             InitializeComponent();
 
-            orderHistoryList = orderRepository.GetOrderHistoryList();
-
-            orderedUserCodeList = GetOrderedUserCodeList(orderHistoryList);
-
-            setupView();
+            SetupData();
+            SetupView();
         }
 
+        private void SetupData()
+        {
+            orderHistoryList = orderRepository.GetOrderHistoryList();
+            orderedUserCodeList = orderRepository.GetOrderedUserCodeList();
+        }
 
-        private void setupView()
+        private void SetupView()
         {
             lbMember.ItemsSource = orderedUserCodeList;
             lbMember.SelectedIndex = 0;
         }
 
-
-        private void lbMember_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LbMember_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             string userCode = lbMember.SelectedItem as string;
-
-            var productLisyByMember = GetDividedProductList(userCode, orderHistoryList);
-
-            productList = productRepository.GetProduct();
-
+            var productListByUser = orderRepository.GetOrderedProductListByUser(userCode);
 
             int totalMargin = 0;
-            foreach (Product product in productLisyByMember)
+            int totalCount = 0;
+            foreach (Product product in productListByUser)
             {
-                totalMargin += product.Price;
+                totalMargin += product.Count > 0 ? product.TotalCellPrice : 0;
+                totalCount += product.Count;
             }
-
-            statisticsInfo.Text = "총" + productLisyByMember.Count + "개 판매, 총" + totalMargin + "원";
-
-            lbMenus.ItemsSource = productList;
-        }
-
-        private List<Product> GetDividedProductList(string userCode, List<Order> orderHistoryList)
-        {
-            List<Product> orderedProductList = new List<Product>();
-
-            var devidedOrderList = orderHistoryList.Where(x => x.Payment.UserCode.Equals(userCode)).ToList();
-
-            foreach (var devidedOrder in devidedOrderList)
-            {
-                orderedProductList.AddRange(devidedOrder.Products);
-            }
-            return orderedProductList;
-        }
-
-        private List<string> GetOrderedUserCodeList(List<Order> orderHistoryList)
-        {
-            List<string> orderedUserCodeList = new List<string>();
-            List<string> tempOrderedUserCodeList = new List<string>();
-
-            foreach (Order order in orderHistoryList)
-            {
-                tempOrderedUserCodeList.Add(order.Payment.UserCode);
-            }
-
-            return tempOrderedUserCodeList.Distinct().ToList();
+            
+            statisticsInfo.Text = "총" + totalCount + "개 판매, 총" + totalMargin + "원";
+            lbMenus.ItemsSource = productListByUser;
         }
     }
 }
