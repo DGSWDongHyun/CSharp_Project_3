@@ -38,9 +38,8 @@ namespace MainScene.Source.View.Windows
                     if (check.IsChecked == true)
                     {
                         storageSave();
-                        (App.Current.MainWindow as MainWindow).Login();
                     }
-
+                    (App.Current.MainWindow as MainWindow).Login();
                 }
                 else
                 {

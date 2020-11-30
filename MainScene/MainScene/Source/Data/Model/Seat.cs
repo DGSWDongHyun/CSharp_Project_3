@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Media;
 
 namespace MainScene.Model
 {
@@ -54,15 +55,7 @@ namespace MainScene.Model
             }
         }
 
-        //public bool IsUsingNow()
-        //{
-        //    TimeSpan span = DateTime.Now - UsedTime;
-        //    if(span.Minutes < 1)
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
+        public Brush brush = new SolidColorBrush(Colors.Red);
 
     }
 }
