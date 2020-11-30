@@ -3,6 +3,7 @@ using LiveCharts.Wpf;
 using MainScene.Model;
 using MainScene.Repository;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
 
@@ -17,13 +18,33 @@ namespace MainScene.Source.View.Pages.Admin
 
         private Dictionary<CategoryEnum, List<Product>> orderedProductByCategory;
         private readonly SeriesCollection piechartData = new SeriesCollection();
-
+        private List<string> kindofproduct = new List<string>();
         public ByCategoryPage()
         {
             InitializeComponent();
 
             SetupData();
             SetupView();
+        }
+        public void Findproductkind(int SelectedIndex)
+        {
+            kindofproduct.Clear();
+            foreach (var selectedproduct in orderedProductByCategory[(CategoryEnum)SelectedIndex])
+            {
+                bool Isinlist = false;
+                foreach (var productkind in kindofproduct)
+                {
+                    if (productkind == selectedproduct.name)
+                    {
+                        Isinlist = true;
+                    }
+                }
+                if (!Isinlist)
+                {
+                    kindofproduct.Add(selectedproduct.name);
+                }
+            }
+            Debug.WriteLine(kindofproduct);
         }
 
         private void SetupView()
@@ -64,11 +85,11 @@ namespace MainScene.Source.View.Pages.Admin
             };
         }
 
-        private void UpdateGraph(List<Product> products)
+        private void UpdateGraph(List<Product> products) //이제 여기다가 값을 넣어주면 됨 ㅇㅇ
         {
             piechart_cell.Series.Clear();
-            for (int i = 0; i < products.Count; i++)
-            {
+            for (int i = 0; i < kindofproduct.Count; i++)
+            {   
                 if (CheckDuplicateItem(products[i], i, products))
                 {
                     piechartData.Add(new PieSeries
@@ -121,6 +142,7 @@ namespace MainScene.Source.View.Pages.Admin
         {
             int SelectedIndex = (sender as ListBox).SelectedIndex;
 
+            Findproductkind(SelectedIndex);
             UpdateStatisticsInfo((CategoryEnum)SelectedIndex);
             UpdateGraph(orderedProductByCategory[(CategoryEnum)SelectedIndex]);
         }
