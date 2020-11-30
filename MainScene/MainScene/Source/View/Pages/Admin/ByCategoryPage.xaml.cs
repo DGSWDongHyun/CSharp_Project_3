@@ -2,6 +2,7 @@
 using LiveCharts.Wpf;
 using MainScene.Model;
 using MainScene.Repository;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace MainScene.Source.View.Pages.Admin
         private Dictionary<CategoryEnum, List<Product>> orderedProductByCategory;
         private readonly SeriesCollection piechartData = new SeriesCollection();
         private List<string> kindofproduct = new List<string>();
+        private List<int> productcount = new List<int>();
         public ByCategoryPage()
         {
             InitializeComponent();
@@ -44,7 +46,6 @@ namespace MainScene.Source.View.Pages.Admin
                     kindofproduct.Add(selectedproduct.name);
                 }
             }
-            Debug.WriteLine(kindofproduct);
         }
 
         private void SetupView()
@@ -85,27 +86,36 @@ namespace MainScene.Source.View.Pages.Admin
             };
         }
 
-        private void UpdateGraph(List<Product> products) //이제 여기다가 값을 넣어주면 됨 ㅇㅇ
+        private void UpdateGraph(List<Product> products)
         {
             piechart_cell.Series.Clear();
-            for (int i = 0; i < kindofproduct.Count; i++)
-            {   
-                if (CheckDuplicateItem(products[i], i, products))
-                {
-                    piechartData.Add(new PieSeries
-                    {
-                        Title = products[i].name,
-                        Values = new ChartValues<double> { products[i].Count },
-                        DataLabels = true,
-                    });
-                }
-                else
-                {
-                    piechartData[i].Values = new ChartValues<double> { products[i].Count };
-                }
-            }
-            piechart_cell.Series = piechartData;
 
+            for (int i = 0; i<kindofproduct.Count; i++)
+            {
+                piechartData.Add(new PieSeries
+                {
+                    Title = kindofproduct[i],
+                    DataLabels = true,
+                }) ;
+                productcount.Add(0);
+            }
+            for(int i = 0; i < products.Count; i++)
+            {
+                for(int j = 0; j < kindofproduct.Count;j++)
+                {
+                    if (products[i].name.Equals(piechartData[j].Title))
+                    {
+                        productcount[j] += products[i].Count;
+                    }
+                }
+                
+            }
+            for(int i= 0; i < kindofproduct.Count; i++)
+            {
+                piechartData[i].Values = new ChartValues<double> { productcount[i] };
+            }
+
+            piechart_cell.Series = piechartData;    
         }
 
         private int GetMarginByCategory(CategoryEnum categoryEnum)
