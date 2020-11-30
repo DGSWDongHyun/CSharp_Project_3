@@ -19,27 +19,25 @@ namespace MainScene.Source.View.Pages.Admin
 
         List<Order> orderListByDate;
 
+        SeriesCollection piechartData;
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
+        public Func<int, string> Formatter { get; set; }
 
         public ByDatePage()
         {
             InitializeComponent();
-
-            datePicker.SelectedDate = DateTime.Now;
-            SetupData();
             SetupView();
         }
 
-        private void SetupData()
+        private void SetupData(DateTime date)
         {
-            orderListByDate = orderRepository.GetOrderListByDate(datePicker.SelectedDate.Value);
+            orderListByDate = orderRepository.GetOrderListByDate(date);
         }
 
         private void SetupView()
         {
-            InitGraph();
+            datePicker.SelectedDate = DateTime.Now;
         }
 
         private int GetTotalMargin()
@@ -81,51 +79,29 @@ namespace MainScene.Source.View.Pages.Admin
             return tempPmMargin;
         }
 
-        private void InitGraph()
+        private void SetupGraph()
         {
-            int totalAM = GetAmMargin();
-            int totalPM = GetPmMargin();
-            int totalEarn = GetTotalMargin();
-
-            SeriesCollection = new SeriesCollection
+            piechart_cell.Series = new SeriesCollection
             {
-                new RowSeries
+                 new PieSeries
+                 {
+                   Title = "오전",
+                   Values = new ChartValues<int> { GetAmMargin() },
+                   DataLabels = true,
+                },
+                new PieSeries
                 {
-                    Title = "시간대 별 총 매출액",
-                    Values = new ChartValues<int> { totalPM, totalAM, totalEarn }
-                }
+                    Title = "오후",
+                    Values = new ChartValues<int> { GetPmMargin() },
+                    DataLabels = true,
+                },
             };
-
-            Labels = new[] { "오후", "오전", "총 매출액" };
-            Formatter = value => value.ToString("N");
-
-            DataContext = this;
-        }
-
-        private void UpdateGraph()
-        {
-            if (SeriesCollection != null)
-            {
-                SeriesCollection[0].Values.Clear();
-
-                int totalAM = GetAmMargin();
-                int totalPM = GetPmMargin();
-                int totalEarn = GetTotalMargin();
-
-                SeriesCollection[0].Values.Add(totalEarn);
-                SeriesCollection[0].Values.Add(totalAM);
-                SeriesCollection[0].Values.Add(totalPM);
-
-                Labels = new[] { "오후", "오전", "총 매출액" };
-                Formatter = value => value.ToString("N");
-
-                DataContext = this;
-            }
         }
 
         private void Dpick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateGraph();
+            SetupData((sender as DatePicker).SelectedDate.Value);
+            SetupGraph();
         }
     }
 }
